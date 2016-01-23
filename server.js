@@ -77,7 +77,7 @@ app.use('/', routes);
 app.get('/', users_controller.index)
 
 app.get('/auth/venmo', passport.authenticate('venmo', {
-    scope: ['make_payments', 'access_feed', 'access_profile', 'access_email', 'access_phone', 'access_balance', 'access_friends'],
+    scope: ['access_feed', 'access_profile', 'access_email', 'access_phone', 'access_balance', 'access_friends'],
     failureRedirect: '/'
 }), users_controller.signin);
 

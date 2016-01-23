@@ -1,9 +1,9 @@
-var User = require('../models/user');
-var VenmoStrategy = require('passport-venmo').Strategy;
-
-
+var mongoose = require('mongoose');
 var express = require('express');
 var app = express(); // Function in exress to run application
+
+var User = require('../models/user');
+var VenmoStrategy = require('passport-venmo').Strategy;
 
 // s
 
@@ -46,6 +46,7 @@ module.exports = function(passport){
         User.findOne({
             'venmo.id': venmo.id
         }, function(err, user) {
+            console.log(user);
             if (err) {
                 return done(err);
             }
@@ -58,12 +59,12 @@ module.exports = function(passport){
                     email: venmo.email,
                     provider: 'venmo',
                     venmo: venmo._json,
-                    balance: venmo.balance,
                     access_token: accessToken,
                     refresh_token: refreshToken
                 });
                 user.save(function(err) {
                     if (err) console.log(err);
+                    else console.log('SAVED!')
                     return done(err, user);
                 });
             } else {

@@ -5,14 +5,13 @@ var mongoose = require('mongoose')
  * Module dependencies.
  */
 
-var Schema = mongoose.Schema
 
 
 
 /**
  * User Schema
  */
-var UserSchema = new Schema({
+module.exports = mongoose.model('User', {
     name: {
         type: String,
         required: true
@@ -22,14 +21,9 @@ var UserSchema = new Schema({
         type: String,
         unique: true
     },
-    balance: String,
     provider: String,
     salt: String,
     venmo: {},
     access_token: String,
     refresh_token: String
 });
-
-var User = mongoose.model('User', UserSchema);
-
-module.exports = {"User": User};
