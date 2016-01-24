@@ -3,9 +3,11 @@
 <% if(user != undefined && user != '{}'){ %>
 
   <h2>The dude below is pretty cool</h2>
-  <pre>
-    <%= user %>
-  </pre>
-  <a href="#">Logout</a>
+
+  <h3><%= user %></h3>
+  <h4>Id: <%= user.id %></h4>
+
+  <a href="/users/test">Logout</a>
+
 
 <% } %>

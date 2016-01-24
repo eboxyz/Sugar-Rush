@@ -46,7 +46,6 @@ module.exports = function(passport){
         User.findOne({
             'venmo.id': venmo.id
         }, function(err, user) {
-            console.log(user);
             if (err) {
                 return done(err);
             }
@@ -62,6 +61,7 @@ module.exports = function(passport){
                     access_token: accessToken,
                     refresh_token: refreshToken
                 });
+                console.log(user)
                 user.save(function(err) {
                     if (err) console.log(err);
                     else console.log('SAVED!')

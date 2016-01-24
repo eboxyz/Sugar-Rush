@@ -14,12 +14,18 @@ exports.index = function(req, res){
  * Auth callback
  */
 exports.authCallback = function(req, res) {
-  res.render('payment', {user: req.user ? JSON.stringify(req.user) : 'null'});
+  res.render('users/profile', {user: req.user ? JSON.stringify(req.user) : 'null'});
 };
 
 /**
  * Show login form
  */
 exports.signin = function(req, res) {
-    res.render('users/signin');
+  res.render('users/signin');
 };
+
+exports.profile = function(req, res) {
+  res.render('users/test', {user: req.user ? JSON.stringify(req.user) : 'null'});
+}
+
+// , {user: req.user}

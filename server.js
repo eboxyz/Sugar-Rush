@@ -1,8 +1,3 @@
-///////////////////////////////////////////////////////////////////////*
-//                                                                    //
-//                               Notes                                //
-// No path npm, no expressSession npm                                 //
-//                                                                    //
 ////////////////////////////////////////////////////////////////////////
 
 // Give variables to all the npms to make them easier to access.
@@ -16,8 +11,9 @@ var passport = require('passport'); // Helps with authentication
 var VenmoStrategy = require('passport-venmo').Strategy; // ?
 var request = require('request') //?
 var users_controller = require('./controllers/usersController.js'); // ?
-var http = require('http'); //?
-var path = require('path'); //?
+var http = require('http'); //
+var path = require('path'); //
+var expressSession = require('express-session'); // ??? allows seshes
 var cookieParser = require('cookie-parser'); // Allows app to store cookies
 var dotenv = require('dotenv').config(); // ??? Something with environment vars
 
@@ -62,9 +58,14 @@ app.use(passport.session());
 // All our assets can be stored in the public folder
 app.use(express.static(__dirname + '/public'));
 
-// Passports - ??? requires the passport file, then the actual module
-// ??????????? Broken below ??????????
-//require('./config/passport')(passport)
+
+
+
+
+
+// Seed users
+require('./db/seed.js').seedRestaurants();
+
 
 
 // Allows us to access and use the routes files.
@@ -77,16 +78,15 @@ app.use('/', routes);
 app.get('/', users_controller.index)
 
 app.get('/auth/venmo', passport.authenticate('venmo', {
-    scope: ['access_feed', 'access_profile', 'access_email', 'access_phone', 'access_balance', 'access_friends'],
-    failureRedirect: '/'
+  scope: ['access_feed', 'access_profile', 'access_email', 'access_phone', 'access_balance', 'access_friends'],
+  failureRedirect: '/'
 }), users_controller.signin);
 
 app.get('/auth/venmo/callback', passport.authenticate('venmo', {
     failureRedirect: '/'
 }), users_controller.authCallback);
 
-
-
+app.get('/users/test', users_controller.profile);
 
 
 // ?????
