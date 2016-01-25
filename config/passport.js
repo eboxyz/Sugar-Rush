@@ -1,3 +1,7 @@
+////////////////////////////////////////////////////////////////////////
+//                            passport.js                             //
+////////////////////////////////////////////////////////////////////////
+
 var mongoose = require('mongoose');
 var express = require('express');
 var app = express(); // Function in exress to run application
