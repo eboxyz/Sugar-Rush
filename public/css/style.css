@@ -14,4 +14,10 @@ body{
     font-family: cursive;
   }
 
+  .parallax-window {
+    min-height: 400px;
+    background: transparent;
+  }
+  html { height: 100%; }
+
 /*     */
