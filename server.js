@@ -25,11 +25,11 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var VenmoStrategy = require('passport-venmo').Strategy;
 var request = require('request')
-var http = require('http'); //
-var path = require('path'); //
-var expressSession = require('express-session'); // ??? allows seshes
-var cookieParser = require('cookie-parser'); // Allows app to store cookies
-var dotenv = require('dotenv').config(); // ??? Something with environment vars
+var http = require('http');
+var path = require('path');
+var expressSession = require('express-session');
+var cookieParser = require('cookie-parser');
+var dotenv = require('dotenv').config();
 
 ////////////////////////////////////////////////////////////////////////
 //                            Middleware?                             //
