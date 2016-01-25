@@ -8,9 +8,14 @@ html {
   background: transparent;
 }
 
+/*gets rid of awkard space*/
 section {
   margin-top: -20px;
 }
+
+/*.navbar {
+  background-color: transparent;
+}*/
 
 /* Home Page Styles */
 
@@ -42,14 +47,28 @@ section {
   }
 
 
+
+
+
   /*ABOUT US*/
   #section-two {
-    background-color: black;
+
+    background:
+      linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+      url("https://drscdn.500px.org/photo/81395583/m%3D2048/1206c5a38ac8dab2216c3513e58fa817") center center no-repeat;
+    background-size: cover;
+    padding-top: 100px;
   }
   div#about-us {
     color: white;
     text-align: center;
+    margin: 0 200px;
   }
+
+
 
 
 
@@ -58,4 +77,11 @@ section {
     background-color: black;
   }
 
+
+
+
+/* END OF HOMEPAGE */
+
+
+/*footer*/
 
