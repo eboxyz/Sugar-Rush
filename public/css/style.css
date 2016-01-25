@@ -1,23 +1,61 @@
 /* General styles */
-body{
-  background-color: #91EEF4;
+html {
+  height: 100%;
+}
+
+.parallax-window {
+  min-height: 400px;
+  background: transparent;
+}
+
+section {
+  margin-top: -20px;
 }
 
 /* Home Page Styles */
+
+  /* TITLE */
   #home_title{
-    text-align: center;
-    margin-top: 300px;
     font-family: sans-serif;
+    color: white;
   }
   #home_title_cravings{
-    text-align: center;
     font-family: cursive;
   }
-
-  .parallax-window {
-    min-height: 400px;
-    background: transparent;
+  #section-one {
+    background:
+      linear-gradient(
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
+    ),
+      url("https://drscdn.500px.org/photo/96192181/m%3D2048/8066e25801dd20dc49b6b4e04baf9c15") center center no-repeat;
+    background-size: cover;
   }
-  html { height: 100%; }
+  #title {
+    position: relative;
+    top: 200px;
+    color: white;
+  }
+  div#title h1{
+    font-size: 80px;
+    text-align: center;
+  }
 
-/*     */
+
+  /*ABOUT US*/
+  #section-two {
+    background-color: black;
+  }
+  div#about-us {
+    color: white;
+    text-align: center;
+  }
+
+
+
+
+  #section-three {
+    background-color: black;
+  }
+
+
