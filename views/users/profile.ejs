@@ -1,10 +1,34 @@
 <% include ../partials/head %>
 <% include ../partials/navbar %>
+<body id="body-prof">
 
-<body>
+<div class="container">
+  <div class="row">
 
-<h1>User Profile</h1>
+    <div class="col-md-3 col-md-offset-1" id="prof-img-col">
+      <div id='prof-img-div'><img id='prof-img' src='http://www.marthastewart.com/sites/files/marthastewart.com/styles/wmax-520-highdpi/public/d26/mb_1001_strawberry_cupcake/mb_1001_strawberry_cupcake_vert.jpg?itok=NWhXpH67'></div>
+      <button type="button" class="btn btn-primary" id="prof-edit">Edit Profile</button>
+    </div>
 
-<% include ../partials/footer %>
+    <div class="col-md-6" id="prof-content-col">
+
+      <h1 id="prof-name">FirstName LastName</h1>
+      <h3 class="prof-address">123 Address St.</h1>
+      <h3 class="prof-address">City, ST 91333</h1>
+      <h3 id="prof-email">email@gmail.com</h3>
+      <h3 id="prof-number">(818)555-5555</h3>
+
+      <br><br><hr id='prof-hr'>
+
+      <h3 id='prof-order-hist'>Order History</h3>
+      <br>
+
+
+    </div>
+
+    <div class="col-md-2"></div>
+  </div>
+</div>
 
 </body>
+<% include ../partials/footer %>

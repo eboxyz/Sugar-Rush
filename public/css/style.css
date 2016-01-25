@@ -1,7 +1,36 @@
-/* General styles */
-body{
+/* User Profile Page Styles */
+#body-prof{
   background-color: #91EEF4;
 }
+#prof-img-col{
+  padding-top: 150px;
+}
+#prof-img-div{
+  height: 300px;
+  width: 100%;
+  border: 5px solid #A50D18;
+}
+#prof-img{
+  width: 100%;
+  height: 100%;
+}
+#prof-edit{
+  background-color: #AEF911;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+#prof-content-col{
+  padding: 150px 0 0 100px;
+}
+#prof-hr{
+  border: 3px solid #F39934;
+}
+
+
+
+
+
+
 
 /* Home Page Styles */
   #home_title{
