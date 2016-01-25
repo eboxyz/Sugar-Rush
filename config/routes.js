@@ -21,6 +21,7 @@ var restaurantsController = require('../controllers/restaurantsController');
 router.route('/').get(function(req, res){
   res.render('users/home_page');
 });
+router.route('/users/profile').get(usersController.show);
 
 ////////////////////////////////////////////////////////////////////////
 //                       Restaurant Api Routes                        //

@@ -28,3 +28,8 @@ exports.profile = function(req, res) {
   console.log(req);
   res.render('users/test', {user: req.user});
 }
+
+// Render user prof
+exports.show = function(req, res) {
+  res.render('users/profile');
+}
