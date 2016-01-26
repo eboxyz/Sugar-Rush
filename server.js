@@ -19,17 +19,20 @@
 var express = require('express');
 var app = express();
 var methodOverride = require('method-override');
-var bodyParser = require('body-parser');
-var logger = require('morgan');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var VenmoStrategy = require('passport-venmo').Strategy;
-var request = require('request')
-var http = require('http');
-var path = require('path');
-var expressSession = require('express-session');
-var cookieParser = require('cookie-parser');
-var dotenv = require('dotenv').config();
+var bodyParser = require('body-parser'); // Lets you parse data
+var logger = require('morgan'); // Logs messages to help you build
+var mongoose = require('mongoose'); // Database npm
+var passport = require('passport'); // Helps with authentication
+var flash = require('connect-flash');
+var VenmoStrategy = require('passport-venmo').Strategy; // ?
+var request = require('request') //?
+var users_controller = require('./controllers/usersController.js'); // ?
+var http = require('http'); //
+var path = require('path'); //
+var expressSession = require('express-session'); // ??? allows seshes
+var cookieParser = require('cookie-parser'); // Allows app to store cookies
+var dotenv = require('dotenv').config(); // ??? Something with environment vars
+
 
 ////////////////////////////////////////////////////////////////////////
 //                            Middleware?                             //
@@ -65,6 +68,28 @@ require('./config/passport')(passport)
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(flash());
+///////////////
+// app.set('views', path.join(__dirname, 'app/views'));
+app.use(methodOverride());
+
+
+//required for passport
+app.use(expressSession({ secret: 'sugarspiceeverythingnice'}))
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+// All our assets can be stored in the public folder
+app.use(express.static(__dirname + '/public'));
+
+
+
+
+
+// Seed users
+
 // Seeds restaurants
 require('./db/seed.js').seedRestaurants();
 
@@ -72,22 +97,24 @@ require('./db/seed.js').seedRestaurants();
 //        Routes (move everything below break to routes file)         //
 ////////////////////////////////////////////////////////////////////////
 
+
+
+// Allows us to access and use the routes files.
+// The '/' binds routes to that root.
+// require('./config/routes')(passport);
+// app.use('/', routes);
+
+
 // Allows us to access and use the routes files and binds routes to '/'
 var routes = require('./config/routes');
 app.use('/', routes);
 
 ////////////////////////////////////////////////////////////////////////
 
-app.get('/', users_controller.index)
 
-app.get('/auth/venmo', passport.authenticate('venmo', {
-  scope: ['access_feed', 'access_profile', 'access_email', 'access_phone', 'access_balance', 'access_friends'],
-  failureRedirect: '/'
-}), users_controller.signin);
+//login controller
+require('./controllers/loginController.js')(app, passport)
 
-app.get('/auth/venmo/callback', passport.authenticate('venmo', {
-    failureRedirect: '/'
-}), users_controller.authCallback);
 app.get('/users/test', users_controller.profile);
 
 ////////////////////////////////////////////////////////////////////////

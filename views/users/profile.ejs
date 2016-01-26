@@ -1,3 +1,4 @@
+
 <% include ../partials/head %>
 <% include ../partials/navbar %>
 <body id="body-prof">
@@ -12,12 +13,21 @@
 
     <div class="col-md-6" id="prof-content-col">
 
-      <h1 id="prof-name">FirstName LastName</h1>
-      <h3 class="prof-address">123 Address St.</h1>
-      <h3 class="prof-address">City, ST 91333</h1>
-      <h3 id="prof-email">email@gmail.com</h3>
-      <h3 id="prof-number">(818)555-5555</h3>
-
+        <% if (user.local.email) { %>
+          <p>
+          <strong>Email</strong>: <%= user.local.email %><br>
+          <strong>Name:</strong> <%= user.local.firstName %><%= user.local.lastName %><br>
+          <strong>Address:</strong> <%= user.local.address %><br>
+          <strong>Phone Number:</strong><%= user.local.phoneNumber %><br>
+          </p>
+        <% } %>
+        <% if (user.venmo.email) { %>
+        <p>
+          <strong>username</strong>: <%= user.venmo.username %><br>
+          <strong>email</strong>: <%= user.venmo.email %><br>
+          <strong>name</strong>: <%= user.venmo.name %>
+        </p>
+        <% } %>
       <br><br><hr id='prof-hr'>
 
       <h3 id='prof-order-hist'>Order History</h3>
@@ -32,3 +42,4 @@
 
 </body>
 <% include ../partials/footer %>
+
