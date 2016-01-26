@@ -1,31 +1,20 @@
-
 ////////////////////////////////////////////////////////////////////////
 //                            passport.js                             //
 ////////////////////////////////////////////////////////////////////////
 
-
+// LocalStrat allows for local authentication
 var mongoose = require('mongoose');
 var express = require('express');
-var app = express(); // Function in exress to run application
+var app = express();
 var passport = require('passport');
 var User = require('../models/user');
 var VenmoStrategy = require('passport-venmo').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
+require('dotenv').config({path: '../.env'});
 
-
-
-var Venmo_Client_ID = "3458";
-var Venmo_Client_SECRET = "gSMcNkfwgTBeJLGZFe5uAfFL7PcdqdBJ";
-var Venmo_Callback_URL = "http://localhost:3000/auth/venmo/callback";
-
+// Pass in passport. Can do this in server.js
+// "require('./config/passport')(passport)" in server.js
 module.exports = function(passport){
-
-    ////////////////
-
-    // development only
-    // if ('development' == app.get('env')) {
-    //   app.use(express.errorHandler());
-    // }
 
     passport.serializeUser(function(user, done) {
       done(null, user.id);
@@ -35,49 +24,60 @@ module.exports = function(passport){
       done(null, obj);
     });
 
-    // =========================================================================
-    // LOCAL SIGNUP ============================================================
-    // =========================================================================
+////////////////////////////////////////////////////////////////////////
+//              Local Auth (Register and Login)                       //
+////////////////////////////////////////////////////////////////////////
+
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
-      passport.use('local-signup', new LocalStrategy({
-        firstName: 'firstName',
-        lastName: 'lastName',
-        address: 'address',
-        usernameField: 'email',
-        phoneNumber: 'phoneNumber',
-        passwordField: 'password',
-        passReqToCallback: true// allows us to pass back the entire request to the callback
-      },
-      function (req, email, password, done){
-        process.nextTick(function (){
-          User.findOne({
-            'local.email': email
-          }, function (err, user){
-            if (err) return done(err);
+    // These are the fields used in signup
+    // passReqToCallback allows us to pass back the entire request to
+    // the callback.
+    passport.use('local-signup', new LocalStrategy({
+      firstName: 'firstName',
+      lastName: 'lastName',
+      address: 'address',
+      usernameField: 'email',
+      phoneNumber: 'phoneNumber',
+      passwordField: 'password',
+      passReqToCallback: true
+    },
+    // "Email" passed in instead of username (passport standard)
+    // process.nextTick allows the function to run asynchronously
+    // Finds user based on local.email from User model.
+    // If no error and no existing user, create a new user with the
+    // request's parameters.
+    // GenerateHash encrypts the password (defined in the User model)
+    // Done is needed to say that this middleware is over
+    function (req, email, password, done){
+      process.nextTick(function (){
+        User.findOne({
+          'local.email': email
+        }, function (err, user){
+          if (err) return done(err);
 
-            if (user){
-              return done(null, false, req.flash('signupMessage', 'That email is already taken'));
-            } else{
-              console.log(req.body);
-              var newUser = new User();
-              newUser.local.firstName = req.body.firstName;
-              newUser.local.lastName = req.body.lastName;
-              newUser.local.address = req.body.address;
-              newUser.local.email = email;
-              newUser.local.phoneNumber = req.body.phoneNumber;
-              newUser.local.password = newUser.generateHash(password);
-              newUser.save( function (err){
-                console.log('new user created')
-                if (err)
-                  throw err;
-                return done(null, newUser);
-              });
-            }
-          });
+          if (user){
+            return done(null, false, req.flash('signupMessage', 'That email is already taken'));
+          } else{
+            console.log(req.body);
+            var newUser = new User();
+            newUser.local.firstName = req.body.firstName;
+            newUser.local.lastName = req.body.lastName;
+            newUser.local.address = req.body.address;
+            newUser.local.email = email;
+            newUser.local.phoneNumber = req.body.phoneNumber;
+            newUser.local.password = newUser.generateHash(password);
+            newUser.save( function (err){
+              console.log('new user created')
+              if (err)
+                throw err;
+              return done(null, newUser);
+            });
+          }
         });
-      }
-      ));
+      });
+    }
+    ));
 
     // =========================================================================
     // LOCAL LOGIN =============================================================
@@ -85,7 +85,11 @@ module.exports = function(passport){
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
 
-     passport.use('local-login', new LocalStrategy({
+    // Login requires email and password and passes request to callback
+    // finds existing User based on a unique local.email
+    // If error, no matching user, or bad password, flash (or log error)
+    // ValidPass does what it implies and is defined in the User model
+    passport.use('local-login', new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true
@@ -105,7 +109,9 @@ module.exports = function(passport){
         });
       }));
 
-    /////////////////
+////////////////////////////////////////////////////////////////////////
+//              Venmo Auth (Register and Login)                       //
+////////////////////////////////////////////////////////////////////////
 
     // Use the VenmoStrategy
     // Strategies in Passport require a 'verify' function, which
@@ -115,9 +121,9 @@ module.exports = function(passport){
     // a 'venmo' object containing an authorized user's information
     // and invoke callback function with the user object.
     passport.use(new VenmoStrategy({
-        clientID: Venmo_Client_ID,
-        clientSecret: Venmo_Client_SECRET,
-        callbackURL: Venmo_Callback_URL,
+        clientID: process.env.VENMO_CLIENT_ID,
+        clientSecret: process.env.VENMO_CLIENT_SECRET,
+        callbackURL: process.env.VENMO_CALLBACK_URL,
         passReqToCallback: true
       },
       //we're receiving this from venmo

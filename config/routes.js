@@ -52,7 +52,6 @@ router.route('/api/:id/edit').put(restaurantsController.editAPI);
 
 router.route('/orders/create').post(ordersController.create);
 router.route('/orders/shoppingcart').get(ordersController.new);
-// router.route('/orders/:id/edit').put(ordersController.update);
 router.route('/orders/show/:id').get(ordersController.show);
 
 ////////////////////////////////////////////////////////////////////////

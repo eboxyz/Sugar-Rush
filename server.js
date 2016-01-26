@@ -9,6 +9,7 @@
 // Logger logs messages and errors
 // Mongoose allows you to manipulate data in the mongo database
 // Passport helps with authentication
+// Connect-flash helps with flashed error messages
 // VenmoStrategy helps setup a venmo authentication
 // ??? Request
 // ??? HTTP
@@ -24,15 +25,19 @@ var bodyParser = require('body-parser'); // Lets you parse data
 var logger = require('morgan'); // Logs messages to help you build
 var mongoose = Promise.promisifyAll(require('mongoose')); // Database npm
 var passport = require('passport'); // Helps with authentication
+var bodyParser = require('body-parser');
+var logger = require('morgan');
+var mongoose = require('mongoose');
+var passport = require('passport');
 var flash = require('connect-flash');
-var VenmoStrategy = require('passport-venmo').Strategy; // ?
-var request = require('request') //?
-var users_controller = require('./controllers/usersController.js'); // ?
-var http = require('http'); //
-var path = require('path'); //
-var expressSession = require('express-session'); // ??? allows seshes
-var cookieParser = require('cookie-parser'); // Allows app to store cookies
-var dotenv = require('dotenv').config(); // ??? Something with environment vars
+var VenmoStrategy = require('passport-venmo').Strategy;
+var request = require('request');
+var users_controller = require('./controllers/usersController.js');
+var http = require('http');
+var path = require('path');
+var expressSession = require('express-session');
+var cookieParser = require('cookie-parser');
+var dotenv = require('dotenv').config();
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -50,9 +55,11 @@ var User = require('./models/user.js')["User"];
 // Loggs messages for development, as opposed to 'prod' for production
 // All our assets can be stored in the public folder
 // ??? App accesses overrides methods?
+// Flash is a package that allows for easy error messages
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride());
+app.use(flash());
 
 // Allows you to use json and clients like Insomia
 // Second allows you to use url to post, view, delete, etc (rails does
@@ -65,72 +72,37 @@ app.use(cookieParser());
 // Allows access to the methods in the passport file
 // ??? Starts up the passport module
 // ??? Allows you to create sessions after login
+// ??? expressSessaybe not necessary
 require('./config/passport')(passport)
 app.use(passport.initialize());
 app.use(passport.session());
+// app.use(expressSession({ secret: 'sugarspiceeverythingnice'}));
 
-app.use(flash());
-///////////////
-// app.set('views', path.join(__dirname, 'app/views'));
-app.use(methodOverride());
-
-
-//required for passport
-app.use(expressSession({ secret: 'sugarspiceeverythingnice'}))
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-
-// All our assets can be stored in the public folder
-app.use(express.static(__dirname + '/public'));
-
-
-
-
-
-// Seed users
+// Local express sessions. Use cookieParser with password
+// In express.session, you can set a different storage (mongostore)
+app.use(cookieParser('sugarspiceeverythingnice'));
+app.use(expressSession({resave: true, saveUninitialized: true, secret: 'sugarspiceeverythingnice'}));
+// app.use(app.router);
 
 // Seeds restaurants
 require('./db/seed.js').seedRestaurants();
 
 ////////////////////////////////////////////////////////////////////////
-//        Routes (move everything below break to routes file)         //
+//                               Routes                               //
 ////////////////////////////////////////////////////////////////////////
-
-
-
-// Allows us to access and use the routes files.
-// The '/' binds routes to that root.
-// require('./config/routes')(passport);
-// app.use('/', routes);
-
 
 // Allows us to access and use the routes files and binds routes to '/'
 var routes = require('./config/routes');
 app.use('/', routes);
 
-////////////////////////////////////////////////////////////////////////
-
-
-//login controller
+// With (app, passport), you don't have to require it on the login file
 require('./controllers/loginController.js')(app, passport)
 
-app.get('/users/test', users_controller.profile);
-
 ////////////////////////////////////////////////////////////////////////
 
-// ??? What does app.engine do? How is it different from app.set?
+// NEED BOTH app.engine and app.set (they're bros)
 // Sets the view engine to ejs, the localhost to 3000, and logs Ed's OCD
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.listen(3000);
 console.log("Ed's OCD");
-
-
-
-
-
-
-
-// app.set('views', path.join(__dirname, 'app/views'));

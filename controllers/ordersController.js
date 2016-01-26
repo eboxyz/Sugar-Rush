@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////
-//                       Orders Controller                       //
+//                          Orders Controller                         //
 ////////////////////////////////////////////////////////////////////////
 
-// Grabs the mongoose functions and Restaurants model from the mongo db
+// Grabs the mongoose functions and Order model from the mongo db
 var Order = require('../models/order');
 var mongoose = require('mongoose');
 
@@ -35,8 +35,6 @@ module.exports = {
       else res.render('users/home_page');
     })
   }
-
-
 
 
 }
