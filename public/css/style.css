@@ -129,12 +129,22 @@ div.navbar a{
 
 
 
-
+  /* CONTACT INFO */
 
   #section-three {
-    background-color: black;
+    text-align: center;
+    background:
+      linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)
+        ),
+        url("https://drscdn.500px.org/photo/81395583/m%3D2048/1206c5a38ac8dab2216c3513e58fa817");
+    background-size: cover;
   }
-
+  #contact-info {
+    color:white;
+    padding-top: 40px;
+  }
 
 
 
