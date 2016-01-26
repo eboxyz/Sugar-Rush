@@ -81,9 +81,6 @@ app.use(passport.session());
 
 
 
-
-
-
 // All our assets can be stored in the public folder
 app.use(express.static(__dirname + '/public'));
 

@@ -15,14 +15,19 @@
 
         <% if (user.local.email) { %>
           <p>
-          <strong>email</strong>: <%= user.local.email %><br>
+          <strong>Email</strong>: <%= user.local.email %><br>
+          <strong>Name:</strong> <%= user.local.firstName %><%= user.local.lastName %><br>
+          <strong>Address:</strong> <%= user.local.address %><br>
+          <strong>Phone Number:</strong><%= user.local.phoneNumber %><br>
           </p>
         <% } %>
+        <% if (user.venmo.email) { %>
         <p>
           <strong>username</strong>: <%= user.venmo.username %><br>
           <strong>email</strong>: <%= user.venmo.email %><br>
           <strong>name</strong>: <%= user.venmo.name %>
         </p>
+        <% } %>
       <br><br><hr id='prof-hr'>
 
       <h3 id='prof-order-hist'>Order History</h3>

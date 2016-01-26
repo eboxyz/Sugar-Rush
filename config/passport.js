@@ -41,7 +41,11 @@ module.exports = function(passport){
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
       passport.use('local-signup', new LocalStrategy({
+        firstName: 'firstName',
+        lastName: 'lastName',
+        address: 'address',
         usernameField: 'email',
+        phoneNumber: 'phoneNumber',
         passwordField: 'password',
         passReqToCallback: true// allows us to pass back the entire request to the callback
       },
@@ -55,11 +59,16 @@ module.exports = function(passport){
             if (user){
               return done(null, false, req.flash('signupMessage', 'That email is already taken'));
             } else{
+              console.log(req.body);
               var newUser = new User();
+              newUser.local.firstName = req.body.firstName;
+              newUser.local.lastName = req.body.lastName;
+              newUser.local.address = req.body.address;
               newUser.local.email = email;
+              newUser.local.phoneNumber = req.body.phoneNumber;
               newUser.local.password = newUser.generateHash(password);
-
               newUser.save( function (err){
+                console.log('new user created')
                 if (err)
                   throw err;
                 return done(null, newUser);

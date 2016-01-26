@@ -18,10 +18,10 @@ var loginController = require('../controllers/loginController');
 //                            User Routes                             //
 ////////////////////////////////////////////////////////////////////////
 
-router.route('/').get(function(req, res){
-  res.render('users/home_page');
-});
-router.route('/users/profile').get(usersController.show);
+// router.route('/').get(function(req, res){
+//   res.render('users/home_page');
+// });
+// router.route('/users/profile').get(usersController.show);
 
 
 router.route('/users/profile').get( function (req, res){

@@ -14,9 +14,8 @@ module.exports = function (app, passport){
       // SIGNUP =================================
       // show the signup form
       // process the signup form
-
-  app.get('/local', function (req,res){
-    res.render('./users/localAuth.ejs');
+  app.get('/', function (req,res){
+    res.render('./users/home_page')
   });
 
   app.get('/local/login', function (req, res){
@@ -72,7 +71,14 @@ module.exports = function (app, passport){
       res.redirect('/');
     });
 
+    app.use(function (req, res, next){
+      res.locals.login = req.isAuthenticated();
+      next();
+    })
 
+    app.use( function (req, res, next){
+      app.locals.user = User.findById({_id : req.user})
+      });
     //send to venmo for authentication
     // app.get('/connect/venmo', passport.authorize('venmo', {scope: 'email'}));
 
@@ -82,6 +88,7 @@ module.exports = function (app, passport){
     //     successRedirect: './users/profile',
     //     failureRedirect: '/'
     //   }));
+
 
   //route middleware to make sure user is logged in
   function isLoggedIn (req, res, next){
