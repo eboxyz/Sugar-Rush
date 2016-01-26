@@ -71,19 +71,20 @@ div.navbar a{
   height: 100px;
   border: 3px solid #F432E6;
   background-color: black;
+  display: inline-block;
 }
 #cart-item-img{
   width: 100px;
   height: 100px;
 }
 #cart-item-text{
-
+  display: inline-block;
 }
 #cart-item-cost{
-
+  display: inline-block;
 }
 #cart-item-amount{
-
+  display: inline-block;
 }
 
 

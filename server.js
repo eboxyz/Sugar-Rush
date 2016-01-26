@@ -33,6 +33,8 @@ var path = require('path');
 var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var dotenv = require('dotenv').config();
+//require handlebars
+var handlebars = require('handlebars');
 
 
 ////////////////////////////////////////////////////////////////////////
