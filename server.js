@@ -18,10 +18,11 @@
 // ??? Dotenv lets you use the .env file
 var express = require('express');
 var app = express();
+var Promise = require('bluebird')
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser'); // Lets you parse data
 var logger = require('morgan'); // Logs messages to help you build
-var mongoose = require('mongoose'); // Database npm
+var mongoose = Promise.promisifyAll(require('mongoose')); // Database npm
 var passport = require('passport'); // Helps with authentication
 var flash = require('connect-flash');
 var VenmoStrategy = require('passport-venmo').Strategy; // ?

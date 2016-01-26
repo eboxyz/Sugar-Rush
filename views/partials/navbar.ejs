@@ -11,13 +11,13 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
-
-        <li><a href="/local/profile">Hello</a></li>
+        <% if (this.user) { %>
+        <li><a href="/local/profile">Hello <%= user.locals.name %></a></li>
         <li><a href="/local/logout">Logout</a></li>
-
+        <% } else if (this.user !== true){ %>
         <li><a href="/local/login">Login</a></li>
         <li><a href="/local/signup">Register</a></li>
-
+        <% } %>
       </ul>
     </div><!--/.nav-collapse -->
     </div>
