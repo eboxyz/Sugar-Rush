@@ -1,16 +1,117 @@
+/* General styles */
+html {
+  height: 100%;
+}
+
+/* User Profile Page Styles */
+#body-prof{
+  background-color: #91EEF4;
+}
+#prof-img-col{
+  padding-top: 150px;
+}
+#prof-img-div{
+  height: 300px;
+  width: 100%;
+  border: 5px solid #A50D18;
+}
+#prof-img{
+  width: 100%;
+  height: 100%;
+}
+#prof-edit{
+  background-color: #AEF911;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+#prof-content-col{
+  padding: 150px 0 0 100px;
+}
+#prof-hr{
+  border: 3px solid #F39934;
+}
+
+/* Homepage */
+
+.parallax-window {
+  min-height: 400px;
+  background: transparent;
+}
+
+/*gets rid of awkard space*/
+section {
+  margin-top: -20px;
+}
+
+/*.navbar {
+  background-color: transparent;
+}*/
 
 /* Home Page Styles */
-body{
-  background-color: ;
-}
-#home_title{
-  text-align: center;
-  margin-top: 300px;
-  font-family: sans-serif;
-}
-#home_title_cravings{
-  text-align: center;
-  font-family: cursive;
-}
 
-/*     */
+  /* TITLE */
+  #home_title{
+    font-family: sans-serif;
+    color: white;
+  }
+  #home_title_cravings{
+    font-family: cursive;
+  }
+  #section-one {
+    background:
+      linear-gradient(
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
+    ),
+      url("https://drscdn.500px.org/photo/96192181/m%3D2048/8066e25801dd20dc49b6b4e04baf9c15") center center no-repeat;
+    background-size: cover;
+  }
+  #title {
+    position: relative;
+    top: 200px;
+    color: white;
+  }
+  div#title h1{
+    font-size: 80px;
+    text-align: center;
+  }
+
+
+
+
+
+  /*ABOUT US*/
+  #section-two {
+
+    background:
+      linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+      url("https://drscdn.500px.org/photo/81395583/m%3D2048/1206c5a38ac8dab2216c3513e58fa817") center center no-repeat;
+    background-size: cover;
+    padding-top: 100px;
+  }
+  div#about-us {
+    color: white;
+    text-align: center;
+    margin: 0 200px;
+  }
+
+
+
+
+
+
+  #section-three {
+    background-color: black;
+  }
+
+
+
+
+/* END OF HOMEPAGE */
+
+
+/*footer*/
+

@@ -1,12 +1,16 @@
+////////////////////////////////////////////////////////////////////////
+//                             User Model                             //
+////////////////////////////////////////////////////////////////////////
+
+// ??? What does use strict mean? Necessary?
 'use strict';
 
+// Requires mongoose functions for setting up mongodb schemas
 var mongoose = require('mongoose')
 var bcrypt = require('bcrypt-nodejs')
 /**
  * Module dependencies.
  */
-
-
 
 
 /**
@@ -17,7 +21,6 @@ var userSchema = mongoose.Schema({
     email: String,
     password: String
   },
-
   venmo: {
     name: {
         type: String

@@ -1,55 +1,40 @@
-<!-- views/profile.ejs -->
-<!doctype html>
-<html>
-<head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        body        { padding-top:80px; word-wrap:break-word; }
-    </style>
-</head>
-<body>
+
+<% include ../partials/head %>
+<% include ../partials/navbar %>
+<body id="body-prof">
+
 <div class="container">
+  <div class="row">
 
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    <div class="col-md-3 col-md-offset-1" id="prof-img-col">
+      <div id='prof-img-div'><img id='prof-img' src='http://www.marthastewart.com/sites/files/marthastewart.com/styles/wmax-520-highdpi/public/d26/mb_1001_strawberry_cupcake/mb_1001_strawberry_cupcake_vert.jpg?itok=NWhXpH67'></div>
+      <button type="button" class="btn btn-primary" id="prof-edit">Edit Profile</button>
     </div>
 
-    <div class="row">
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+    <div class="col-md-6" id="prof-content-col">
 
-                <% if (user.local.email) { %>
-                    <p>
-                        <strong>email</strong>: <%= user.local.email %><br>
+        <% if (user.local.email) { %>
+          <p>
+          <strong>email</strong>: <%= user.local.email %><br>
+          </p>
+        <% } %>
+        <p>
+          <strong>username</strong>: <%= user.venmo.username %><br>
+          <strong>email</strong>: <%= user.venmo.email %><br>
+          <strong>name</strong>: <%= user.venmo.name %>
+        </p>
+      <br><br><hr id='prof-hr'>
 
-                    </p>
-                <% } %>
-            </div>
-        </div>
-        <!-- FACEBOOK INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-primary"><span class="fa fa-venmo"></span> Venmo</h3>
-                <% if (user.local.email) { %>
-                <a href ="/auth/venmo" class="btn btn-danger">Login with Venmo</a>
-                <% } %>
-                    <p>
+      <h3 id='prof-order-hist'>Order History</h3>
+      <br>
 
-                        <strong>username</strong>: <%= user.venmo.username %><br>
-                        <strong>email</strong>: <%= user.venmo.email %><br>
-                        <strong>name</strong>: <%= user.venmo.name %>
-                    </p>
-
-            </div>
-        </div>
 
     </div>
 
+    <div class="col-md-2"></div>
+  </div>
 </div>
+
 </body>
-</html>
+<% include ../partials/footer %>
+
