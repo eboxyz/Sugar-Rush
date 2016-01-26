@@ -31,6 +31,34 @@ html {
   border: 3px solid #F39934;
 }
 
+/* Shopping Cart Styles */
+#shopping-cart{
+  margin-top: 150px;
+}
+.cart-title{
+  text-align: center;
+}
+#cart-item-img-div{
+  width: 100px;
+  height: 100px;
+  border: 3px solid #F432E6;
+  background-color: black;
+}
+#cart-item-img{
+  width: 100px;
+  height: 100px;
+}
+#cart-item-text{
+
+}
+#cart-item-cost{
+
+}
+#cart-item-amount{
+
+}
+
+
 /* Homepage */
 
 .parallax-window {

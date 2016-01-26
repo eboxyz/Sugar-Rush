@@ -14,7 +14,12 @@ module.exports = {
 ////////////////////////////////////////////////////////////////////////
 
 // Shows all restaurants
-
+  all: function(req, res, next){
+    Restaurant.find({}, function (err, restaurants){
+      console.log(restaurants)
+      res.render('restaurants/all', {restaurants: restaurants});
+    });
+  },
 
 // Shows a specific restaurant
 

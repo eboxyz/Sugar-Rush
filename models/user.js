@@ -20,6 +20,7 @@ module.exports = mongoose.model('User', {
         type: String,
         unique: true
     },
+    current_order_id: String,
     provider: String,
     salt: String,
     venmo: {},
