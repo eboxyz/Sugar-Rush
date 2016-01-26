@@ -8,6 +8,7 @@ var bodyParser = require('body-parser'); // Lets you parse data
 var logger = require('morgan'); // Logs messages to help you build
 var mongoose = require('mongoose'); // Database npm
 var passport = require('passport'); // Helps with authentication
+var flash = require('connect-flash');
 var VenmoStrategy = require('passport-venmo').Strategy; // ?
 var request = require('request') //?
 var users_controller = require('./controllers/usersController.js'); // ?
@@ -42,11 +43,14 @@ app.use(cookieParser());
 // ??? Allows you to create sessions after login
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(flash());
 ///////////////
 // app.set('views', path.join(__dirname, 'app/views'));
 app.use(methodOverride());
 
+
+//required for passport
+app.use(expressSession({ secret: 'sugarspiceeverythingnice'}))
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -62,7 +66,6 @@ app.use(express.static(__dirname + '/public'));
 
 
 
-
 // Seed users
 require('./db/seed.js').seedRestaurants();
 
@@ -70,23 +73,18 @@ require('./db/seed.js').seedRestaurants();
 
 // Allows us to access and use the routes files.
 // The '/' binds routes to that root.
-var routes = require('./config/routes');
-app.use('/', routes);
+// require('./config/routes')(passport);
+// app.use('/', routes);
+
+
+//login controller
+require('./controllers/loginController.js')(app, passport)
 
 // Copied routes
 
-app.get('/', users_controller.index)
+// app.get('/', users_controller.index)
 
-app.get('/auth/venmo', passport.authenticate('venmo', {
-  scope: ['access_feed', 'access_profile', 'access_email', 'access_phone', 'access_balance', 'access_friends'],
-  failureRedirect: '/'
-}), users_controller.signin);
-
-app.get('/auth/venmo/callback', passport.authenticate('venmo', {
-    failureRedirect: '/'
-}), users_controller.authCallback);
-
-app.get('/users/test', users_controller.profile);
+// app.get('/users/test', users_controller.profile);
 
 
 // ?????

@@ -12,7 +12,7 @@ var methodOverride = require('method-override');
 // Grab all the functions from the users controller.
 var usersController = require('../controllers/usersController');
 var restaurantsController = require('../controllers/restaurantsController');
-
+var loginController = require('../controllers/loginController');
 ////////////////////////////////////////////////////////////////////////
                           // User routes //
 
@@ -20,8 +20,9 @@ router.route('/').get(function(req, res){
   res.render('users/home_page');
 });
 
-
-
+router.route('/users/profile').get( function (req, res){
+  res.render('users/profile');
+});
 
 
 ////////////////////////////////////////////////////////////////////////
