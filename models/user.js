@@ -33,6 +33,7 @@ var userSchema = mongoose.Schema({
     username: {
         type: String
     },
+    current_order_id: String,
     provider: String,
     salt: String,
     venmo: {},

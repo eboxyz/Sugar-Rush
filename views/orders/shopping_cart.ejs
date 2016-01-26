@@ -1,0 +1,27 @@
+<% include ../partials/head %>
+<% include ../partials/navbar %>
+
+<br><br><br>
+
+
+<form method='post' action='/orders/create'>
+
+  <div>
+    <label>Customer</label>
+    <input type="text" name="user_id">
+  </div>
+
+  <div>
+    <label>Ready (write "true")</label>
+    <input type="text" name="origin">
+  </div>
+
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+
+</form>
+
+
+
+<% include ../partials/footer %>

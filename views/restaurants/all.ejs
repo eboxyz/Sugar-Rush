@@ -1,1 +1,27 @@
+<% include ../partials/head %>
+<% include ../partials/navbar %>
+
+
+
+<br><br><br>
 <h1>All Restaurants</h1>
+<% for(i=0; i<restaurants.length; i++) { %>
+
+  <h4><%= restaurants[i].name %></h4>
+
+  <% for(j=0; j<restaurants[i].menu.length; j++) { %>
+    <p>
+      <% if(restaurants[i].menu[j].available) { %>
+        <%= restaurants[i].menu[j].item %> &nbsp&nbsp&nbsp
+        <button class="btn add-to-cart" id="<%= restaurants[i].menu[j].id %>">Add to Cart</button>
+      <% } %>
+    </p>
+  <% } %>
+
+
+<% } %>
+
+<a href="/orders/shoppingcart"><button class="btn" id="checkout">Checkout</button></a>
+
+<% include ../partials/head %>
+<% include ../partials/footer %>
