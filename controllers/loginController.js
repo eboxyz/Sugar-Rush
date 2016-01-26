@@ -19,22 +19,30 @@ module.exports = function (app, passport){
       // show the signup form
       // process the signup form
   app.get('/', function (req,res){
-    res.render('./users/home_page')
+    res.render('./users/home_page');
+    // var test = req.session.userID
+    console.log(req.session);
   });
 
   app.get('/local/login', function (req, res){
     res.render('./users/login.ejs',
       { message: req.flash('loginMessage') }
-      );
+    );
   });
 
   // Failure flash makes the flash happen only if there's a failure
   // authenticate callback is a predefined method
-  app.post('/local/login', passport.authenticate('local-login', {
-    successRedirect: '/local/profile',
-    failureRedirect: '/local/login',
-    failureFlash: true //allow flashing
-  }));
+  app.post('/local/login', function(req, res, next){
+      req.session.userID = "3242dfd";
+      console.log(req.session);
+      next();
+    },
+    passport.authenticate('local-login', {
+      successRedirect: '/local/profile',
+      failureRedirect: '/local/login',
+      failureFlash: true //allow flashing
+    })
+  );
 
   //
   app.get('/local/signup', function (req, res){
@@ -55,7 +63,7 @@ module.exports = function (app, passport){
   // Sets local javascript variable "user" to the user's data
   app.get('/local/profile', isLoggedIn, function (req,res){
     User.findById({_id: req.user}, function (err, data){
-    res.render('./users/profile.ejs', {
+    res.render('users/profile.ejs', {
       user: data
     })
   });

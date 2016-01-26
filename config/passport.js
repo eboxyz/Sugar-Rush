@@ -10,15 +10,10 @@ var passport = require('passport');
 var User = require('../models/user');
 var VenmoStrategy = require('passport-venmo').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
+require('dotenv').config({path: '../.env'});
 
-
-// Eventually move to .env
-var Venmo_Client_ID = "3458";
-var Venmo_Client_SECRET = "gSMcNkfwgTBeJLGZFe5uAfFL7PcdqdBJ";
-var Venmo_Callback_URL = "http://localhost:3000/auth/venmo/callback";
-
-// Pass in passport. Can do this through "require('./config/passport')(passport)"
-// in server.js
+// Pass in passport. Can do this in server.js
+// "require('./config/passport')(passport)" in server.js
 module.exports = function(passport){
 
     passport.serializeUser(function(user, done) {
@@ -126,9 +121,9 @@ module.exports = function(passport){
     // a 'venmo' object containing an authorized user's information
     // and invoke callback function with the user object.
     passport.use(new VenmoStrategy({
-        clientID: Venmo_Client_ID,
-        clientSecret: Venmo_Client_SECRET,
-        callbackURL: Venmo_Callback_URL,
+        clientID: process.env.VENMO_CLIENT_ID,
+        clientSecret: process.env.VENMO_CLIENT_SECRET,
+        callbackURL: process.env.VENMO_CALLBACK_URL,
         passReqToCallback: true
       },
       //we're receiving this from venmo

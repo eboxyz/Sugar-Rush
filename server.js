@@ -67,45 +67,37 @@ app.use(cookieParser());
 // Allows access to the methods in the passport file
 // ??? Starts up the passport module
 // ??? Allows you to create sessions after login
+// ??? expressSessaybe not necessary
 require('./config/passport')(passport)
 app.use(passport.initialize());
 app.use(passport.session());
+// app.use(expressSession({ secret: 'sugarspiceeverythingnice'}));
 
-// Sessions
-//required for passport
-app.use(expressSession({ secret: 'sugarspiceeverythingnice'}));
-app.use(passport.initialize());
-app.use(passport.session());
+// Local express sessions. Use cookieParser with password
+// In express.session, you can set a different storage (mongostore)
+app.use(cookieParser('sugarspiceeverythingnice'));
+app.use(expressSession({resave: true, saveUninitialized: true, secret: 'sugarspiceeverythingnice'}));
+// app.use(app.router);
 
 // Seeds restaurants
 require('./db/seed.js').seedRestaurants();
 
 ////////////////////////////////////////////////////////////////////////
-//                        Routes                                 //
+//                               Routes                               //
 ////////////////////////////////////////////////////////////////////////
 
 // Allows us to access and use the routes files and binds routes to '/'
 var routes = require('./config/routes');
 app.use('/', routes);
 
-
 // With (app, passport), you don't have to require it on the login file
 require('./controllers/loginController.js')(app, passport)
 
-
 ////////////////////////////////////////////////////////////////////////
 
-// NEED BOTH (they're bros) What does app.engine do? How is it different from app.set?
+// NEED BOTH app.engine and app.set (they're bros)
 // Sets the view engine to ejs, the localhost to 3000, and logs Ed's OCD
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.listen(3000);
 console.log("Ed's OCD");
-
-
-
-
-
-
-
-// app.set('views', path.join(__dirname, 'app/views'));

@@ -2,7 +2,7 @@
 //                             User Model                             //
 ////////////////////////////////////////////////////////////////////////
 
-// ??? What does use strict mean? Necessary?
+// Makes all modules in node load in a 'strict' mode
 'use strict';
 
 // Requires mongoose functions for setting up mongodb schemas
