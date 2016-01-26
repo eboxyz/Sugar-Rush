@@ -9,12 +9,10 @@
 
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <% if (this.user) { %>
-        <li><a href="/local/profile">Hello <%= user.locals.name %></a></li>
+        <% if (curr_user) { %>
+        <li><a href="/local/profile">Hello, <%= user.local.firstName %></a></li>
         <li><a href="/local/logout">Logout</a></li>
-        <% } else if (this.user !== true){ %>
+        <% } else{ %>
         <li><a href="/local/login">Login</a></li>
         <li><a href="/local/signup">Register</a></li>
         <% } %>

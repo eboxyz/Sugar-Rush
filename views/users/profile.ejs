@@ -13,10 +13,10 @@
 
     <div class="col-md-6" id="prof-content-col">
 
-        <% if (user.local.email) { %>
+        <% if (curr_user) { %>
           <p>
           <strong>Email</strong>: <%= user.local.email %><br>
-          <strong>Name:</strong> <%= user.local.firstName %><%= user.local.lastName %><br>
+          <strong>Name:</strong> <%= user.local.firstName %> <%= user.local.lastName %><br>
           <strong>Address:</strong> <%= user.local.address %><br>
           <strong>Phone Number:</strong><%= user.local.phoneNumber %><br>
           </p>

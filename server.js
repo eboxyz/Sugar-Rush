@@ -39,7 +39,7 @@ var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var dotenv = require('dotenv').config();
 
-
+var credentials = require('./config/credentials.js')
 ////////////////////////////////////////////////////////////////////////
 //                            Middleware?                             //
 ////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,7 @@ app.use(flash());
 // Third lets the app read and save cookies.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+
 
 // Allows access to the methods in the passport file
 // ??? Starts up the passport module
@@ -80,8 +80,8 @@ app.use(passport.session());
 
 // Local express sessions. Use cookieParser with password
 // In express.session, you can set a different storage (mongostore)
-app.use(cookieParser('sugarspiceeverythingnice'));
-app.use(expressSession({resave: true, saveUninitialized: true, secret: 'sugarspiceeverythingnice'}));
+app.use(cookieParser(credentials.cookieSecret));
+app.use(expressSession({resave: true, saveUninitialized: true, secret: credentials.cookieSecret }));
 // app.use(app.router);
 
 // Seeds restaurants
