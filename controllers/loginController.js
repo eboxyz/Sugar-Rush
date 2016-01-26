@@ -1,10 +1,14 @@
+////////////////////////////////////////////////////////////////////////
+//                         Login Controller                           //
+////////////////////////////////////////////////////////////////////////
+
 var User = require('../models/user');
 
 module.exports = function (app, passport){
 
-// =============================================================================
-// AUTHENTICATE (FIRST LOGIN) ==================================================
-// =============================================================================
+////////////////////////////////////////////////////////////////////////
+//                       Local Authentication                         //
+////////////////////////////////////////////////////////////////////////
 
   // locally --------------------------------
       // LOGIN ===============================
@@ -24,24 +28,31 @@ module.exports = function (app, passport){
       );
   });
 
+  // Failure flash makes the flash happen only if there's a failure
+  // authenticate callback is a predefined method
   app.post('/local/login', passport.authenticate('local-login', {
     successRedirect: '/local/profile',
     failureRedirect: '/local/login',
     failureFlash: true //allow flashing
   }));
 
+  //
   app.get('/local/signup', function (req, res){
     res.render('./users/signup.ejs',
       { message: req.flash('signupMessage') }
       )
   });
 
+  // Paired with local/login. This registers you, the former logs you in
   app.post('/local/signup', passport.authenticate('local-signup', {
     successRedirect: '/local/profile',
     failureRedirect: '/local/signup',
     failureFlash: true //allow flashing
   }))
 
+  // If logged in, passes "next" to the mongo function.
+  // Req.user is the user's Id, so you use it to find the matching user
+  // Sets local javascript variable "user" to the user's data
   app.get('/local/profile', isLoggedIn, function (req,res){
     User.findById({_id: req.user}, function (err, data){
     res.render('./users/profile.ejs', {
@@ -50,32 +61,40 @@ module.exports = function (app, passport){
   });
   });
 
+////////////////////////////////////////////////////////////////////////
+//                       Venmo Authentication                         //
+////////////////////////////////////////////////////////////////////////
 
-    // =====================================
-    // Venmo Authentication =====================
-    // =====================================
     // route for venmo authentication and login
+    // Authenticates the user through venmo, the scopes are the info
+    // that you are grabbing
     app.get('/auth/venmo', passport.authenticate('venmo', {
       scope: ['access_feed', 'access_profile', 'access_email', 'access_phone', 'access_balance', 'access_friends'],
       failureRedirect: '/'
     }));
 
+    // Paired with the former. When you callback, if successful, go to
+    // profile, otherwise hit up the homepage.
+    // ≈ This one is login, the former is signup
     app.get('/auth/venmo/callback', passport.authenticate('venmo', {
       successRedirect: '/local/profile',
       failureRedirect: '/'
     }));
 
     //logout
+    // Logout method is a passport method that destroys a session
     app.get('/local/logout', function (req, res){
       req.logout();
       res.redirect('/');
     });
 
+    // Not used by app
     app.use(function (req, res, next){
       res.locals.login = req.isAuthenticated();
       next();
     })
 
+    // Not used by app
     app.use( function (req, res, next){
       app.locals.user = User.findById({_id : req.user})
       });
@@ -93,7 +112,7 @@ module.exports = function (app, passport){
   //route middleware to make sure user is logged in
   function isLoggedIn (req, res, next){
 
-    //if user is authenticated, then continue
+    //if user is authenticated (?express function), then continue
     if (req.isAuthenticated())
       return next();
     //if they aren't loggedin, redirect to home

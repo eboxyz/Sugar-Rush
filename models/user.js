@@ -6,16 +6,11 @@
 'use strict';
 
 // Requires mongoose functions for setting up mongodb schemas
+// bcrypt-nodejs is a friendlier encryption module
 var mongoose = require('mongoose')
 var bcrypt = require('bcrypt-nodejs')
-/**
- * Module dependencies.
- */
 
-
-/**
- * User Schema
- */
+// UserSchema
 var userSchema = mongoose.Schema({
   local:{
     firstName: String,
@@ -23,11 +18,13 @@ var userSchema = mongoose.Schema({
     address: String,
     email: String,
     phoneNumber: String,
-    password: String
+    password: String,
+    driver: Boolean
   },
   venmo: {
     name: {
         type: String
+        // Took out required (messing up oauth)
     },
     email: String,
     username: {
@@ -43,11 +40,12 @@ var userSchema = mongoose.Schema({
   }
 });
 
-
+// Used in passport.js to encrypt password
 userSchema.methods.generateHash = function (password){
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
+// Used in passport.js to check encrypted password
 userSchema.methods.validPass = function (password){
   return bcrypt.compareSync(password, this.local.password);
 };
