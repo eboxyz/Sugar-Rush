@@ -157,17 +157,17 @@ module.exports = function(passport){
                 return done(err, user);
             }
         })
-        } else{
-          User.findById({_id: req.user}, function (err, data){
-            console.log(req.user);
-            console.log(data)
-            data.venmo.email = req.email;
-            data.venmo.username = req.username
-            data.save();
-            });
-        };
-      })
-      }//?
-    ));
+      //   } else{
+      //     User.findById({_id: req.user}, function (err, data){
+      //       console.log(req.user);
+      //       console.log(data)
+      //       data.venmo.email = req.email;
+      //       data.venmo.username = req.username
+      //       data.save();
+      //       });
+      //   };
+      // })
+      }})//?
+    }));
 
 }
