@@ -1,7 +1,9 @@
 <% include ../partials/head %>
 <% include ../partials/navbar %>
 
-
+<script>
+  localStorage.clear();
+</script>
 
 <br><br><br>
 <h1>All Restaurants</h1>
@@ -13,7 +15,7 @@
     <p>
       <% if(restaurants[i].menu[j].available) { %>
         <%= restaurants[i].menu[j].item %> &nbsp&nbsp&nbsp
-        <button class="btn add-to-cart" id="<%= restaurants[i].menu[j].id %>">Add to Cart</button>
+        <button class="btn add-to-cart" id="<%= restaurants[i].id %> <%= j %>">Add to Cart</button>
       <% } %>
     </p>
   <% } %>
