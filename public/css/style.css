@@ -1,12 +1,17 @@
-/* General styles */
-html {
-  height: 100%;
-}
+@import url(https://fonts.googleapis.com/css?family=Arimo:700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
 
-/*gets rid of awkard space*/
-section {
-  margin-top: -20px;
-}
+
+
+/* General styles */
+  html {
+    height: 100%;
+  }
+
+  /*gets rid of awkard space*/
+  section {
+    margin-top: -20px;
+  }
 
 
 /* NAVBAR STUFF */
@@ -15,17 +20,18 @@ section {
    background-color: transparent !important;
    border-color: transparent !important;
    padding: 15px;
+   z-index: 2;
 }
 
 div.navbar a{
   color: white !important;
-  font-size: 25px;
+  font-size: 30px;
+  font-weight: bold !important;
 }
 
 
 
 /* END OF NAVBAR*/
-
 
 
 
@@ -59,6 +65,8 @@ div.navbar a{
 }
 
 
+
+
 /* Shopping Cart Styles */
 #shopping-cart{
   margin-top: 150px;
@@ -85,7 +93,10 @@ div.navbar a{
 }
 #cart-item-amount{
   display: inline-block;
+
 }
+
+
 
 
 /* Homepage */
@@ -96,41 +107,54 @@ div.navbar a{
 }
 
 
+
+
 /* Home Page Styles */
 
   /* TITLE */
   #home_title{
-    font-family: sans-serif;
+    font-family: 'Pacifico', cursive;
     color: white;
+    font-size: 150px;
+    text-align: center;
+
   }
-  #home_title_cravings{
-    font-family: cursive;
+  #home_title_tagline{
+    font-family: 'Arimo', sans-serif;
+    text-align: center;
+    margin-top: 80px;
+    letter-spacing: 3px;
+    font-size: 40px;
+    font-weight: bolder;
+
   }
   #section-one {
     position: relative;
+    top:-12%;
   }
   #title {
     position: relative;
     color: white;
     z-index: 1;
-    top:-450px;
-  }
-  div#title h1{
-    font-size: 80px;
-    text-align: center;
+    top:-540px;
   }
   #order-now {
     margin-left:45%;
+    margin-top: 30px;
   }
-
-
+  #down-arrow {
+    position: relative;
+    left: 46%;
+    margin-top: 80px;
+    font-size: 50px;
+  }
 
 
 
 
   /*ABOUT US*/
   #section-two {
-    padding-top: 50px;
+
   }
   .section-two-images {
     height: 400px;
@@ -159,14 +183,19 @@ div.navbar a{
         rgba(0, 0, 0, 0.7),
         rgba(0, 0, 0, 0.7)
         ),
-        url("https://drscdn.500px.org/photo/81395583/m%3D2048/1206c5a38ac8dab2216c3513e58fa817");
+        url("https://drscdn.500px.org/photo/129433271/m%3D2048_k%3D1/60087eecc9d294c550b40e726734fb45");
     background-size: cover;
   }
   #contact-info {
     color:white;
-    padding-top: 40px;
+    padding-top: 10px;
   }
-
+  #img-con {
+    color: white;
+  }
+  .fa {
+    margin: 0 10px;
+  }
 
 
 /* END OF HOMEPAGE */

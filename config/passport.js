@@ -157,6 +157,7 @@ module.exports = function(passport){
                     //set expiration of accesstoken == cookie
                     //if cookie is expired then get a new token
                     //60 days
+
                 });
                 console.log(user);
                 user.save(function(err) {

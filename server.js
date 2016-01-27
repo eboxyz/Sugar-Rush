@@ -19,7 +19,12 @@
 // ??? Dotenv lets you use the .env file
 var express = require('express');
 var app = express();
+var Promise = require('bluebird')
 var methodOverride = require('method-override');
+var bodyParser = require('body-parser'); // Lets you parse data
+var logger = require('morgan'); // Logs messages to help you build
+var mongoose = Promise.promisifyAll(require('mongoose')); // Database npm
+var passport = require('passport'); // Helps with authentication
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
@@ -36,14 +41,14 @@ var dotenv = require('dotenv').config();
 //require handlebars
 var handlebars = require('handlebars');
 
-
+var credentials = require('./config/credentials.js')
 ////////////////////////////////////////////////////////////////////////
 //                            Middleware?                             //
 ////////////////////////////////////////////////////////////////////////
 
 // This connects the site to the local mongo-db
+// mongoose.connect('mongodb://heroku_2115hf7x:sugarrush1@ds051645.mongolab.com:51645/heroku_2115hf7x');
 mongoose.connect('mongodb://localhost/sugar-rush');
-
 // Allows access to usersController (was originally below request) and
 // the user model
 var users_controller = require('./controllers/usersController.js');
@@ -64,7 +69,7 @@ app.use(flash());
 // Third lets the app read and save cookies.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+
 
 // Allows access to the methods in the passport file
 // ??? Starts up the passport module
@@ -77,8 +82,8 @@ app.use(passport.session());
 
 // Local express sessions. Use cookieParser with password
 // In express.session, you can set a different storage (mongostore)
-app.use(cookieParser('sugarspiceeverythingnice'));
-app.use(expressSession({resave: true, saveUninitialized: true, secret: 'sugarspiceeverythingnice'}));
+app.use(cookieParser(credentials.cookieSecret));
+app.use(expressSession({resave: true, saveUninitialized: true, secret: credentials.cookieSecret }));
 // app.use(app.router);
 
 // Seeds restaurants
@@ -103,3 +108,5 @@ app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.listen(3000);
 console.log("Ed's OCD");
+
+

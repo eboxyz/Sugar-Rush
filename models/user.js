@@ -42,7 +42,7 @@ var userSchema = mongoose.Schema({
 
 // Used in passport.js to encrypt password
 userSchema.methods.generateHash = function (password){
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(11), null);
 };
 
 // Used in passport.js to check encrypted password
