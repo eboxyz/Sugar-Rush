@@ -36,26 +36,28 @@
 
 </script>
 
+<script>
 
+var data = ['cat'];
 
-
+data.push({item: "afd", quantity: 6});
+data.push({item: "afd", quantity: 7});
+console.log(data);
+console.log("hi")
+document.getElementById('dessert').value = JSON.stringify(data);
+</script>
 
 <form method='post' action='/orders/create'>
 
-  <div>
-    <label>Customer</label>
-    <input type="text" name="user_id">
-  </div>
+  <input type="hidden" name="user_id" value="56a3e903845cd0f807e0b17b">
+  <input type="hidden" name="user_address" value="123 Street St.">
+  <input type="hidden" name="ready_for_delivery" value="true">
 
-  <div>
-    <label>Address</label>
-    <input type="text" name="user_address">
-  </div>
+  <div id="content-placeholder"></div>
 
-  <div>
-    <label>Ready (write "true")</label>
-    <input type="text" name="origin">
-  </div>
+  <input id="dessert" type="hidden" name="dessert_items" value="">
+
+  <h5 id="submitButton">Update Cart</h5>
 
   <div>
     <input type="submit" value="Submit">
@@ -63,7 +65,6 @@
 
 </form>
 
-<div id="content-placeholder"></div>
 
 <br><br><br>
 <br><br><br>

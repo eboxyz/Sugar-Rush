@@ -16,7 +16,7 @@ if(addToCartArr.length > 1){ // change if
 
 // Define our data object
 var context = {
-  desserts: []
+  desserts: [] //DONT PUT SEMICOLON
 };
 
 var storageString = localStorage.getItem("food").split(",")
@@ -50,3 +50,6 @@ if(context.desserts[0]["itemName"].length >= 1){
 
 // PUT IN if/else statement blocking empty storage
 
+document.getElementById('submitButton').addEventListener("click", function(){
+  document.getElementById('dessert').value = JSON.stringify([{item: "afd", quantity: 6}]);
+})

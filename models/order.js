@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 // menu (with dessert items) attributes and exports it.
 module.exports = mongoose.model('Order', {
   user_id: String,
+  user_address: String,
   driver_user_id: String,
   ready_for_delivery: Boolean,
   dessert_items: [
