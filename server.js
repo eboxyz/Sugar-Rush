@@ -108,3 +108,5 @@ app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.listen(3000);
 console.log("Ed's OCD");
+
+module.exports = server;

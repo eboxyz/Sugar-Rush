@@ -4,7 +4,7 @@ var http  = require('http'),
     debug = require('debug')('app:http');
 
 var env = require('../config/environment'),
-    app = require('../server');
+    app = require('../server.js');
 
 // Get port from environment and store.
 var port = normalizePort(process.env.PORT || '3000');
