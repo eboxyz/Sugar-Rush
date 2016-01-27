@@ -14,7 +14,7 @@
     <!-- LOGIN FORM -->
     <form action="/users/profile/edit/:id" method="post">
 
-        <input type= "hidden" name="_id" value="<%= user.id %>"
+        <input type= "hidden" name="_id" value="<%= user.id %>">
 
         <div class="form-group">
             <label>First Name</label>
@@ -34,6 +34,9 @@
         </div>
 
         <button type="submit" class="btn btn-success btn-lg">Update User</button>
+    </form>
+    <form method="POST" action="/users/delete/<%= user.id %>">
+        <button type="submit" class="btn btn-danger btn-lg">Delete User</button>
     </form>
     <hr>
 </div>

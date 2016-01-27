@@ -93,7 +93,7 @@ module.exports = function (app, passport){
 
 
 //isLoggedin goes here
-  app.get('/local/profile', function (req, res){
+  app.get('/local/profile', function (req, res, next){
     console.log(req.session)
     User.findById({_id: req.session.passport.user}, function (err, data){
       console.log(data.local.email)
@@ -108,7 +108,7 @@ module.exports = function (app, passport){
   }
   );
 
-  app.get('/users/profile/edit/', function (req, res){
+  app.get('/users/profile/edit/', function (req, res, next){
     User.findById({_id: req.session.passport.user}, function (err, data){
       res.render('./users/edit',{
         user: data,
@@ -121,7 +121,7 @@ module.exports = function (app, passport){
   })
 
 
-  app.post('/users/profile/edit/:id', function (req, res){
+  app.post('/users/profile/edit/:id', function (req, res, next){
     console.log(req.session.passport.user)
     console.log(req.session)
     User.findById({_id: req.session.passport.user}, function (err, user){
@@ -142,6 +142,15 @@ module.exports = function (app, passport){
 
     });
     req.session.save()
+  });
+
+  app.post('/users/delete/:id', function (req, res){
+    console.log(req.session.passport.user)
+    User.findOneAndRemove({_id: req.session.passport.user}, function (err, user){
+      if (err) console.log(err);
+      else console.log('user deleted')
+        res.redirect('/')
+    })
   });
 
     // =====================================
