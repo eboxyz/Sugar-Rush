@@ -3,7 +3,8 @@
 ////////////////////////////////////////////////////////////////////////
 
 // Grabs the User model for the mongo database
-var User = require('../models/user')
+var User = require('../models/user');
+var mongoose = require('mongoose')
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -51,14 +52,16 @@ exports.createUser = function (req, res, next){
     if(err) console.log(err);
     else res.send('user created')
   });
-},
+};
 
 
 //editUser
-exports.editUser = function (req, res, next){
-  User.findById(req.params.id, function (err, user){
-    console.log(req.body.local)
+exports.editUserForm = function (req, res, next){
+    res.render('users/edit')
+};
 
+exports.editUser = function (req, res, next){
+  User.findById({_id: req.params.id}, function (err, user){
     var keys = Object.keys(req.body.local);
     keys.forEach(function(key){
       user.local[key] = req.body.local[key];
