@@ -107,6 +107,18 @@ module.exports = function (app, passport){
   }
   );
 
+  app.get('/users/profile/edit/:id', function (req, res){
+    console.log(req.session.passport.user)
+    User.findById({_id: req.session.passport.user}, function (err, data){
+      res.render('./users/profile',{
+        user: data,
+        curr_user: data.local.email,
+        users: null
+      })
+    })
+    req.session.save();
+  })
+
     // =====================================
     // Venmo Authentication =====================
     // =====================================

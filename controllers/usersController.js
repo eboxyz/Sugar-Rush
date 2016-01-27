@@ -27,9 +27,52 @@ exports.signin = function(req, res) {
 exports.profile = function(req, res) {
   console.log(req);
   res.render('users/test', {user: req.user});
-}
+};
 
 // Render user prof
 exports.show = function(req, res) {
   res.render('users/profile');
+},
+
+//show all users
+exports.showUsers = function (req, res, next){
+  User.find({}, function (err, users){
+    res.json(users);
+  })
+},
+
+exports.createUser = function (req, res, next){
+  var newUser = new User();
+  var keys = Object.keys(req.body);
+  keys.forEach (function (key){
+    newUser[key] = req.body[key];
+  });
+  newUser.save(function (err){
+    if(err) console.log(err);
+    else res.send('user created')
+  });
+},
+
+
+//editUser
+exports.editUser = function (req, res, next){
+  User.findById(req.params.id, function (err, user){
+    console.log(req.body.local)
+
+    var keys = Object.keys(req.body.local);
+    keys.forEach(function(key){
+      user.local[key] = req.body.local[key];
+    });
+    user.local.save();
+  });
+  res.send('user updated')
+};
+
+//deleteUser
+exports.deleteUser = function (req, res, next){
+  User.findOneAndRemove({_id: req.params.id}, function (err, data){
+    if (err) res.json('user not deleted');
+    else res.json('user has been deleted')
+  })
 }
+
