@@ -3,7 +3,11 @@
 ////////////////////////////////////////////////////////////////////////
 
 // Grabs the mongoose functions and Restaurants model from the mongo db
+var express = require('express');
+var app = express();
 var Restaurant = require('../models/restaurant');
+var User = require('../models/user');
+var userController = require('./usersController')
 var mongoose = require('mongoose');
 
 // Exports restaurant functions
@@ -19,6 +23,24 @@ module.exports = {
       console.log(restaurants)
       res.render('restaurants/all', {restaurants: restaurants});
     });
+    // console.log(req.session)
+    // if (req.session && req.session.email){
+    //   console.log(req.session)
+    //   User.findOne({email: req.session.email}).then( function (user){
+    //     res.render('./restaurants/all', {
+    //       curr_user: user.email,
+    //       users:null
+    //     })
+    //   })
+    // } else{
+    //   User.findAsync({})
+    //     .then( function (users){
+    //       res.render('./users/home_page', {
+    //         curr_user: null,
+    //         users: users
+    //       });
+    //     }).catch();
+    // } req.session.save();
   },
 
 // Shows a specific restaurant

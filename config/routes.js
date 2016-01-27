@@ -30,6 +30,26 @@ router.route('/users/profile').get( function (req, res){
   res.render('users/profile');
 });
 
+router.route('/restaurants/all').get( function (req,res){
+      console.log(req.session)
+    if (req.session && req.session.email){
+      User.findOne({email: req.session.email}).then( function (user){
+        res.render('./restaurants/all', {
+          curr_user: user.email,
+          users:null
+        })
+      })}    req.session.save();
+    // } else{
+    //   User.findAsync({})
+    //     .then( function (users){
+    //       res.render('./users/home_page', {
+    //         curr_user: null,
+    //         users: users
+    //       });
+    //     }).catch();
+    // }
+});
+
 // router.route('/api/user').get(usersController.allAPI);
 router.route('/api/user/create').post(usersController.createUser);
 router.route('/user/:id/delete').delete(usersController.deleteUser);

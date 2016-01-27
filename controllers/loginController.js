@@ -1,6 +1,8 @@
 var express = require('express');
 var User = require('../models/user');
 var userController = require('./usersController')
+
+
 module.exports = function (app, passport){
 
 // =============================================================================
