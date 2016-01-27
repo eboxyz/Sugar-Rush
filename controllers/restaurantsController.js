@@ -9,6 +9,7 @@ var Restaurant = require('../models/restaurant');
 var User = require('../models/user');
 var userController = require('./usersController')
 var mongoose = require('mongoose');
+var request = require('request');
 
 // Exports restaurant functions
 module.exports = {
@@ -17,9 +18,9 @@ module.exports = {
 //                           View Functions                           //
 ////////////////////////////////////////////////////////////////////////
 
-// Shows all restaurants
+// Shows all restaurants; consumes API
   all: function(req, res, next){
-    Restaurant.find({}, function (err, restaurants){
+      Restaurant.find({}, function (err, restaurants){
       console.log(restaurants)
       res.render('restaurants/all', {restaurants: restaurants});
     });
@@ -41,6 +42,13 @@ module.exports = {
     //       });
     //     }).catch();
     // } req.session.save();
+
+    request('http://localhost:3000/api', function(err, resp, bod){
+      if(!err && resp.statusCode === 200){
+        var rest_data = JSON.parse(bod);
+        res.render('restaurants/all', {restaurants: rest_data});
+      } else console.log(err)
+    })
   },
 
 // Shows a specific restaurant

@@ -4,14 +4,10 @@
 
 <br><br><br>
 
-<script>
-alert(localStorage.getItem("food"))
-</script>
-
-
   <!-- alert(localStorage.getItem("food")); -->
 <script id="cart-item-template" type="text/x-handlebars-template">
 
+  {{#each desserts}}
   <div class="cart-item">
 
     <div class="cart-item-img-div">
@@ -19,13 +15,13 @@ alert(localStorage.getItem("food"))
     </div>
 
     <div class="cart-item-text">
-      <p>{{itemName}} ({{restaurant}})</p>
+      <p>{{this.itemName}} ({{this.restaurant}})</p>
       <p>Delete</p>
     </div>
 
     <div class="cart-item-cost">
       <p>Price</p>
-      <p>{{price}}</p>
+      <p>{{this.price}}</p>
     </div>
 
     <div class="cart-item-amount">
@@ -33,31 +29,26 @@ alert(localStorage.getItem("food"))
       <input type="text" name="cart-item-1">
     </div>
 
-    <p>{{itemId}}</p>
+    <p>{{this.itemId}}</p>
 
   </div>
+  {{/each}}
+
 </script>
-
-
 
 
 
 <form method='post' action='/orders/create'>
 
-  <div>
-    <label>Customer</label>
-    <input type="text" name="user_id">
-  </div>
+  <input type="hidden" name="user_id" value="56a3e903845cd0f807e0b17b">
+  <input type="hidden" name="user_address" value="123 Street St.">
+  <input type="hidden" name="ready_for_delivery" value="true">
 
-  <div>
-    <label>Address</label>
-    <input type="text" name="user_address">
-  </div>
+  <div id="content-placeholder"></div>
 
-  <div>
-    <label>Ready (write "true")</label>
-    <input type="text" name="origin">
-  </div>
+  <input id="dessert" type="text" name="dessert_items" value="">
+
+  <h5 id="submitButton">Update Cart</h5>
 
   <div>
     <input type="submit" value="Submit">
@@ -65,7 +56,6 @@ alert(localStorage.getItem("food"))
 
 </form>
 
-<div id="content-placeholder"></div>
 
 <br><br><br>
 <br><br><br>

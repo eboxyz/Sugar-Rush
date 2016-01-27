@@ -91,7 +91,8 @@ module.exports = function (app, passport){
     successRedirect: '/local/profile',
     failureRedirect: '/local/signup',
     failureFlash: true //allow flashing
-  }))
+    })
+  )
 
 
 //isLoggedin goes here
@@ -111,8 +112,6 @@ module.exports = function (app, passport){
   );
 
   app.get('/users/profile/edit/', function (req, res){
-    console.log(req.session)
-    console.log(req.params)
     User.findById({_id: req.session.passport.user}, function (err, data){
       res.render('./users/edit',{
         user: data,
@@ -125,17 +124,55 @@ module.exports = function (app, passport){
   })
 
 
-  app.put('/users/profile/edit/', function (req, res){
-    console.log(req.session)
-    console.log(req.params)
-    User.findById(req.params.id, function (err, user){
-    var keys = Object.keys(req.body.local);
-    keys.forEach(function(key){
-      user.local[key] = req.body.local[key];
-    });
-    user.local.save();
 
-  });
+  app.put('/users/profile/edit/', function (req, res){
+
+      var firstName = req.local.firstName;
+      var lastName = req.local.lastName;
+      var address = req.local.address;
+      var email = req.local.email;
+      var phoneNumber = req.local.phoneNumber;
+
+    User.findById({_id: req.session.passport.user}, function (err, user){
+
+      user.save({
+
+        firstName: firstName,
+        lastName: lastName,
+        address: address,
+        email: email,
+        phoneNumber: phoneNumber
+
+      }, function(err) {
+        if (err) res.send("There was a problem updating the information to the database");
+        else res.redirect('/')
+      })
+
+    });
+  })
+
+  app.post('/users/profile/edit/:id', function (req, res){
+    console.log(req.session.passport.user)
+    console.log(req.session)
+    User.findById({_id: req.session.passport.user}, function (err, user){
+      curr_user = req.body;
+      console.log(curr_user);
+    var keys = Object.keys(req.body);
+    keys.forEach(function(key){
+      user.local[key] = req.body[key];
+      console.log(user.local)
+      user.local.save();
+      });
+    console.log(req.session)
+    res.render('./users/profile', {
+      user: user,
+      curr_user: user.local,
+      users: null,
+    })
+
+    });
+    req.session.save()
+
   });
 
     // =====================================
@@ -186,4 +223,4 @@ module.exports = function (app, passport){
 //     //if they aren't loggedin, redirect to home
 //     res.redirect('/');
 //   }
-}
+};

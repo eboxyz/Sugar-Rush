@@ -14,8 +14,22 @@ if(addToCartArr.length > 1){ // change if
   });
 };
 
-var storageString =
-var bainasArr = localStorage.getItem("food").split("qxz")
+// Define our data object
+var context = {
+  desserts: [] //DONT PUT SEMICOLON
+};
+
+var storageString = localStorage.getItem("food").split(",")
+for(i in storageString){
+  var bainasArr = storageString[i].split("qxz");
+  context.desserts.push({
+    "itemName": bainasArr[0],
+    "restaurant": bainasArr[1],
+    "price": bainasArr[2],
+    "itemId": bainasArr[3]
+  });
+}
+
 
 //////////////////////////////////////////////////////////////////
 
@@ -24,21 +38,18 @@ var theTemplateScript = document.getElementById("cart-item-template").innerHTML;
 
 // Compile the template
 var theTemplate = Handlebars.compile(theTemplateScript);
-console.log(localStorage.getItem("food"));
-// Define our data object
-var context={
-  "itemName": bainasArr[0],
-  "restaurant": bainasArr[1],
-  "price": bainasArr[2],
-  "itemId": bainasArr[3]
-};
-
+console.log(context);
 // Pass our data to the template
 var theCompiledHtml = theTemplate(context);
 
 // Add the compiled html to the page
-document.getElementById('content-placeholder').innerHTML = theCompiledHtml;
+if(context.desserts[0]["itemName"].length >= 1){
+  document.getElementById('content-placeholder').innerHTML = theCompiledHtml;
+}
 
 
 // PUT IN if/else statement blocking empty storage
 
+document.getElementById('submitButton').addEventListener("click", function(){
+  document.getElementById('dessert').value = JSON.stringify([{item: "afd", quantity: 6}]);
+})
