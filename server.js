@@ -105,7 +105,13 @@ require('./controllers/loginController.js')(app, passport)
 // Sets the view engine to ejs, the localhost to 3000, and logs Ed's OCD
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
-app.listen(3000);
+
+
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
+
+
 console.log("Ed's OCD");
 
 
