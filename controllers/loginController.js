@@ -109,8 +109,6 @@ module.exports = function (app, passport){
   );
 
   app.get('/users/profile/edit/', function (req, res){
-    console.log(req.session)
-    console.log(req.params)
     User.findById({_id: req.session.passport.user}, function (err, data){
       res.render('./users/edit',{
         user: data,
@@ -124,16 +122,29 @@ module.exports = function (app, passport){
 
 
   app.put('/users/profile/edit/', function (req, res){
-    console.log(req.session)
-    console.log(req.params)
-    User.findById(req.params.id, function (err, user){
-    var keys = Object.keys(req.body.local);
-    keys.forEach(function(key){
-      user.local[key] = req.body.local[key];
-    });
-    user.local.save();
 
-  });
+      var firstName = req.local.firstName;
+      var lastName = req.local.lastName;
+      var address = req.local.address;
+      var email = req.local.email;
+      var phoneNumber = req.local.phoneNumber;
+
+    User.findById({_id: req.session.passport.user}, function (err, user){
+
+      user.save({
+
+        firstName: firstName,
+        lastName: lastName,
+        address: address,
+        email: email,
+        phoneNumber: phoneNumber
+
+      }, function(err) {
+        if (err) res.send("There was a problem updating the information to the database");
+        else res.redirect('/')
+      })
+
+    });
   });
 
     // =====================================
