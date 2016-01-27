@@ -1,5 +1,5 @@
-<header>
-  <div class="navbar navbar-inverse">
+<header id="header">
+  <div class="navbar navbar-inverse navbar-white">
     <div class="container navbar-inner">
 
 
@@ -10,6 +10,7 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <% if (curr_user) { %>
+        <% console.log(curr_user) %>
           <li><a href="/local/profile">Hello, <%= user.local.firstName %></a></li>
           <li><a href="/restaurants">Order</a></li>
           <li><a href="/local/logout">Logout</a></li>

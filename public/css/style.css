@@ -25,12 +25,17 @@
    z-index: 2;
 }
 
-div.navbar a{
+div.navbar-white a{
   color: white !important;
   font-size: 30px;
   font-weight: bold !important;
 }
 
+div.navbar-black a{
+  color: black !important;
+  font-size: 30px;
+  font-weight: bold !important;
+}
 
 
 /* END OF NAVBAR*/

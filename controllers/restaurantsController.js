@@ -16,12 +16,14 @@ module.exports = {
 
 // Shows all restaurants; consumes API
   all: function(req, res, next){
-    request('http://localhost:3000/api', function(err, resp, bod){
-      if(!err && resp.statusCode === 200){
-        var rest_data = JSON.parse(bod);
-        res.render('restaurants/all', {restaurants: rest_data});
-      } else console.log(err)
-    })
+
+        request('http://localhost:3000/api',function(err, resp, bod){
+          if(!err && resp.statusCode === 200){
+            var rest_data = JSON.parse(bod);
+            res.render('restaurants/all', {restaurants: rest_data});
+          }
+            else console.log(err)
+        })
   },
 
 // Shows a specific restaurant
@@ -34,9 +36,11 @@ module.exports = {
   // API function to show all restaurants. Restaurant.find({}) grabs
   // them in the database and renders them through JSON.
   allAPI: function (req, res, next){
-    Restaurant.find({}, function (err, restaurants){
-      res.json(restaurants);
-    })
+
+      Restaurant.find({}, function (err, restaurants){
+        res.json(restaurants);
+      })
+
   },
 
   // API function to create a restaurant. A new restaurant is created

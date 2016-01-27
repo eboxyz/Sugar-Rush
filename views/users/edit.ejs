@@ -1,8 +1,8 @@
 <% include ../partials/head %>
-<% include ../partials/navbar %>
+<% include ../partials/navbarBlack %>
 
-
-<br><br><br><br><br><br><br><br><br><br>
+<br>
+<br>
 <body>
 <div class="container">
 
@@ -14,7 +14,7 @@
     <!-- LOGIN FORM -->
     <form action="/users/profile/edit/:id" method="post">
 
-        <input type= "hidden" name="_id" value="<%= user.id %>"
+        <input type= "hidden" name="_id" value="<%= user.id %>">
 
         <div class="form-group">
             <label>First Name</label>
