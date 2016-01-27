@@ -35,7 +35,7 @@ router.route('/api/user/create').post(usersController.createUser);
 router.route('/user/:id/delete').delete(usersController.deleteUser);
 router.route('/api/users').get(usersController.showUsers);
 router.route('/user/:id/edit').put(usersController.editUser);
-router.route('/users/profile/edit/:id').put(usersController.editUser);
+router.route('/users/profile/edit/').put(usersController.editUser);
 
 ////////////////////////////////////////////////////////////////////////
 //                         Restaurant Routes                          //

@@ -9,46 +9,29 @@
 
     <h1><span class="fa fa-sign-in"></span>Edit User</h1>
 
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
 
     <!-- LOGIN FORM -->
-    <form action="/users/profile/edit/:id" method="post">
+    <form action="/users/profile/edit/:id" method="put">
         <div class="form-group">
             <label>First Name</label>
-            <input type="text" class="form-control" name="firstName">
+            <input type="text" class="form-control" name="firstName" value="<%= user.local.firstName %>">
         </div>
         <div class="form-group">
             <label>Last Name</label>
-            <input type="text" class="form-control" name="lastName">
+            <input type="text" class="form-control" name="lastName" value ="<%= user.local.lastName %>">
         </div>
         <div class="form-group">
             <label>Address</label>
-            <input type="text" class="form-control" name="address">
-        </div>
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="form-control" name="email">
+            <input type="text" class="form-control" name="address" value= "<%= user.local.address %>">
         </div>
         <div class="form-group">
             <label>Phone Number</label>
-            <input type="text" class="form-control" name="phoneNumber">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
+            <input type="text" class="form-control" name="phoneNumber" value="<%=user.local.phoneNumber %>">
         </div>
 
-        <button type="submit" class="btn btn-success btn-lg">Sign-up</button>
+        <button type="submit" class="btn btn-success btn-lg">Update User</button>
     </form>
     <hr>
-
-
-    <p>Already have an account? <a href="/local/login">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
-
 </div>
 
 </div>
