@@ -4,14 +4,10 @@
 
 <br><br><br>
 
-<script>
-alert(localStorage.getItem("food"))
-</script>
-
-
   <!-- alert(localStorage.getItem("food")); -->
 <script id="cart-item-template" type="text/x-handlebars-template">
 
+  {{#each desserts}}
   <div class="cart-item">
 
     <div class="cart-item-img-div">
@@ -19,13 +15,13 @@ alert(localStorage.getItem("food"))
     </div>
 
     <div class="cart-item-text">
-      <p>{{itemName}} ({{restaurant}})</p>
+      <p>{{this.itemName}} ({{this.restaurant}})</p>
       <p>Delete</p>
     </div>
 
     <div class="cart-item-cost">
       <p>Price</p>
-      <p>{{price}}</p>
+      <p>{{this.price}}</p>
     </div>
 
     <div class="cart-item-amount">
@@ -33,9 +29,11 @@ alert(localStorage.getItem("food"))
       <input type="text" name="cart-item-1">
     </div>
 
-    <p>{{itemId}}</p>
+    <p>{{this.itemId}}</p>
 
   </div>
+  {{/each}}
+
 </script>
 
 
