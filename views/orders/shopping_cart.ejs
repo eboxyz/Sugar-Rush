@@ -36,16 +36,7 @@
 
 </script>
 
-<script>
 
-var data = ['cat'];
-
-data.push({item: "afd", quantity: 6});
-data.push({item: "afd", quantity: 7});
-console.log(data);
-console.log("hi")
-document.getElementById('dessert').value = JSON.stringify(data);
-</script>
 
 <form method='post' action='/orders/create'>
 
@@ -55,7 +46,7 @@ document.getElementById('dessert').value = JSON.stringify(data);
 
   <div id="content-placeholder"></div>
 
-  <input id="dessert" type="hidden" name="dessert_items" value="">
+  <input id="dessert" type="text" name="dessert_items" value="">
 
   <h5 id="submitButton">Update Cart</h5>
 

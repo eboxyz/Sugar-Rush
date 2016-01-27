@@ -34,7 +34,7 @@ module.exports = {
     })
     newOrder.save(function (err) {
       if (err) console.log(err);
-      else res.render('users/home_page');
+      else res.redirect('/orders/show/' + newOrder.id);
     })
   },
 
