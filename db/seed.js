@@ -23,6 +23,16 @@ exports.seedRestaurants = function seedRestaurants(){
             "item": "Cheese Rolls",
             "price": "$1.00",
             "available": true
+          },
+          {
+            "item": "Guava Cheese",
+            "price": "$2.50",
+            "available": true
+          },
+          {
+            "item": "Regular cake (with stuff)",
+            "price": "$12.00",
+            "available": true
           }
         ]
       }),
@@ -35,6 +45,16 @@ exports.seedRestaurants = function seedRestaurants(){
           {
             "item": "Mango Sticky Rice",
             "price": "$3.00",
+            "available": true
+          },
+          {
+            "item": "Fried Bananas",
+            "price": "$2.00",
+            "available": true
+          },
+          {
+            "item": "Tapioca Ballz",
+            "price": "$1.12",
             "available": true
           }
         ]
@@ -54,6 +74,16 @@ exports.seedRestaurants = function seedRestaurants(){
             "item": "Apple Pie",
             "price": "$1.00",
             "available": false,
+          },
+          {
+            "item": "Ice Cream",
+            "price": "$1.00",
+            "available": true
+          },
+          {
+            "item": "Cooks",
+            "price": "$0.50",
+            "available": true
           }
         ]
       })

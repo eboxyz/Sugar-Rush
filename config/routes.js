@@ -54,6 +54,12 @@ router.route('/orders/create').post(ordersController.create);
 router.route('/orders/shoppingcart').get(ordersController.new);
 router.route('/orders/show/:id').get(ordersController.show);
 
+router.route('/api2').get(ordersController.allAPI);
+router.route('/api2/create').post(ordersController.createAPI);
+router.route('/api2/:id/delete').delete(ordersController.deleteAPI);
+router.route('/api2/:id/show').get(ordersController.showAPI);
+router.route('/api2/:id/edit').put(ordersController.editAPI);
+
 ////////////////////////////////////////////////////////////////////////
 
 module.exports = router
