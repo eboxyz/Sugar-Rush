@@ -47,7 +47,7 @@ var credentials = require('./config/credentials.js')
 ////////////////////////////////////////////////////////////////////////
 
 // This connects the site to the local mongo-db
-mongoose.connect('mongodb://localhost/sugar-rush');
+mongoose.connect('mongodb://heroku_2115hf7x:sugarrush1@ds051645.mongolab.com:51645/heroku_2115hf7x');
 
 // Allows access to usersController (was originally below request) and
 // the user model
