@@ -14,6 +14,8 @@
   }
 
 
+
+
 /* NAVBAR STUFF */
 
 .navbar-inverse {
@@ -32,6 +34,110 @@ div.navbar a{
 
 
 /* END OF NAVBAR*/
+
+
+
+
+
+
+
+
+/* Homepage */
+
+.parallax-window {
+  min-height: 400px;
+  background: transparent;
+}
+
+
+  /* TITLE */
+  #home_title{
+    font-family: 'Pacifico', cursive;
+    color: white;
+    font-size: 150px;
+    text-align: center;
+
+  }
+  #home_title_tagline{
+    font-family: 'Arimo', sans-serif;
+    text-align: center;
+    margin-top: 80px;
+    letter-spacing: 3px;
+    font-size: 40px;
+    font-weight: bolder;
+
+  }
+  #section-one {
+    position: relative;
+    top:-12%;
+  }
+  #title {
+    position: relative;
+    color: white;
+    z-index: 1;
+    top:-540px;
+  }
+  #order-now {
+    margin-left:45%;
+    margin-top: 30px;
+  }
+  #down-arrow {
+    position: relative;
+    left: 46%;
+    margin-top: 80px;
+    font-size: 50px;
+    width: 80px;
+  }
+
+
+  /*ABOUT US*/
+  #section-two {
+
+  }
+  .section-two-images {
+    height: 400px;
+    margin: 0 40px
+
+  }
+  #div-section-two-margin-fix{
+    margin: 0 -100px !important;
+    padding-top: 30px;
+  }
+  div#about-us {
+
+    text-align: center;
+    margin: 0 200px;
+  }
+
+
+
+
+  /* CONTACT INFO */
+
+  #section-three {
+    text-align: center;
+    background:
+      linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)
+        ),
+        url("https://drscdn.500px.org/photo/129433271/m%3D2048_k%3D1/60087eecc9d294c550b40e726734fb45");
+    background-size: cover;
+  }
+  #contact-info {
+    color:white;
+    padding-top: 10px;
+  }
+  #img-con {
+    color: white;
+  }
+  .fa {
+    margin: 0 10px;
+  }
+
+
+/* END OF HOMEPAGE */
+
 
 
 
@@ -93,157 +199,49 @@ div.navbar a{
 }
 #cart-item-amount{
   display: inline-block;
-
 }
 
 
 
-
-/* Homepage */
-
-.parallax-window {
-  min-height: 400px;
-  background: transparent;
-}
-
-
-
-
-/* Home Page Styles */
-
-  /* TITLE */
-  #home_title{
-    font-family: 'Pacifico', cursive;
-    color: white;
-    font-size: 150px;
-    text-align: center;
-
-  }
-  #home_title_tagline{
-    font-family: 'Arimo', sans-serif;
-    text-align: center;
-    margin-top: 80px;
-    letter-spacing: 3px;
-    font-size: 40px;
-    font-weight: bolder;
-
-  }
-  #section-one {
-    position: relative;
-    top:-12%;
-  }
-  #title {
-    position: relative;
-    color: white;
-    z-index: 1;
-    top:-540px;
-  }
-  #order-now {
-    margin-left:45%;
-    margin-top: 30px;
-  }
-  #down-arrow {
-    position: relative;
-    left: 46%;
-    margin-top: 80px;
-    font-size: 50px;
-  }
 
 /*RESTAURANTS PAGE*/
 
 
-  .carousel-inner > .item > img {
-    margin: 0 auto;
-  }
+.carousel-inner > .item > .slides {
+  margin: 0 auto;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-  }
+.slides {
+  width: 100%;
+}
 
-  .item {
-    width: 100%;
-    height: 100%;
-  }
+.item {
+  width: 100%;
+}
 
-  .carousel-inner {
-    width: 1000px;
-    height: 500px;
-  }
+.carousel-inner {
+  width: 1000px;
+  height: 500px;
+}
 
-  #restaurants-title {
-    text-align: center;
-  }
+#restaurants-title {
+  text-align: center;
+  padding-right: 200px;
+  padding-left: 200px;
+}
 
-  .add-to-cart {
-    background-color: #FF9999;
-  }
+.add-to-cart {
+  background-color: #FF9999;
+}
 
-  #checkout {
-   background-color: #FF6666;
-  }
+#checkout {
+ background-color: #FF6666;
+}
 
-  #button-link {
-    color: black;
-  }
+#button-link {
+  color: black;
+}
 
-  #carousel-box {
-    border: 1px solid #393939;
-  }
-
-  #restaurants-title {
-    padding-right: 200px;
-    padding-left: 200px;
-  }
-
-  /*ABOUT US*/
-  #section-two {
-
-  }
-  .section-two-images {
-    height: 400px;
-    margin: 0 40px
-
-  }
-  #div-section-two-margin-fix{
-    margin: 0 -100px !important;
-    padding-top: 30px;
-  }
-  div#about-us {
-
-    text-align: center;
-    margin: 0 200px;
-  }
-
-
-
-
-  /* CONTACT INFO */
-
-  #section-three {
-    text-align: center;
-    background:
-      linear-gradient(
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.7)
-        ),
-        url("https://drscdn.500px.org/photo/129433271/m%3D2048_k%3D1/60087eecc9d294c550b40e726734fb45");
-    background-size: cover;
-  }
-  #contact-info {
-    color:white;
-    padding-top: 10px;
-  }
-  #img-con {
-    color: white;
-  }
-  .fa {
-    margin: 0 10px;
-  }
-
-
-/* END OF HOMEPAGE */
-
-
-/*footer*/
-
+#carousel-box {
+  border: 1px solid #393939;
+}
