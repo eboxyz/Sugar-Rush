@@ -4,14 +4,14 @@
 
 
 /* General styles */
-html {
-  height: 100%;
-}
+  html {
+    height: 100%;
+  }
 
-/*gets rid of awkard space*/
-section {
-  margin-top: -20px;
-}
+  /*gets rid of awkard space*/
+  section {
+    margin-top: -20px;
+  }
 
 
 /* NAVBAR STUFF */
@@ -32,7 +32,6 @@ div.navbar a{
 
 
 /* END OF NAVBAR*/
-
 
 
 
@@ -66,6 +65,8 @@ div.navbar a{
 }
 
 
+
+
 /* Shopping Cart Styles */
 #shopping-cart{
   margin-top: 150px;
@@ -91,6 +92,7 @@ div.navbar a{
 }
 #cart-item-amount{
 }
+
 
 
 
@@ -137,9 +139,9 @@ div.navbar a{
     margin-left:45%;
     margin-top: 30px;
   }
+  .fa-chevron-down {
 
-
-
+  }
 
 
 
