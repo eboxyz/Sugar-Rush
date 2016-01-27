@@ -121,6 +121,7 @@ module.exports = function (app, passport){
   })
 
 
+
   app.put('/users/profile/edit/', function (req, res){
 
       var firstName = req.local.firstName;
@@ -145,6 +146,29 @@ module.exports = function (app, passport){
       })
 
     });
+
+  app.post('/users/profile/edit/:id', function (req, res){
+    console.log(req.session.passport.user)
+    console.log(req.session)
+    User.findById({_id: req.session.passport.user}, function (err, user){
+      curr_user = req.body;
+      console.log(curr_user);
+    var keys = Object.keys(req.body);
+    keys.forEach(function(key){
+      user.local[key] = req.body[key];
+      console.log(user.local)
+      user.local.save();
+      });
+    console.log(req.session)
+    res.render('./users/profile', {
+      user: user,
+      curr_user: user.local,
+      users: null,
+    })
+
+    });
+    req.session.save()
+
   });
 
     // =====================================
