@@ -89,7 +89,8 @@ module.exports = function (app, passport){
     successRedirect: '/local/profile',
     failureRedirect: '/local/signup',
     failureFlash: true //allow flashing
-  }))
+    })
+  )
 
 
 //isLoggedin goes here
@@ -146,6 +147,7 @@ module.exports = function (app, passport){
       })
 
     });
+  })
 
   app.post('/users/profile/edit/:id', function (req, res){
     console.log(req.session.passport.user)
@@ -219,4 +221,4 @@ module.exports = function (app, passport){
 //     //if they aren't loggedin, redirect to home
 //     res.redirect('/');
 //   }
-}
+};
