@@ -46,7 +46,7 @@ router.route('/restaurants/all').get( function (req,res){
 
 // router.route('/api/user').get(usersController.allAPI);
 router.route('/api/user/create').post(usersController.createUser);
-router.route('/user/:id/delete').delete(usersController.deleteUser);
+router.route('/user/delete/:id').delete(usersController.deleteUser);
 router.route('/api/users').get(usersController.showUsers);
 router.route('/user/:id/edit').put(usersController.editUser);
 router.route('/users/profile/edit/').put(usersController.editUser);

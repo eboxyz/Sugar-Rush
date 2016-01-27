@@ -71,11 +71,13 @@ exports.editUser = function (req, res, next){
   res.send('user updated')
 };
 
+
 //deleteUser
 exports.deleteUser = function (req, res, next){
-  User.findOneAndRemove({_id: req.params.id}, function (err, data){
-    if (err) res.json('user not deleted');
-    else res.json('user has been deleted')
-  })
-}
+  User.remove({_id: req.params.id}, function (err, data){
+    data.remove ( function (err, data){
+      res.redirect( '/');
+    })
+})
+};
 
