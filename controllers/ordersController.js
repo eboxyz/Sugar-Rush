@@ -5,6 +5,8 @@
 // Grabs the mongoose functions and Order model from the mongo db
 var Order = require('../models/order');
 var mongoose = require('mongoose');
+var handlebars = require('handlebars');
+
 
 // Exports restaurant functions
 module.exports = {

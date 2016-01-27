@@ -1,12 +1,42 @@
 <% include ../partials/head %>
 <% include ../partials/navbar %>
 
+
 <br><br><br>
 
 <script>
-  var foodArr = localStorage.getItem("food")
+alert(localStorage.getItem("food"))
 </script>
 
+
+  <!-- alert(localStorage.getItem("food")); -->
+<script id="cart-item-template" type="text/x-handlebars-template">
+
+  <div class="cart-item">
+
+    <div class="cart-item-img-div">
+      <img class="cart-item-img" src="http://img14.deviantart.net/cabe/i/2006/235/3/f/cute_happy_cupcake_avatar_by_cuteordeath.gif">
+    </div>
+
+    <div class="cart-item-text">
+      <p>{{itemName}} ({{restaurant}})</p>
+      <p>Delete</p>
+    </div>
+
+    <div class="cart-item-cost">
+      <p>Price</p>
+      <p>{{price}}</p>
+    </div>
+
+    <div class="cart-item-amount">
+      <p>Quantity</p>
+      <input type="text" name="cart-item-1">
+    </div>
+
+    <p>{{itemId}}</p>
+
+  </div>
+</script>
 
 
 
@@ -20,6 +50,11 @@
   </div>
 
   <div>
+    <label>Address</label>
+    <input type="text" name="user_address">
+  </div>
+
+  <div>
     <label>Ready (write "true")</label>
     <input type="text" name="origin">
   </div>
@@ -30,6 +65,9 @@
 
 </form>
 
+<div id="content-placeholder"></div>
 
+<br><br><br>
+<br><br><br>
 
 <% include ../partials/footer %>
