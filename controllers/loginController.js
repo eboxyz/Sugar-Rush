@@ -1,6 +1,6 @@
 var express = require('express');
 var User = require('../models/user');
-
+var userController = require('./usersController')
 module.exports = function (app, passport){
 
 // =============================================================================
@@ -33,6 +33,7 @@ module.exports = function (app, passport){
           });
         }).catch();
     }
+    req.session.save();
   });
 
   app.get('/local/login', function (req, res){
@@ -54,6 +55,7 @@ module.exports = function (app, passport){
                     message: req.flash('loginMessage') });
             }).catch();
     }
+    req.session.save();
 });
 
   app.post('/local/login', passport.authenticate('local-login', {
@@ -80,20 +82,20 @@ module.exports = function (app, passport){
                     message: req.flash('signupMessage') });
             }).catch();
     }
+    req.session.save();
   });
 
   app.post('/local/signup', passport.authenticate('local-signup', {
     successRedirect: '/local/profile',
     failureRedirect: '/local/signup',
     failureFlash: true //allow flashing
-  }))
+    })
+  )
 
 
 //isLoggedin goes here
   app.get('/local/profile', function (req, res){
-
-  console.log(req.session);
-  console.log(req.session.passport.user)
+    console.log(req.session)
     User.findById({_id: req.session.passport.user}, function (err, data){
       console.log(data.local.email)
     res.render('./users/profile.ejs', {
@@ -106,6 +108,70 @@ module.exports = function (app, passport){
   req.session.save();
   }
   );
+
+  app.get('/users/profile/edit/', function (req, res){
+    User.findById({_id: req.session.passport.user}, function (err, data){
+      res.render('./users/edit',{
+        user: data,
+        curr_user: data.local.email,
+        users: null
+      })
+    })
+    //PUT A RESPONSE HERE SO YOU CAN PING
+    req.session.save();
+  })
+
+
+
+  app.put('/users/profile/edit/', function (req, res){
+
+      var firstName = req.local.firstName;
+      var lastName = req.local.lastName;
+      var address = req.local.address;
+      var email = req.local.email;
+      var phoneNumber = req.local.phoneNumber;
+
+    User.findById({_id: req.session.passport.user}, function (err, user){
+
+      user.save({
+
+        firstName: firstName,
+        lastName: lastName,
+        address: address,
+        email: email,
+        phoneNumber: phoneNumber
+
+      }, function(err) {
+        if (err) res.send("There was a problem updating the information to the database");
+        else res.redirect('/')
+      })
+
+    });
+  })
+
+  app.post('/users/profile/edit/:id', function (req, res){
+    console.log(req.session.passport.user)
+    console.log(req.session)
+    User.findById({_id: req.session.passport.user}, function (err, user){
+      curr_user = req.body;
+      console.log(curr_user);
+    var keys = Object.keys(req.body);
+    keys.forEach(function(key){
+      user.local[key] = req.body[key];
+      console.log(user.local)
+      user.local.save();
+      });
+    console.log(req.session)
+    res.render('./users/profile', {
+      user: user,
+      curr_user: user.local,
+      users: null,
+    })
+
+    });
+    req.session.save()
+
+  });
 
     // =====================================
     // Venmo Authentication =====================
@@ -155,4 +221,4 @@ module.exports = function (app, passport){
 //     //if they aren't loggedin, redirect to home
 //     res.redirect('/');
 //   }
-}
+};

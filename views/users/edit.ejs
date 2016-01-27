@@ -1,0 +1,44 @@
+<% include ../partials/head %>
+<% include ../partials/navbar %>
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<body>
+<div class="container">
+
+<div class="col-sm-6 col-sm-offset-3">
+
+    <h1><span class="fa fa-sign-in"></span>Edit User</h1>
+
+
+    <!-- LOGIN FORM -->
+    <form action="/users/profile/edit/:id" method="post">
+
+        <input type= "hidden" name="_id" value="<%= user.id %>"
+
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" name="firstName" value="<%= user.local.firstName %>">
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="lastName" value ="<%= user.local.lastName %>">
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <input type="text" class="form-control" name="address" value= "<%= user.local.address %>">
+        </div>
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" class="form-control" name="phoneNumber" value="<%=user.local.phoneNumber %>">
+        </div>
+
+        <button type="submit" class="btn btn-success btn-lg">Update User</button>
+    </form>
+    <hr>
+</div>
+
+</div>
+</body>
+
+<% include ../partials/footer %>

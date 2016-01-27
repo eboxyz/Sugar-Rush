@@ -20,15 +20,16 @@ var ordersController = require('../controllers/ordersController');
 //                            User Routes                             //
 ////////////////////////////////////////////////////////////////////////
 
-// router.route('/').get(function(req, res){
-//   res.render('users/home_page');
-// });
-// router.route('/users/profile').get(usersController.show);
-
-
 router.route('/users/profile').get( function (req, res){
   res.render('users/profile');
 });
+
+// router.route('/api/user').get(usersController.allAPI);
+router.route('/api/user/create').post(usersController.createUser);
+router.route('/user/:id/delete').delete(usersController.deleteUser);
+router.route('/api/users').get(usersController.showUsers);
+router.route('/user/:id/edit').put(usersController.editUser);
+router.route('/users/profile/edit/').put(usersController.editUser);
 
 ////////////////////////////////////////////////////////////////////////
 //                         Restaurant Routes                          //
@@ -36,8 +37,6 @@ router.route('/users/profile').get( function (req, res){
 
 router.route('/restaurants').get(restaurantsController.all);
 
-////////////////////////////////////////////////////////////////////////
-//                       Restaurant Api Routes                        //
 ////////////////////////////////////////////////////////////////////////
 
 router.route('/api').get(restaurantsController.allAPI);
@@ -53,6 +52,14 @@ router.route('/api/:id/edit').put(restaurantsController.editAPI);
 router.route('/orders/create').post(ordersController.create);
 router.route('/orders/shoppingcart').get(ordersController.new);
 router.route('/orders/show/:id').get(ordersController.show);
+
+////////////////////////////////////////////////////////////////////////
+
+router.route('/api2').get(ordersController.allAPI);
+router.route('/api2/create').post(ordersController.createAPI);
+router.route('/api2/:id/delete').delete(ordersController.deleteAPI);
+router.route('/api2/:id/show').get(ordersController.showAPI);
+router.route('/api2/:id/edit').put(ordersController.editAPI);
 
 ////////////////////////////////////////////////////////////////////////
 
