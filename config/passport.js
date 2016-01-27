@@ -121,69 +121,67 @@ module.exports = function(passport){
     // a 'venmo' object containing an authorized user's information
     // and invoke callback function with the user object.
     passport.use(new VenmoStrategy({
-        clientID: process.env.VENMO_CLIENT_ID,
-        clientSecret: process.env.VENMO_CLIENT_SECRET,
-        callbackURL: process.env.VENMO_CALLBACK_URL,
-        passReqToCallback: true
-      },
-      //we're receiving this from venmo
-      function(req, accessToken, refreshToken, venmo, done) {
-        //asynchronous
-
-        process.nextTick(function (){
-          if (!req.user){
-            User.findOne({
+      clientID: process.env.VENMO_CLIENT_ID,
+      clientSecret: process.env.VENMO_CLIENT_SECRET,
+      callbackURL: process.env.VENMO_CALLBACK_URL,
+      passReqToCallback: true
+    },
+    //we're receiving this from venmo
+    function(req, accessToken, refreshToken, venmo, done) {
+      //asynchronous
+      process.nextTick(function (){
+        if (!req.user){
+          User.findOne({
             'venmo.id': venmo.id
-        }, function(err, user) {
+          }, function(err, user) {
             if (err) {
                 return done(err);
             }
             // checks if the user has been already been created, if not
             // we create a new instance of the User model
             if (!user) {
-                user = new User({
-                    name: venmo.displayName,
-                    username: venmo.username,
-                    email: venmo.email,
-                    provider: 'venmo',
-                    venmo: venmo._json,
-                    access_token: accessToken,
-                    refresh_token: refreshToken
-                    //store these in database
-                    //session is fine
-                    //store a cookie as the user
-                    //check the cookie
-                    //set an expiration on the cookie
-                    //set expiration of accesstoken == cookie
-                    //if cookie is expired then get a new token
-                    //60 days
-
-                });
-                console.log(user);
-                user.save(function(err) {
-                    if (err) console.log(err);
-                    else console.log('SAVED!')
-                    return done(err, user);
-                });
-            }else {
-                user.balance = venmo.balance;
-                user.access_token = accessToken;
-                user.save();
-                user.venmo = venmo._json
+              user = new User({
+                name: venmo.displayName,
+                username: venmo.username,
+                email: venmo.email,
+                provider: 'venmo',
+                venmo: venmo._json,
+                access_token: accessToken,
+                refresh_token: refreshToken
+                //store these in database
+                //session is fine
+                //store a cookie as the user
+                //check the cookie
+                //set an expiration on the cookie
+                //set expiration of accesstoken == cookie
+                //if cookie is expired then get a new token
+                //60 days
+              });
+              console.log(user);
+              user.save(function(err) {
+                if (err) console.log(err);
+                else console.log('SAVED!')
                 return done(err, user);
+              });
+            }else {
+              user.balance = venmo.balance;
+              user.access_token = accessToken;
+              user.save();
+              user.venmo = venmo._json
+              return done(err, user);
             }
-        })
-      //   } else{
-      //     User.findById({_id: req.user}, function (err, data){
-      //       console.log(req.user);
-      //       console.log(data)
-      //       data.venmo.email = req.email;
-      //       data.venmo.username = req.username
-      //       data.save();
-      //       });
-      //   };
-      // })
-      }})//?
-    }));
+          })
+    //   } else{
+    //     User.findById({_id: req.user}, function (err, data){
+    //       console.log(req.user);
+    //       console.log(data)
+    //       data.venmo.email = req.email;
+    //       data.venmo.username = req.username
+    //       data.save();
+    //       });
+    //   };
+    // })
+    }})//?
+  }));
 
 }

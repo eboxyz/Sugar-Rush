@@ -17,17 +17,14 @@
 // Express Session allows you to set up sessions for the app
 // Cookie Parser allows the app to store and read cookies
 // ??? Dotenv lets you use the .env file
+//require handlebars
 var express = require('express');
 var app = express();
 var Promise = require('bluebird')
 var methodOverride = require('method-override');
-var bodyParser = require('body-parser'); // Lets you parse data
-var logger = require('morgan'); // Logs messages to help you build
-var mongoose = Promise.promisifyAll(require('mongoose')); // Database npm
-var passport = require('passport'); // Helps with authentication
 var bodyParser = require('body-parser');
 var logger = require('morgan');
-var mongoose = require('mongoose');
+var mongoose = Promise.promisifyAll(require('mongoose'));
 var passport = require('passport');
 var flash = require('connect-flash');
 var VenmoStrategy = require('passport-venmo').Strategy;
@@ -38,7 +35,6 @@ var path = require('path');
 var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var dotenv = require('dotenv').config();
-//require handlebars
 var handlebars = require('handlebars');
 
 var credentials = require('./config/credentials.js')
@@ -48,9 +44,11 @@ var credentials = require('./config/credentials.js')
 
 // This connects the site to the local mongo-db
 // mongoose.connect('mongodb://heroku_2115hf7x:sugarrush1@ds051645.mongolab.com:51645/heroku_2115hf7x');
+
 mongoose.connect('mongodb://localhost/sugar-rush');
 // Allows access to usersController (was originally below request) and
 // the user model
+// Maybe remove
 var users_controller = require('./controllers/usersController.js');
 var User = require('./models/user.js')["User"];
 
@@ -69,7 +67,6 @@ app.use(flash());
 // Third lets the app read and save cookies.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 // Allows access to the methods in the passport file
 // ??? Starts up the passport module

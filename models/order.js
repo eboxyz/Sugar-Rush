@@ -17,7 +17,8 @@ module.exports = mongoose.model('Order', {
       item_id: String,
       quantity: Number
     }
-  ]
+  ],
+  created_at: {type: Date}
   // time: Mongoose-time
 });
 
