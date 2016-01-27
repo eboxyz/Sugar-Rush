@@ -141,11 +141,52 @@ div.navbar a{
     margin-top: 30px;
   }
 
+/*RESTAURANTS PAGE*/
 
 
+  .carousel-inner > .item > img {
+    margin: 0 auto;
+  }
 
+  img {
+    width: 100%;
+    height: 100%;
+  }
 
+  .item {
+    width: 100%;
+    height: 100%;
+  }
 
+  .carousel-inner {
+    width: 1000px;
+    height: 500px;
+  }
+
+  #restaurants-title {
+    text-align: center;
+  }
+
+  .add-to-cart {
+    background-color: #FF9999;
+  }
+
+  #checkout {
+   background-color: #FF6666;
+  }
+
+  #button-link {
+    color: black;
+  }
+
+  #carousel-box {
+    border: 1px solid #393939;
+  }
+
+  #restaurants-title {
+    padding-right: 200px;
+    padding-left: 200px;
+  }
 
   /*ABOUT US*/
   #section-two {
