@@ -8,7 +8,7 @@
 
     <div class="col-md-3 col-md-offset-1" id="prof-img-col">
       <div id='prof-img-div'><img id='prof-img' src='http://www.marthastewart.com/sites/files/marthastewart.com/styles/wmax-520-highdpi/public/d26/mb_1001_strawberry_cupcake/mb_1001_strawberry_cupcake_vert.jpg?itok=NWhXpH67'></div>
-      <button type="button" class="btn btn-primary" id="prof-edit">Edit Profile</button>
+       <a href='/users/profile/edit/'>Edit User</a>
     </div>
 
     <div class="col-md-6" id="prof-content-col">
@@ -18,7 +18,7 @@
           <strong>Email</strong>: <%= user.local.email %><br>
           <strong>Name:</strong> <%= user.local.firstName %> <%= user.local.lastName %><br>
           <strong>Address:</strong> <%= user.local.address %><br>
-          <strong>Phone Number:</strong><%= user.local.phoneNumber %><br>
+          <strong>Phone Number: </strong><%= user.local.phoneNumber %><br>
           </p>
         <% } %>
         <% if (user.venmo.email) { %>

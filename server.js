@@ -38,6 +38,8 @@ var path = require('path');
 var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var dotenv = require('dotenv').config();
+//require handlebars
+var handlebars = require('handlebars');
 
 var credentials = require('./config/credentials.js')
 ////////////////////////////////////////////////////////////////////////
@@ -45,8 +47,8 @@ var credentials = require('./config/credentials.js')
 ////////////////////////////////////////////////////////////////////////
 
 // This connects the site to the local mongo-db
+// mongoose.connect('mongodb://heroku_2115hf7x:sugarrush1@ds051645.mongolab.com:51645/heroku_2115hf7x');
 mongoose.connect('mongodb://localhost/sugar-rush');
-
 // Allows access to usersController (was originally below request) and
 // the user model
 var users_controller = require('./controllers/usersController.js');
@@ -106,3 +108,5 @@ app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.listen(3000);
 console.log("Ed's OCD");
+
+

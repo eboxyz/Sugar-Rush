@@ -1,6 +1,6 @@
 var express = require('express');
 var User = require('../models/user');
-
+var userController = require('./usersController')
 module.exports = function (app, passport){
 
 // =============================================================================
@@ -33,6 +33,7 @@ module.exports = function (app, passport){
           });
         }).catch();
     }
+    req.session.save();
   });
 
   app.get('/local/login', function (req, res){
@@ -54,6 +55,7 @@ module.exports = function (app, passport){
                     message: req.flash('loginMessage') });
             }).catch();
     }
+    req.session.save();
 });
 
   app.post('/local/login', passport.authenticate('local-login', {
@@ -80,6 +82,7 @@ module.exports = function (app, passport){
                     message: req.flash('signupMessage') });
             }).catch();
     }
+    req.session.save();
   });
 
   app.post('/local/signup', passport.authenticate('local-signup', {
@@ -91,9 +94,7 @@ module.exports = function (app, passport){
 
 //isLoggedin goes here
   app.get('/local/profile', function (req, res){
-
-  console.log(req.session);
-  console.log(req.session.passport.user)
+    console.log(req.session)
     User.findById({_id: req.session.passport.user}, function (err, data){
       console.log(data.local.email)
     res.render('./users/profile.ejs', {
@@ -106,6 +107,34 @@ module.exports = function (app, passport){
   req.session.save();
   }
   );
+
+  app.get('/users/profile/edit/', function (req, res){
+    console.log(req.session)
+    console.log(req.params)
+    User.findById({_id: req.session.passport.user}, function (err, data){
+      res.render('./users/edit',{
+        user: data,
+        curr_user: data.local.email,
+        users: null
+      })
+    })
+    //PUT A RESPONSE HERE SO YOU CAN PING
+    req.session.save();
+  })
+
+
+  app.put('/users/profile/edit/', function (req, res){
+    console.log(req.session)
+    console.log(req.params)
+    User.findById(req.params.id, function (err, user){
+    var keys = Object.keys(req.body.local);
+    keys.forEach(function(key){
+      user.local[key] = req.body.local[key];
+    });
+    user.local.save();
+
+  });
+  });
 
     // =====================================
     // Venmo Authentication =====================
