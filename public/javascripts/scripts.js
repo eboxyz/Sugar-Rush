@@ -3,7 +3,7 @@ var checkout = document.getElementById('checkout');
 var orderArray = [];
 
 for(i=0; i<addToCartArr.length; i++){
-  addToCartArr[i].addEventListener("click", function(){
+  addToCartArr[i].addEventListener("click", function() {
     orderArray.push(this.id);
   })
 }
