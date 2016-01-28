@@ -1,7 +1,7 @@
 <% include ../partials/head %>
 
-
 <script>
+  // Clears the information for the shopping cart
   localStorage.clear();
 </script>
 
@@ -45,6 +45,11 @@
 <h1 id="restaurants-title">All Restaurants</h1>
   <div class="row">
     <div class="md-col-6 col-md-offset-3">
+        <!-- Loops through each restaurant and each of the restaurant's
+        available items. The add to cart button is given an id
+        containing the item name, the restaurant name, the item price,
+        the item id, the item picture. Clicking checkout, sends them to
+        local storage                                                -->
         <% for(i=0; i<restaurants.length; i++) { %>
 
           <h4><%= restaurants[i].name %></h4>

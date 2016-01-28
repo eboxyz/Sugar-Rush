@@ -67,11 +67,12 @@ div.navbar a{
 
 
 /* Shopping Cart Styles */
+#checkout-body{
+  background-color: #FFFCF8;
+}
 #cart-header{
   font-family: Arimo Helvetica;
 }
-
-
 #shopping-cart{
   margin: 150px auto;
 }
@@ -110,7 +111,6 @@ div.navbar a{
 
 
 /* Homepage */
-
 .parallax-window {
   min-height: 400px;
   background: transparent;
