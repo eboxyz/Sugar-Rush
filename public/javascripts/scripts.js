@@ -56,11 +56,12 @@ document.getElementById('updateButton').addEventListener("click", function(){
   var counter = 0;
   for(i=0; i< cartItems.length; i++){
     counter ++;
-    toBeStringified += cartItems[i].childNodes[9].childNodes[3].value;
+    toBeStringified += cartItems[i].childNodes[9].value;
     toBeStringified += "qxz";
     toBeStringified += cartItems[i].childNodes[7].childNodes[3].value;
     toBeStringified += "qxz";
   }
   toBeStringified += counter;
   document.getElementById('dessert').value = toBeStringified;
+  document.getElementById('butt').style.display = "block";
 })

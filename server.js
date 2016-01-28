@@ -36,7 +36,6 @@ var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var dotenv = require('dotenv').config();
 var handlebars = require('handlebars');
-var qs = require('qs');
 
 var credentials = require('./config/credentials.js')
 ////////////////////////////////////////////////////////////////////////

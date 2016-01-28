@@ -67,6 +67,11 @@ div.navbar a{
 
 
 /* Shopping Cart Styles */
+#cart-heeader{
+  font-family: Arimo Helvetica;
+}
+
+
 #shopping-cart{
   margin: 150px auto;
 }

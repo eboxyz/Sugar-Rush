@@ -28,11 +28,7 @@
       <input type="text" name="cart-item-1" value=0>
     </div>
 
-    <div class="cart-item-id">
-      <p>ID</p>
-      <input type="text" value={{this.itemId}}>
-    </div>
-
+    <input type="text" style="display: none" value={{this.itemId}}>
 
   </div>
   {{/each}}
@@ -40,15 +36,15 @@
 </script>
 
 
-
+<h1 id="cart-header">Checkout</h1>
 <form method='post' action='/orders/create'>
 
   <input type="hidden" name="user_id" value="56a3e903845cd0f807e0b17b">
   <input type="hidden" name="user_address" value="123 Street St.">
+  <input id="dessert" type="hidden" name="dessert_items" value="">
 
   <div id="content-placeholder"></div>
 
-  <input id="dessert" type="text" name="dessert_items" value="">
 
   <h5 id="submitButton">Update Cart</h5>
 
@@ -57,7 +53,7 @@
   </div>
 
   <div>
-    <input type="submit" value="Submit">
+    <input id="butt" type="submit" value="Submit" style="display: none">
   </div>
 
 </form>
