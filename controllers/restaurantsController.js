@@ -36,7 +36,7 @@ module.exports = {
 
 
 ////////////////////////////////////////////////////////////////////////
-//                            API Functions                           //
+//                         API Functions                           //
 ////////////////////////////////////////////////////////////////////////
 
   // API function to show all restaurants. Restaurant.find({}) grabs
