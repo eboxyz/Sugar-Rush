@@ -42,28 +42,29 @@
 </script>
 
 <body id="checkout-body">
-  <div id="checkout-"
+  <div id="checkout-form-div">
 
-<h1 id="cart-header">Checkout</h1>
-<form method='post' action='/orders/create'>
-  <!-- user_id, user_address, and dessert_items are hidden fields
-       that store their respective values                            -->
-  <input type="hidden" name="user_id" value="56a3e903845cd0f807e0b17b">
-  <input type="hidden" name="user_address" value="123 Street St.">
-  <input id="dessert" type="hidden" name="dessert_items" value="">
+    <h1 id="cart-header">Checkout</h1>
+    <form method='post' action='/orders/create'>
+      <!-- user_id, user_address, and dessert_items are hidden fields
+           that store their respective values                        -->
+      <input type="hidden" name="user_id" value="56a3e903845cd0f807e0b17b">
+      <input type="hidden" name="user_address" value="123 Street St.">
+      <input id="dessert" type="hidden" name="dessert_items" value="">
 
-  <!-- Renders the html created by the template -->
-  <div id="content-placeholder"></div>
+      <!-- Renders the html created by the template -->
+      <div id="content-placeholder"></div>
 
-  <!-- The update link stores the order info in "dessert". Once
-       clicked, the submit button appears to posr the order          -->
-  <div>
-    <a id="updateButton">UPDATE!</button>
-    <input id="butt" type="submit" value="Submit" style="display: none">
+      <!-- The update link stores the order info in "dessert". Once
+           clicked, the submit button appears to posr the order      -->
+      <div id="cart-button-holder">
+        <a id="updateButton">UPDATE!</a>
+        <input id="butt" type="submit" value="Submit" style="display: none">
+      </div>
+
+    </form>
+
   </div>
-
-</form>
-
 </body>
 
 
