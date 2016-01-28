@@ -15,6 +15,42 @@ module.exports = function (app, passport){
       // SIGNUP =================================
       // show the signup form
       // process the signup form
+
+    //this is necessary for user sessions on every page
+    //looking for an existing session, and then the user through the email(username)
+    //of that user
+    // if(req.session && req.session.email){
+    //   console.log(req.session)
+    //   User.findOne( {email: req.session.email}).then( function (user){
+    //     res.render('./users/home_page', {
+    //
+    //      this sets the user within the session as a variable that can be called
+    //      on any page (curr_user)
+    //            vvvvvvvvvvvv
+    //       curr_user: user.email,
+    //
+    //       this allows passport to callback
+    //       "return done(null, user)"
+    //       users: null
+    //     })
+    //   })
+    //    this defines the function to run asynchronously if the "if" statement cnanot be run
+    //    if the user is not found, then they'll be redirected to the homepage
+    //
+    // } else{
+    //   User.findAsync({})
+    //     .then( function (users){
+    //       res.render('./users/home_page', {
+    //         curr_user: null,
+    //         users: users
+    //       });
+    //     }).catch();
+    //  req.session.save() is necessary on each page/route to resave the instance of the session on that page
+    //  the current user will be defined and allow the navbar/any other instances that require a curr_user to run
+    // }
+    // req.session.save();
+
+
   app.get('/', function (req,res){
     if(req.session && req.session.email){
       console.log(req.session)
@@ -64,6 +100,7 @@ module.exports = function (app, passport){
     failureFlash: true //allow flashing
   }));
 
+  //
   app.get('/local/signup', function (req, res){
      if(req.session && req.session.email){
         User.findOne({ email: req.session.email }).then(function(user){
@@ -94,7 +131,7 @@ module.exports = function (app, passport){
 
 //isLoggedin goes here
   app.get('/local/profile', function (req, res, next){
-    console.log(req.session)
+    // console.log(req.session)
     User.findById({_id: req.session.passport.user}, function (err, data){
       console.log(data.local.email)
     res.render('./users/profile.ejs', {

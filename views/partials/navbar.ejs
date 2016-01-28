@@ -13,7 +13,7 @@
           <li><a href="/local/profile">Hello, <%= user.local.firstName %></a></li>
           <li><a href="/restaurants">Order</a></li>
           <li><a href="/local/logout">Logout</a></li>
-        <% } else if (!curr_user){ %>
+        <% } else { %>
           <li><a href="/local/login">Login</a></li>
           <li><a href="/local/signup">Register</a></li>
         <% } %>

@@ -35,6 +35,8 @@ router.route('/users/profile/edit/').put(usersController.editUser);
 //                         Restaurant Routes                          //
 ////////////////////////////////////////////////////////////////////////
 
+
+//userlogic here
 router.route('/restaurants').get(restaurantsController.all);
 
 ////////////////////////////////////////////////////////////////////////
@@ -50,6 +52,8 @@ router.route('/api/:id/edit').put(restaurantsController.editAPI);
 ////////////////////////////////////////////////////////////////////////
 
 router.route('/orders/create').post(ordersController.create);
+
+//userlogichere
 router.route('/orders/shoppingcart').get(ordersController.new);
 router.route('/orders/show/:id').get(ordersController.show);
 

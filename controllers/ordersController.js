@@ -4,6 +4,7 @@
 
 // Grabs the mongoose functions and Order model from the mongo db
 var Order = require('../models/order');
+var User = require('../models/user');
 var mongoose = require('mongoose');
 var handlebars = require('handlebars');
 
@@ -16,8 +17,34 @@ module.exports = {
 ////////////////////////////////////////////////////////////////////////
 
 // Shows shopping cart
+//use this userlogic for EVERYTHING!!!
   new: function (req, res, next){
-    res.render('orders/shopping_cart');
+    User.findById({_id: req.session.passport.user}, function (err, user){
+      res.render('orders/shopping_cart',{
+        user: user,
+        curr_user: user.local.email,
+        users: null,
+      })
+    })
+    req.session.save();
+    // if (req.session && req.session.email){
+    //   User.findOne({ email: req.session.passport.user}).then( function (user){
+    //       console.log(user)
+    //     res.render('orders/shopping_cart',{
+    //       curr_user: user,
+    //       users: null,
+    //     })
+    //   })
+    // } else{
+    //   User.findAsync({}).then( function (users){
+    //     res.render('./orders/shopping_cart',{
+    //       curr_user: null,
+    //       users: users
+    //     })
+    //   }).catch();
+    // }
+    // console.log(req.session);
+    // req.session.save();
   },
 
   show: function (req, res, next){
