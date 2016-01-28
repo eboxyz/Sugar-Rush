@@ -18,19 +18,52 @@
 
 /* NAVBAR STUFF */
 
-.navbar-inverse {
+/* .navbar-inverse {
    background-color: transparent !important;
    border-color: transparent !important;
    padding: 15px;
    z-index: 2;
 }
 
-div.navbar a{
+ div.navbar a{
   color: white !important;
   font-size: 30px;
   font-weight: bold !important;
+}*/
+
+#bootstrap-override .navbar.navbar-fixed-top {
+ font-family: "Arimo", sans-serif 700;
+ background-color: transparent;
+ border-color: transparent;
+ letter-spacing: 1px;
+ font-size: 30px;
+ font-weight: bold;
+ padding: 15px;
 }
 
+ #bootstrap-override .navbar.navbar-fixed-top li a {
+   color: white ;
+ }
+
+ #bootstrap-override .navbar-brand{
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+ }
+
+ #bootstrap-override .navbar.navbar-fixed-top li a:hover {
+   background-color: #FE8818 ;
+   color: #FFF;
+}
+
+#bootstrap-override .navbar-toggle {
+ border: 1px solid #FE8818 ;
+ background-color: #FE8818 ;
+}
+
+#bootstrap-override .navbar-toggle .icon-bar {
+   background-color: #FFF;
+}
 
 
 /* END OF NAVBAR*/
@@ -56,6 +89,7 @@ div.navbar a{
     color: white;
     font-size: 150px;
     text-align: center;
+    margin-top: 150px;
 
   }
   #home_title_tagline{
@@ -67,17 +101,17 @@ div.navbar a{
     font-weight: bolder;
 
   }
-  #section-one {
+   #section-one {
     position: relative;
     top:-12%;
   }
-  #title {
+   #title {
     position: relative;
     color: white;
     z-index: 1;
     top:-540px;
   }
-  #order-now {
+   #order-now {
     margin-left:45%;
     margin-top: 30px;
   }
@@ -100,10 +134,10 @@ div.navbar a{
 
   }
   #div-section-two-margin-fix{
-    margin: 0 -100px !important;
+    margin: 0 -100px;
     padding-top: 30px;
   }
-  div#about-us {
+  #about-us {
 
     text-align: center;
     margin: 0 200px;

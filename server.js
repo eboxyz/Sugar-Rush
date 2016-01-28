@@ -36,6 +36,7 @@ var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var dotenv = require('dotenv').config();
 var handlebars = require('handlebars');
+var favicon = require('serve-favicon');
 
 var credentials = require('./config/credentials.js')
 ////////////////////////////////////////////////////////////////////////
@@ -60,6 +61,7 @@ var User = require('./models/user.js')["User"];
 // Flash is a package that allows for easy error messages
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/public'));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(methodOverride());
 app.use(flash());
 

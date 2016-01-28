@@ -29,6 +29,7 @@
     "passport-venmo": "0.0.1",
     "path": "^0.12.7",
     "request": "^2.67.0",
-    "request-promise": "^2.0.0"
+    "request-promise": "^2.0.0",
+    "serve-favicon": "^2.3.0"
   }
 }
