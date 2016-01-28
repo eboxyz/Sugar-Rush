@@ -47,7 +47,7 @@
    color: white ;
  }
 
-div.navbar-black a{
+#bootstrap-override .navbar-black a{
   color: black !important;
   font-size: 30px;
   font-weight: bold !important;
@@ -75,6 +75,9 @@ div.navbar-black a{
 }
 
 /* END OF NAVBAR*/
+
+
+
 
 /* Shopping Cart Styles */
 #checkout-body{
@@ -143,7 +146,7 @@ div.navbar-black a{
 }
 
 
-  /* TITLE */
+  /* title & section one */
   #home_title{
     font-family: 'Pacifico', cursive;
     color: white;
@@ -177,7 +180,7 @@ div.navbar-black a{
   }
 
 
-  /*ABOUT US*/
+  /* about us & section two */
   #section-two {
 
   }
@@ -199,7 +202,7 @@ div.navbar-black a{
 
 
 
-  /* CONTACT INFO */
+  /* contact info & section three */
 
   #section-three {
     text-align: center;
@@ -221,6 +224,21 @@ div.navbar-black a{
   .fa {
     margin: 0 10px;
   }
+
+
+
+  /* how it works: steps */
+
+  .steps {
+    color: white;
+    font-size: 35px;
+    font-family: 'Arimo', sans-serif;
+    text-align: center;
+    text-shadow: 1px 1px 10px #000;
+    position: relative;
+    top: 40%
+  }
+
 
 
 /* END OF HOMEPAGE */
