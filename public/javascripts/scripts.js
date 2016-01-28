@@ -61,26 +61,19 @@ if(context.desserts[0]["itemName"].length >= 1){
 
 /////  Step 3 - Use the compiled html to send data back to server  /////
 
-// When the update button is clicked, set an array to all the cart-item
-// divs, set a counter to 0 and a str var to "".
-// Loop through the cart-item divs adding the item id from the hidden
-// input field, the quantity from the editable input fieldand, "qxz"s
-// to make the str easy to split, and the counter at the end.
-// Insert the str into the hidden "dessert" field and render the submit
+// When the update button is clicked, two sets of action occur:
+// First, the function sets an array to all the cart-item divs, set a
+// counter to 0 and a str var to "". Loop through the cart-item divs
+// adding the item id from the hidden input field, the quantity from the
+// editable input fieldand, "qxz"s to make the str easy to split, and
+// the counter at the end. Insert the str into the hidden "dessert"
+// field and render the submit
+// Second, vars are set for a total, the html elements that hold the
+// item prices, and the elements that hold the quantity values. A loop
+// grabs the inner html of the price divs, turns them into numbers, and
+// mutiplies them by the values. Each produce is added to the total and
+// the total prints to the screen
 document.getElementById('updateButton').addEventListener("click", function(){
-  var total = 0;
-  var prices = document.getElementsByClassName("cart-price");
-  var quants_divs = document.getElementsByClassName("cart-shift-down");
-  for(i=0; i<prices.length; i++){
-    var moneyString = prices[i].innerHTML;
-    total += Number(moneyString.slice(1)) * quants_divs[i].value;
-  }
-  document.getElementById('cart-total-numb').innerHTML = "$" + total;
-
-
-
-
-
   var cartItems = document.getElementsByClassName('cart-item');
   var toBeStringified = ""
   var counter = 0;
@@ -94,6 +87,15 @@ document.getElementById('updateButton').addEventListener("click", function(){
   toBeStringified += counter;
   document.getElementById('dessert').value = toBeStringified;
   document.getElementById('submit-button').style.display = "block";
+  ///////
+  var total = 0;
+  var prices = document.getElementsByClassName("cart-price");
+  var quants_divs = document.getElementsByClassName("cart-shift-down");
+  for(i=0; i<prices.length; i++){
+    var moneyString = prices[i].innerHTML;
+    total += Number(moneyString.slice(1)) * quants_divs[i].value;
+  }
+  document.getElementById('cart-total-numb').innerHTML = "$" + total;
 })
 // add a gate above
 
