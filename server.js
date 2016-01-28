@@ -28,7 +28,7 @@ var mongoose = Promise.promisifyAll(require('mongoose'));
 var passport = require('passport');
 var flash = require('connect-flash');
 var VenmoStrategy = require('passport-venmo').Strategy;
-var request = require('request');
+// var request = require('request');
 var users_controller = require('./controllers/usersController.js');
 var http = require('http');
 var path = require('path');
@@ -36,6 +36,7 @@ var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var dotenv = require('dotenv').config();
 var handlebars = require('handlebars');
+var rp = require('request-promise');
 
 var credentials = require('./config/credentials.js')
 ////////////////////////////////////////////////////////////////////////
