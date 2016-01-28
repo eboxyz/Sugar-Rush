@@ -66,34 +66,39 @@ div.navbar a{
 
 
 
-
 /* Shopping Cart Styles */
 #shopping-cart{
-  margin-top: 150px;
+  margin: 150px auto;
 }
-.cart-title{
+#cart-title{
   text-align: center;
 }
-#cart-item-img-div{
+.cart-item-img-div{
   width: 100px;
   height: 100px;
   border: 3px solid #F432E6;
   background-color: black;
   display: inline-block;
 }
-#cart-item-img{
+.cart-item-img{
   width: 100px;
   height: 100px;
 }
-#cart-item-text{
+.cart-item-text{
   display: inline-block;
+  width: 300px;
 }
-#cart-item-cost{
+.cart-item-cost{
   display: inline-block;
+  width: 100px;
 }
-#cart-item-amount{
+.cart-item-amount{
   display: inline-block;
-
+  width: 200px;
+}
+.cart-item-id{
+  display: inline-block;
+  width: 200px;
 }
 
 

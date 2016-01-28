@@ -53,7 +53,7 @@
             <p>
               <% if(restaurants[i].menu[j].available) { %>
                 <%= restaurants[i].menu[j].item %> &nbsp&nbsp&nbsp
-                <button class="btn btn-xs add-to-cart" id="<%= restaurants[i].menu[j].item %>qxz<%= restaurants[i].name %>qxz<%= restaurants[i].menu[j].price %>qxz<%= restaurants[i].menu[j].id %>">Add to Cart</button>
+                <button class="btn btn-xs add-to-cart" id="<%= restaurants[i].menu[j].item %>qxz<%= restaurants[i].name %>qxz<%= restaurants[i].menu[j].price %>qxz<%= restaurants[i].menu[j]._id %>">Add to Cart</button>
               <% } %>
             </p>
           <% } %>

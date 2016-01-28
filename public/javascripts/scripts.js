@@ -50,6 +50,17 @@ if(context.desserts[0]["itemName"].length >= 1){
 
 // PUT IN if/else statement blocking empty storage
 
-document.getElementById('submitButton').addEventListener("click", function(){
-  document.getElementById('dessert').value = JSON.stringify([{item: "afd", quantity: 6}]);
+document.getElementById('updateButton').addEventListener("click", function(){
+  var cartItems = document.getElementsByClassName('cart-item');
+  var toBeStringified = ""
+  var counter = 0;
+  for(i=0; i< cartItems.length; i++){
+    counter ++;
+    toBeStringified += cartItems[i].childNodes[9].childNodes[3].value;
+    toBeStringified += "qxz";
+    toBeStringified += cartItems[i].childNodes[7].childNodes[3].value;
+    toBeStringified += "qxz";
+  }
+  toBeStringified += counter;
+  document.getElementById('dessert').value = toBeStringified;
 })

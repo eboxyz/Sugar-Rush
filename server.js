@@ -36,6 +36,7 @@ var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var dotenv = require('dotenv').config();
 var handlebars = require('handlebars');
+var qs = require('qs');
 
 var credentials = require('./config/credentials.js')
 ////////////////////////////////////////////////////////////////////////
@@ -46,6 +47,8 @@ var credentials = require('./config/credentials.js')
 // mongoose.connect('mongodb://heroku_2115hf7x:sugarrush1@ds051645.mongolab.com:51645/heroku_2115hf7x');
 
 mongoose.connect('mongodb://localhost/sugar-rush');
+// mongoose.connect('mongodb://heroku_2115hf7x:gl9vaq0avhmbnbr3di4cdu2jtv@ds051645.mongolab.com:51645/heroku_2115hf7x');
+
 // Allows access to usersController (was originally below request) and
 // the user model
 // Maybe remove

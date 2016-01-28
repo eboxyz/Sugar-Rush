@@ -25,10 +25,14 @@
 
     <div class="cart-item-amount">
       <p>Quantity</p>
-      <input type="text" name="cart-item-1">
+      <input type="text" name="cart-item-1" value=0>
     </div>
 
-    <p>{{this.itemId}}</p>
+    <div class="cart-item-id">
+      <p>ID</p>
+      <input type="text" value={{this.itemId}}>
+    </div>
+
 
   </div>
   {{/each}}
@@ -41,14 +45,16 @@
 
   <input type="hidden" name="user_id" value="56a3e903845cd0f807e0b17b">
   <input type="hidden" name="user_address" value="123 Street St.">
-  <input type="hidden" name="ready_for_delivery" value="true">
-  <input type="hidden" name="created_at" value="<%= Date.now() %>">
 
   <div id="content-placeholder"></div>
 
   <input id="dessert" type="text" name="dessert_items" value="">
 
   <h5 id="submitButton">Update Cart</h5>
+
+  <div>
+    <a id="updateButton">UPDATE!</button>
+  </div>
 
   <div>
     <input type="submit" value="Submit">

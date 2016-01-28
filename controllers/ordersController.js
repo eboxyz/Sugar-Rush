@@ -6,7 +6,7 @@
 var Order = require('../models/order');
 var mongoose = require('mongoose');
 var handlebars = require('handlebars');
-
+var qs = require('qs');
 
 // Exports restaurant functions
 module.exports = {
@@ -27,11 +27,25 @@ module.exports = {
   },
 
   create: function (req, res, next){
-    var newOrder = new Order();
-    var keys = Object.keys(req.body);
-    keys.forEach(function (key) {
-      newOrder[key] = req.body[key];
-    })
+    var qxz = req.body.dessert_items;
+    console.log(qxz);
+    var qxzSplit = qxz.split('qxz');
+    var bainas = [];
+    for(i=0; i<qxz[qxz.length-1]; i++){
+      var start = i * 2;
+      bainas.push({item_id: qxzSplit[start], quantity: qxzSplit[start + 1]})
+    }
+    // console.log(qs.stringify("[{item_id:'dsafdfadfs', quantity: 5}]"))
+    // console.log(stringified);
+    // console.log(qs.parse(stringified))
+    var newOrder = new Order({
+      user_id: req.body.user_id,
+      user_address: req.body.user_address,
+      ready_for_delivery: true,
+      created_at: Date.now(),
+      dessert_items: bainas
+      // dessert_items: qs.parse("0%5Bitem_id%5D=56a41990f9e28b7e1a1235c8&0%5Bquantity%5D=0")
+    });
     newOrder.save(function (err) {
       if (err) console.log(err);
       else res.redirect('/orders/show/' + newOrder.id);
