@@ -25,7 +25,11 @@
    z-index: 2;
 }
 
+<<<<<<< HEAD
  div.navbar a{
+=======
+div.navbar-white a{
+>>>>>>> a962948b44b6583cad06d1179df50c2389b37b35
   color: white !important;
   font-size: 30px;
   font-weight: bold !important;
@@ -41,9 +45,17 @@
  padding: 15px;
 }
 
+<<<<<<< HEAD
  #bootstrap-override .navbar.navbar-fixed-top li a {
    color: white ;
  }
+=======
+div.navbar-black a{
+  color: black !important;
+  font-size: 30px;
+  font-weight: bold !important;
+}
+>>>>>>> a962948b44b6583cad06d1179df50c2389b37b35
 
  #bootstrap-override .navbar-brand{
   color: white;

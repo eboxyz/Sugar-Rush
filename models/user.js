@@ -19,7 +19,8 @@ var userSchema = mongoose.Schema({
     email: String,
     phoneNumber: String,
     password: String,
-    driver: Boolean
+    driver: Boolean,
+    admin: Boolean
   },
   venmo: {
     name: {

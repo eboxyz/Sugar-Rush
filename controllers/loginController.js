@@ -130,10 +130,9 @@ module.exports = function (app, passport){
 
 
 //isLoggedin goes here
-  app.get('/local/profile', function (req, res, next){
-    // console.log(req.session)
+  app.get('/local/profile', function (req, res){
     User.findById({_id: req.session.passport.user}, function (err, data){
-      console.log(data.local.email)
+
     res.render('./users/profile.ejs', {
       user: data,
       curr_user: data.local.email,

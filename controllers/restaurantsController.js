@@ -105,9 +105,11 @@ module.exports = {
   // API function to show all restaurants. Restaurant.find({}) grabs
   // them in the database and renders them through JSON.
   allAPI: function (req, res, next){
-    Restaurant.find({}, function (err, restaurants){
-      res.json(restaurants);
-    })
+
+      Restaurant.find({}, function (err, restaurants){
+        res.json(restaurants);
+      })
+
   },
 
   // API function to create a restaurant. A new restaurant is created
