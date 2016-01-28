@@ -39,7 +39,6 @@
 
     <!-- //Hidden field to store the id of the food item -->
     <input type="text" style="display: none" value={{this.itemId}}>
-
   </div>
 
   {{/each}}
@@ -53,8 +52,8 @@
     <form method='post' action='/orders/create'>
       <!-- user_id, user_address, and dessert_items are hidden fields
            that store their respective values                        -->
-      <input type="hidden" name="user_id" value="56a3e903845cd0f807e0b17b">
-      <input type="hidden" name="user_address" value="123 Street St.">
+      <input type="hidden" name="user_id" value="<%= user._id %>">
+      <input type="hidden" name="user_address" value="<%= user.local.address %>">
       <input id="dessert" type="hidden" name="dessert_items" value="">
 
       <!-- Renders the html created by the template -->
