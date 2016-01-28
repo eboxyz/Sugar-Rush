@@ -21,6 +21,7 @@ module.exports = {
 
   // Renders the shopping cart page used to create new orders
   new: function (req, res, next){
+    //add logic to show if no user
     User.findById({_id: req.session.passport.user}, function (err, user){
       res.render('orders/shopping_cart',{
         user: user,

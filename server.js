@@ -28,7 +28,7 @@ var mongoose = Promise.promisifyAll(require('mongoose'));
 var passport = require('passport');
 var flash = require('connect-flash');
 var VenmoStrategy = require('passport-venmo').Strategy;
-// var request = require('request');
+var request = require('request');
 var users_controller = require('./controllers/usersController.js');
 var http = require('http');
 var path = require('path');
@@ -36,7 +36,7 @@ var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var dotenv = require('dotenv').config();
 var handlebars = require('handlebars');
-var rp = require('request-promise');
+// var rp = require('request-promise');
 var favicon = require('serve-favicon');
 
 var credentials = require('./config/credentials.js')
@@ -48,7 +48,7 @@ var credentials = require('./config/credentials.js')
 // mongoose.connect('mongodb://localhost/sugar-rush');
 
 //this connects the app to heroku mongolab
-mongoose.connect('mongodb://heroku_2115hf7x:gl9vaq0avhmbnbr3di4cdu2jtv@ds051645.mongolab.com:51645/heroku_2115hf7x')
+// mongoose.connect('mongodb://heroku_2115hf7x:gl9vaq0avhmbnbr3di4cdu2jtv@ds051645.mongolab.com:51645/heroku_2115hf7x')
 
 mongoose.connect('mongodb://localhost/sugar-rush');
 

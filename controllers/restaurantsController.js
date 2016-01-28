@@ -5,8 +5,8 @@
 // Grabs the mongoose functions and Restaurants model from the mongo db
 var Restaurant = require('../models/restaurant');
 var User = require('../models/user');
-// var request = require('request');
-var rp = require('request-promise');
+var request = require('request');
+// var rp = require('request-promise');
 var mongoose = require('mongoose');
 // var mongoose = Promise.promisifyAll(require('mongoose'));
 // Exports restaurant functions
@@ -70,23 +70,29 @@ module.exports = {
 //then find the session through the user and define it
 //then save the session
   all: function(req, res, next){
-    rp('http://sugar-rush.herokuapp.com/api')
-      .then( function (err, res, body){
-        if(!err && resp.statusCode === 200){
-          var rest_data = JSON.parse(body);
-          res.render('restaurants/all', {
-            restaurants: rest_data
-          });
-        }
-      })
-      .then( User.findById ({_id: req.session.passport.user}, function (err, user){
-        res.render('restaurants/all', {
-          user: user,
-          curr_user: user.local.email,
-          users: null
-        })
-      }))
-      req.session.save();
+    request('http://sugar-rush.herokuapp.com/api', function(err, resp, bod){
+      if(!err && resp.statusCode === 200){
+        var rest_data = JSON.parse(bod);
+        res.render('restaurants/all', {restaurants: rest_data});
+      } else console.log(err)
+    })
+    // rp('http://sugar-rush.herokuapp.com/api')
+    //   .then( function (err, res, body){
+    //     if(!err && resp.statusCode === 200){
+    //       var rest_data = JSON.parse(body);
+    //       res.render('restaurants/all', {
+    //         restaurants: rest_data
+    //       });
+    //     }
+    //   })
+    //   .then( User.findById ({_id: req.session.passport.user}, function (err, user){
+    //     res.render('restaurants/all', {
+    //       user: user,
+    //       curr_user: user.local.email,
+    //       users: null
+    //     })
+    //   }))
+    //   req.session.save();
   },
 
 // Shows a specific restaurant
