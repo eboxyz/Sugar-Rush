@@ -18,22 +18,19 @@
 
 /* NAVBAR STUFF */
 
-/* .navbar-inverse {
+ .navbar-inverse {
    background-color: transparent !important;
    border-color: transparent !important;
    padding: 15px;
    z-index: 2;
 }
 
-<<<<<<< HEAD
+
  div.navbar a{
-=======
-div.navbar-white a{
->>>>>>> a962948b44b6583cad06d1179df50c2389b37b35
   color: white !important;
   font-size: 30px;
   font-weight: bold !important;
-}*/
+}
 
 #bootstrap-override .navbar.navbar-fixed-top {
  font-family: "Arimo", sans-serif 700;
@@ -45,17 +42,17 @@ div.navbar-white a{
  padding: 15px;
 }
 
-<<<<<<< HEAD
+
  #bootstrap-override .navbar.navbar-fixed-top li a {
    color: white ;
  }
-=======
+
 div.navbar-black a{
   color: black !important;
   font-size: 30px;
   font-weight: bold !important;
 }
->>>>>>> a962948b44b6583cad06d1179df50c2389b37b35
+
 
  #bootstrap-override .navbar-brand{
   color: white;
@@ -172,18 +169,11 @@ div.navbar-black a{
     position: relative;
     color: white;
     z-index: 1;
-    top:-540px;
+    top:-650px;
   }
    #order-now {
     margin-left:45%;
     margin-top: 30px;
-  }
-  #down-arrow {
-    position: relative;
-    left: 46%;
-    margin-top: 80px;
-    font-size: 50px;
-    width: 80px;
   }
 
 
