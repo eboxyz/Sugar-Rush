@@ -51,7 +51,6 @@
 <center>
   <div class="row">
 
-    <div class="md-col-6 col-md-offset-3">
         <!-- Loops through each restaurant and each of the restaurant's
         available items. The add to cart button is given an id
         containing the item name, the restaurant name, the item price,
@@ -83,7 +82,7 @@
 
   <div class="row">
     <div class="col-sm-3"></div>
-    <div class="col-sm-6 breh">
+    <div class="col-sm-6">
         <% for(i=0; i<restaurants.length; i++) { %>
 
           <h4 id="restaurant-name"><%= restaurants[i].name %></h4>
@@ -95,10 +94,7 @@
 
 
           <% for(j=0; j<restaurants[i].menu.length; j++) { %>
-            <p>              <% if(restaurants[i].menu[j].available) { %>
-                <%= restaurants[i].menu[j].item %> &nbsp&nbsp&nbsp
-                <button class="btn btn-xs add-to-cart" id="<%= restaurants[i].menu[j].item %>qxz<%= restaurants[i].name %>qxz<%= restaurants[i].menu[j].price %>qxz<%= restaurants[i].menu[j]._id %>">Add to Cart</button>
-              <% } %>
+            <p>
               <div id="menu-items-display">
 
                 <% if(restaurants[i].menu[j].available) { %>
