@@ -1,11 +1,20 @@
-
-
 <table class="table">
 
   <% for (var i=0; i<orderHistory.length; i++) { %>
+
+      <% // code for getting exactly orderDate
+        var oldDate = orderHistory[i].created_at;
+        var oldDateString = oldDate.toString().split(' ')
+        var newDate = oldDateString[1]+"/"+oldDateString[2]+"/"+oldDateString[3]
+
+        // code for getting dessert items's item_id
+        var oldDessert = orderHistory[i].dessert_items;
+        console.log(oldDessert)
+
+      %>
     <tr>
       <td>order <%= i + 1 %></td>
-      <td>Date: <%= orderHistory[i].created_at %></td>
+      <td>Date: <%= newDate %></td>
       <td>Items: <%= orderHistory[i].dessert_items %> </td>
     </tr>
   <% } %>
