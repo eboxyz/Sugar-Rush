@@ -134,6 +134,7 @@ module.exports = function (app, passport){
   app.get('/local/profile', function (req, res){
     User.findById({_id: req.session.passport.user}, function (err, data){
       Order.find({}, function (err, data2) {
+            console.log(data2)
           res.render('./users/profile.ejs', {
             orderHistory: data2,
             user: data,
@@ -157,13 +158,17 @@ module.exports = function (app, passport){
     })
     //PUT A RESPONSE HERE SO YOU CAN PING
     req.session.save();
-  })
+  });
 
 
   app.post('/users/profile/edit/:id', function (req, res, next){
     console.log(req.session.passport.user)
     console.log(req.session)
     User.findById({_id: req.session.passport.user}, function (err, user){
+      // console.log()
+      // Order.find({}, function (err, data2){
+      //   orderHistory: data2
+      // })
       curr_user = req.body;
       console.log(curr_user);
     var keys = Object.keys(req.body);
@@ -175,6 +180,7 @@ module.exports = function (app, passport){
     console.log(req.session)
     res.render('./users/profile', {
       user: user,
+      // orderHistory: data2,
       curr_user: user.local,
       users: null,
     })
