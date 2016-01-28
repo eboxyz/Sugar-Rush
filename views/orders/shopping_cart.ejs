@@ -1,63 +1,75 @@
-<% include ../partials/head %>
 
+<% include ../partials/head %>
+<% include ../partials/navbar %>
 
 <br><br><br>
 
-  <!-- alert(localStorage.getItem("food")); -->
+<!-- Handlebars template, inserted in the div "content-placeholder" -->
+<!--          DO NOT ADD MORE COMMENTS IN THE SCRIPT BELOW          -->
+
 <script id="cart-item-template" type="text/x-handlebars-template">
 
+  <!-- //Handlebar loop that throws each dessert in the temp below -->
   {{#each desserts}}
+
   <div class="cart-item">
 
+    <!-- //Eventually replace with a food image ({{this.image}}) -->
     <div class="cart-item-img-div">
       <img class="cart-item-img" src="http://img14.deviantart.net/cabe/i/2006/235/3/f/cute_happy_cupcake_avatar_by_cuteordeath.gif">
     </div>
 
+    <!-- //Inserts the item and restaurant names -->
     <div class="cart-item-text">
-      <p>{{this.itemName}} ({{this.restaurant}})</p>
-      <p>Delete</p>
+      <p>{{this.itemName}}</p>
+      <p>{{this.restaurant}}</p>
     </div>
 
+    <!-- //Inserts the item price -->
     <div class="cart-item-cost">
       <p>Price</p>
       <p>{{this.price}}</p>
     </div>
 
+    <!-- //Shows the form field for the quantity -->
     <div class="cart-item-amount">
       <p>Quantity</p>
-      <input type="text" name="cart-item-1">
+      <input type="text" name="cart-item-1" value=0>
     </div>
 
-    <p>{{this.itemId}}</p>
-
+    <!-- //Hidden field to store the id of the food item -->
+    <input type="text" style="display: none" value={{this.itemId}}>
   </div>
+
   {{/each}}
 
 </script>
 
+<body id="checkout-body">
+  <div id="checkout-form-div">
 
+    <h1 id="cart-header">Checkout</h1>
+    <form method='post' action='/orders/create'>
+      <!-- user_id, user_address, and dessert_items are hidden fields
+           that store their respective values                        -->
+      <input type="hidden" name="user_id" value="<%= user._id %>">
+      <input type="hidden" name="user_address" value="<%= user.local.address %>">
+      <input id="dessert" type="hidden" name="dessert_items" value="">
 
-<form method='post' action='/orders/create'>
+      <!-- Renders the html created by the template -->
+      <div id="content-placeholder"></div>
 
-  <input type="hidden" name="user_id" value="56a3e903845cd0f807e0b17b">
-  <input type="hidden" name="user_address" value="123 Street St.">
-  <input type="hidden" name="ready_for_delivery" value="true">
-  <input type="hidden" name="created_at" value="<%= Date.now() %>">
+      <!-- The update link stores the order info in "dessert". Once
+           clicked, the submit button appears to posr the order      -->
+      <div id="cart-button-holder">
+        <a id="updateButton">UPDATE!</a>
+        <input id="butt" type="submit" value="Submit" style="display: none">
+      </div>
 
-  <div id="content-placeholder"></div>
+    </form>
 
-  <input id="dessert" type="text" name="dessert_items" value="">
-
-  <h5 id="submitButton">Update Cart</h5>
-
-  <div>
-    <input type="submit" value="Submit">
   </div>
+</body>
 
-</form>
-
-
-<br><br><br>
-<br><br><br>
 
 <% include ../partials/footer %>

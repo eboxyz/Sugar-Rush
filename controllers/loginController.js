@@ -1,5 +1,6 @@
 var express = require('express');
 var User = require('../models/user');
+var Order = require('../models/order')
 var userController = require('./usersController')
 module.exports = function (app, passport){
 
@@ -15,6 +16,42 @@ module.exports = function (app, passport){
       // SIGNUP =================================
       // show the signup form
       // process the signup form
+
+    //this is necessary for user sessions on every page
+    //looking for an existing session, and then the user through the email(username)
+    //of that user
+    // if(req.session && req.session.email){
+    //   console.log(req.session)
+    //   User.findOne( {email: req.session.email}).then( function (user){
+    //     res.render('./users/home_page', {
+    //
+    //      this sets the user within the session as a variable that can be called
+    //      on any page (curr_user)
+    //            vvvvvvvvvvvv
+    //       curr_user: user.email,
+    //
+    //       this allows passport to callback
+    //       "return done(null, user)"
+    //       users: null
+    //     })
+    //   })
+    //    this defines the function to run asynchronously if the "if" statement cnanot be run
+    //    if the user is not found, then they'll be redirected to the homepage
+    //
+    // } else{
+    //   User.findAsync({})
+    //     .then( function (users){
+    //       res.render('./users/home_page', {
+    //         curr_user: null,
+    //         users: users
+    //       });
+    //     }).catch();
+    //  req.session.save() is necessary on each page/route to resave the instance of the session on that page
+    //  the current user will be defined and allow the navbar/any other instances that require a curr_user to run
+    // }
+    // req.session.save();
+
+
   app.get('/', function (req,res){
     if(req.session && req.session.email){
       console.log(req.session)
@@ -64,6 +101,7 @@ module.exports = function (app, passport){
     failureFlash: true //allow flashing
   }));
 
+  //
   app.get('/local/signup', function (req, res){
      if(req.session && req.session.email){
         User.findOne({ email: req.session.email }).then(function(user){
@@ -93,14 +131,16 @@ module.exports = function (app, passport){
 
 
 //isLoggedin goes here
-  app.get('/local/profile', function (req, res, next){
-    console.log(req.session)
+  app.get('/local/profile', function (req, res){
     User.findById({_id: req.session.passport.user}, function (err, data){
-      console.log(data.local.email)
-    res.render('./users/profile.ejs', {
-      user: data,
-      curr_user: data.local.email,
-      users: null,
+      Order.find({}, function (err, data2) {
+            console.log(data2)
+          res.render('./users/profile.ejs', {
+            orderHistory: data2,
+            user: data,
+            curr_user: data.local.email,
+            users: null,
+      })
     })
   })
 
@@ -118,13 +158,17 @@ module.exports = function (app, passport){
     })
     //PUT A RESPONSE HERE SO YOU CAN PING
     req.session.save();
-  })
+  });
 
 
   app.post('/users/profile/edit/:id', function (req, res, next){
     console.log(req.session.passport.user)
     console.log(req.session)
     User.findById({_id: req.session.passport.user}, function (err, user){
+      // console.log()
+      // Order.find({}, function (err, data2){
+      //   orderHistory: data2
+      // })
       curr_user = req.body;
       console.log(curr_user);
     var keys = Object.keys(req.body);
@@ -136,6 +180,7 @@ module.exports = function (app, passport){
     console.log(req.session)
     res.render('./users/profile', {
       user: user,
+      // orderHistory: data2,
       curr_user: user.local,
       users: null,
     })

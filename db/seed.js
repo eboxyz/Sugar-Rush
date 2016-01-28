@@ -92,3 +92,25 @@ exports.seedRestaurants = function seedRestaurants(){
   });
 };
 
+
+
+// // Creating an ADMIN
+// exports.seedAdmin = function seedAdmin(){
+//   User.find({}).exec(function (err, collection) {
+
+//       User.create({
+//         "local": [
+//           {
+//             "firstName": "Admin",
+//             "lastName": "Mr.Choi",
+//             "address": "777 Awesome Ln",
+//             "email": "admin@admin.com",
+//             "phoneNumber": "123-456-7890",
+//             "password": "admin",
+//             "driver": false,
+//             "admin": true
+//           }
+//         ]
+//       })
+//   });
+// };

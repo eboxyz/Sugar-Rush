@@ -4,9 +4,11 @@
 
 // Grabs the mongoose functions and Restaurants model from the mongo db
 var Restaurant = require('../models/restaurant');
+var User = require('../models/user');
+// var request = require('request');
+var rp = require('request-promise');
 var mongoose = require('mongoose');
-var request = require('request');
-
+// var mongoose = Promise.promisifyAll(require('mongoose'));
 // Exports restaurant functions
 module.exports = {
 
@@ -15,13 +17,19 @@ module.exports = {
 ////////////////////////////////////////////////////////////////////////
 
 // Shows all restaurants; consumes API
+
+//need to implement promise logic
+//needs to erpform request to api+define restaurant through that,
+//then find the session through the user and define it
+//then save the session
   all: function(req, res, next){
-    request('http://sugar-rush.herokuapp.com/api', function(err, resp, bod){
+    rp('http://sugar-rush.herokuapp.com/api', function(err, resp, bod){
       if(!err && resp.statusCode === 200){
         var rest_data = JSON.parse(bod);
         res.render('restaurants/all', {restaurants: rest_data});
       } else console.log(err)
     })
+    req.session.save();
   },
 
 // Shows a specific restaurant
@@ -34,9 +42,11 @@ module.exports = {
   // API function to show all restaurants. Restaurant.find({}) grabs
   // them in the database and renders them through JSON.
   allAPI: function (req, res, next){
-    Restaurant.find({}, function (err, restaurants){
-      res.json(restaurants);
-    })
+
+      Restaurant.find({}, function (err, restaurants){
+        res.json(restaurants);
+      })
+
   },
 
   // API function to create a restaurant. A new restaurant is created

@@ -13,13 +13,15 @@ var bcrypt = require('bcrypt-nodejs')
 // UserSchema
 var userSchema = mongoose.Schema({
   local:{
+    order_id: String,
     firstName: String,
     lastName: String,
     address: String,
     email: String,
     phoneNumber: String,
     password: String,
-    driver: Boolean
+    driver: Boolean,
+    admin: Boolean
   },
   venmo: {
     name: {

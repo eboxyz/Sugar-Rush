@@ -28,7 +28,7 @@ var mongoose = Promise.promisifyAll(require('mongoose'));
 var passport = require('passport');
 var flash = require('connect-flash');
 var VenmoStrategy = require('passport-venmo').Strategy;
-var request = require('request');
+// var request = require('request');
 var users_controller = require('./controllers/usersController.js');
 var http = require('http');
 var path = require('path');
@@ -36,6 +36,8 @@ var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var dotenv = require('dotenv').config();
 var handlebars = require('handlebars');
+var rp = require('request-promise');
+var favicon = require('serve-favicon');
 
 var credentials = require('./config/credentials.js')
 ////////////////////////////////////////////////////////////////////////
@@ -46,7 +48,9 @@ var credentials = require('./config/credentials.js')
 // mongoose.connect('mongodb://localhost/sugar-rush');
 
 //this connects the app to heroku mongolab
-mongoose.connect('mongodb://heroku_2115hf7x:gl9vaq0avhmbnbr3di4cdu2jtv@ds051645.mongolab.com:51645/heroku_2115hf7x')
+// mongoose.connect('mongodb://heroku_2115hf7x:gl9vaq0avhmbnbr3di4cdu2jtv@ds051645.mongolab.com:51645/heroku_2115hf7x')
+
+mongoose.connect('mongodb://localhost/sugar-rush');
 
 // Allows access to usersController (was originally below request) and
 // the user model
@@ -60,6 +64,7 @@ var User = require('./models/user.js')["User"];
 // Flash is a package that allows for easy error messages
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/public'));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(methodOverride());
 app.use(flash());
 
@@ -87,6 +92,7 @@ app.use(expressSession({resave: true, saveUninitialized: true, secret: credentia
 
 // Seeds restaurants
 require('./db/seed.js').seedRestaurants();
+
 
 ////////////////////////////////////////////////////////////////////////
 //                               Routes                               //

@@ -1,10 +1,11 @@
 <% include ../partials/head %>
 
-
 <script>
+  // Clears the information for the shopping cart
   localStorage.clear();
 </script>
 
+<div id="main-background">
 <div id="background">
   <div id="carousel-box">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -41,29 +42,95 @@
       </a>
   </div>
 </div>
+<br>
 
-<h1 id="restaurants-title">All Restaurants</h1>
+<h1 id="restaurants-title">Choose Your Temptation</h1>
+<hr id="under-restaurants">
+<br>
+
+<center>
   <div class="row">
-    <div class="md-col-6 col-md-offset-3">
+
+        <!-- Loops through each restaurant and each of the restaurant's
+        available items. The add to cart button is given an id
+        containing the item name, the restaurant name, the item price,
+        the item id, the item picture. Clicking checkout, sends them to
+        local storage                                                -->
+
+    <div class="col-xs-3"></div>
+    <div class="col-xs-3">
+      <select class="form-control">
+        <option value="restaurant">Restaurant</option>
+        <option value="dessert">Dessert</option>
+      </select>
+    </div>
+
+      <form>
+        <div class="col-xs-3">
+            <input type="search" name="restaurant-search" class="form-control" placeholder="Cupcake, Porto's, Ice Cream">
+        </div>
+        <div class="col-xs-3">
+            <input type="button" value="Go" class="btn" id="search-button">
+        </div>
+      </form>
+    </div>
+  </div>
+</center>
+
+<br>
+<br>
+
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
         <% for(i=0; i<restaurants.length; i++) { %>
 
-          <h4><%= restaurants[i].name %></h4>
+          <h4 id="restaurant-name"><%= restaurants[i].name %></h4>
+          <span id="restaurant-loc"><%= restaurants[i].address %>, <%= restaurants[i].neighborhood %></span>
+          <br>
+          <br>
+
+          <h4><strong>Menu:</strong></h4>
+
 
           <% for(j=0; j<restaurants[i].menu.length; j++) { %>
             <p>
-              <% if(restaurants[i].menu[j].available) { %>
-                <%= restaurants[i].menu[j].item %> &nbsp&nbsp&nbsp
-                <button class="btn btn-xs add-to-cart" id="<%= restaurants[i].menu[j].item %>qxz<%= restaurants[i].name %>qxz<%= restaurants[i].menu[j].price %>qxz<%= restaurants[i].menu[j].id %>">Add to Cart</button>
-              <% } %>
+              <div id="menu-items-display">
+
+                <% if(restaurants[i].menu[j].available) { %>
+
+                  <label><input type="checkbox" class="add-to-cart" id="<%= restaurants[i].menu[j].item %>qxz<%= restaurants[i].name %>qxz<%= restaurants[i].menu[j].price %>qxz<%= restaurants[i].menu[j].id %>">
+
+                  &nbsp;&nbsp;&nbsp;<%= restaurants[i].menu[j].item %> (<%= restaurants[i].menu[j].price %>)
+
+                  </label>
+
+                <% } else { %>
+
+                <label><input type="checkbox" disabled>
+                  &nbsp;&nbsp;&nbsp;<%= restaurants[i].menu[j].item %> (<%= restaurants[i].menu[j].price %>)&nbsp;&nbsp;&nbsp;
+                </label>
+                  <span class="label label-danger">Currently Unavailable</span>
+
+                <% } %>
+
+              </div>
             </p>
           <% } %>
 
+          <hr id="between-restaurants">
         <% } %>
 
-      <a href="/orders/shoppingcart" id="button-link"><button class="btn" id="checkout">Checkout</button></a>
+      <center><a href="/orders/shoppingcart" id="button-link"><button class="btn" id="checkout">Continue to Checkout</button></a></center>
+      <br>
+      <br>
+      <br>
+
     </div>
+    <div class="col-sm-3"></div>
   </div>
 </div>
+
 
 <% include ../partials/footer %>
 

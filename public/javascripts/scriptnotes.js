@@ -13,7 +13,7 @@ var orderArray = [];
 // Loop through the add-to-cart buttons and have them listen for clicks
 // When clicked, push the button's id (with the item info) to orderArray
 for(i=0; i<addToCartArr.length; i++){
-  addToCartArr[i].addEventListener("click", function() {
+  addToCartArr[i].addEventListener("click", function(){
     orderArray.push(this.id);
   })
 }
@@ -43,7 +43,7 @@ for(i in storageString){
     "itemName": bainasArr[0],
     "restaurant": bainasArr[1],
     "price": bainasArr[2],
-    "itemId": bainasArr[3]
+    "itemId": ""
   });
 }
 
@@ -71,18 +71,17 @@ document.getElementById('updateButton').addEventListener("click", function(){
   var cartItems = document.getElementsByClassName('cart-item');
   var toBeStringified = ""
   var counter = 0;
+  console.log("hi");
   for(i=0; i< cartItems.length; i++){
     counter ++;
-    toBeStringified += cartItems[i].childNodes[19].value;
+    toBeStringified += cartItems[i].childNodes[9].value;
     toBeStringified += "qxz";
-    toBeStringified += cartItems[i].childNodes[15].childNodes[3].value;
+    toBeStringified += cartItems[i].childNodes[7].childNodes[3].value;
     toBeStringified += "qxz";
   }
   toBeStringified += counter;
+  console.log(toBeStringified);
   document.getElementById('dessert').value = toBeStringified;
   document.getElementById('butt').style.display = "block";
 })
-
-
-
 // add a gate above
