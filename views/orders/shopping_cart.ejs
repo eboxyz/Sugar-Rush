@@ -10,33 +10,55 @@
   <div class="cart-item">
 
     <!-- //Eventually replace with a food image ({{this.image}}) -->
-    <div class="cart-item-img-div">
+    <div class="cart-item-img-div cart-vert-align">
       <img class="cart-item-img" src="http://img14.deviantart.net/cabe/i/2006/235/3/f/cute_happy_cupcake_avatar_by_cuteordeath.gif">
     </div>
 
     <!-- //Inserts the item and restaurant names -->
-    <div class="cart-item-text">
-      <p>{{this.itemName}}</p>
-      <p>{{this.restaurant}}</p>
+    <div class="cart-item-text cart-vert-align">
+      <p class="cart-general-label"><a href="/restaurants" class="cart-rest-label">{{this.restaurant}}</a></p>
+      <p class="cart-text-info">{{this.itemName}}</p>
     </div>
 
     <!-- //Inserts the item price -->
-    <div class="cart-item-cost">
-      <p>Price</p>
-      <p>{{this.price}}</p>
+    <div class="cart-item-cost cart-vert-align">
+      <p class="cart-general-label">Price</p>
+      <p class="cart-text-info cart-price">{{this.price}}</p>
     </div>
 
     <!-- //Shows the form field for the quantity -->
-    <div class="cart-item-amount">
-      <p>Quantity</p>
-      <input type="text" name="cart-item-1" value=0>
+    <div class="cart-item-amount cart-vert-align">
+      <p class="cart-general-label cart-quant-label">Quantity</p>
+      <select name="quant" class="btn btn-mini cart-shift-down">
+        <option value=0 selected>0</option>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+        <option value=6>6</option>
+        <option value=7>7</option>
+        <option value=8>8</option>
+        <option value=9>9</option>
+        <option value=10>10</option>
+        <option value=11>11</option>
+        <option value=12>12</option>
+        <option value=13>13</option>
+        <option value=14>14</option>
+        <option value=15>15</option>
+        <option value=16>16</option>
+        <option value=17>17</option>
+        <option value=18>18</option>
+        <option value=19>19</option>
+        <option value=20>20</option>
+      </select>
     </div>
 
     <!-- //Hidden field to store the id of the food item -->
     <input type="text" style="display: none" value={{this.itemId}}>
 
   </div>
-
+  <hr class="cart-faded-hr">
   {{/each}}
 
 </script>
@@ -51,15 +73,19 @@
       <input type="hidden" name="user_id" value="56a3e903845cd0f807e0b17b">
       <input type="hidden" name="user_address" value="123 Street St.">
       <input id="dessert" type="hidden" name="dessert_items" value="">
+      <hr class="cart-faded-hr">
 
       <!-- Renders the html created by the template -->
       <div id="content-placeholder"></div>
 
+      <div id="cart-total">Total: &nbsp&nbsp<span id="cart-total-numb">$0.00</span></div>
       <!-- The update link stores the order info in "dessert". Once
            clicked, the submit button appears to posr the order      -->
+      <hr class="cart-faded-hr">
+
       <div id="cart-button-holder">
-        <a id="updateButton">UPDATE!</a>
-        <input id="butt" type="submit" value="Submit" style="display: none">
+        <div class="cart-button-holder"><a id="updateButton" type="button" class="btn">Update</a></div>
+        <div class="cart-button-holder"><input id="submit-button" type="submit" value="Checkout" class="btn"></div>
       </div>
 
     </form>

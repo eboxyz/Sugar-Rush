@@ -68,6 +68,19 @@ if(context.desserts[0]["itemName"].length >= 1){
 // to make the str easy to split, and the counter at the end.
 // Insert the str into the hidden "dessert" field and render the submit
 document.getElementById('updateButton').addEventListener("click", function(){
+  var total = 0;
+  var prices = document.getElementsByClassName("cart-price");
+  var quants_divs = document.getElementsByClassName("cart-shift-down");
+  for(i=0; i<prices.length; i++){
+    var moneyString = prices[i].innerHTML;
+    total += Number(moneyString.slice(1)) * quants_divs[i].value;
+  }
+  document.getElementById('cart-total-numb').innerHTML = "$" + total;
+
+
+
+
+
   var cartItems = document.getElementsByClassName('cart-item');
   var toBeStringified = ""
   var counter = 0;
@@ -80,6 +93,15 @@ document.getElementById('updateButton').addEventListener("click", function(){
   }
   toBeStringified += counter;
   document.getElementById('dessert').value = toBeStringified;
-  document.getElementById('butt').style.display = "block";
+  document.getElementById('submit-button').style.display = "block";
 })
 // add a gate above
+
+////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+

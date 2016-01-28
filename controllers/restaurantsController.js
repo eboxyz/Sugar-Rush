@@ -19,13 +19,10 @@ module.exports = {
     request('http://localhost:3000/api', function(err, resp, bod){
       if(!err && resp.statusCode === 200){
         var rest_data = JSON.parse(bod);
-        res.render('restaurants/all', {restaurants: rest_data});
+        res.render('restaurants/all', {restaurants: rest_data, date: date_i_want});
       } else console.log(err)
     })
   },
-
-// Shows a specific restaurant
-
 
 ////////////////////////////////////////////////////////////////////////
 //                            API Functions                           //
