@@ -32,7 +32,7 @@
   font-weight: bold !important;
 }
 
-#bootstrap-override .navbar.navbar-fixed-top {
+#bootstrap-override .navbar {
  font-family: "Arimo", sans-serif 700;
  background-color: transparent;
  border-color: transparent;
@@ -43,7 +43,7 @@
 }
 
 
- #bootstrap-override .navbar.navbar-fixed-top li a {
+ #bootstrap-override .navbar li a {
    color: white ;
  }
 
@@ -60,7 +60,7 @@
   font-weight: bold;
  }
 
- #bootstrap-override .navbar.navbar-fixed-top li a:hover {
+ #bootstrap-override .navbar li a:hover {
    background-color: #FE8818 ;
    color: #FFF;
 }
@@ -145,6 +145,10 @@
   background: transparent;
 }
 
+#window {
+  position: relative;
+  top: -12%;
+}
 
   /* title & section one */
   #home_title{
