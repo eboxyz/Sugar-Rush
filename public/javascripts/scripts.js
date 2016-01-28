@@ -13,7 +13,7 @@ var orderArray = [];
 // Loop through the add-to-cart buttons and have them listen for clicks
 // When clicked, push the button's id (with the item info) to orderArray
 for(i=0; i<addToCartArr.length; i++){
-  addToCartArr[i].addEventListener("click", function(){
+  addToCartArr[i].addEventListener("click", function() {
     orderArray.push(this.id);
   })
 }
