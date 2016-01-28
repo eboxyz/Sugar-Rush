@@ -1,5 +1,15 @@
 
 
+<table class="table">
 
-<p>Date: 1/14/16</p>
-<p>Items: McFlurry </p>
+  <% for (var i=0; i<orderHistory.length; i++) { %>
+    <tr>
+      <td>order <%= i %></td>
+      <td>Date: <%= orderHistory[i].created_at %></td>
+      <td>Items: <%= orderHistory[i].dessert_items %> </td>
+    </tr>
+  <% } %>
+
+
+
+</table>

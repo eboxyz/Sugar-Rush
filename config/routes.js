@@ -20,8 +20,15 @@ var ordersController = require('../controllers/ordersController');
 //                            User Routes                             //
 ////////////////////////////////////////////////////////////////////////
 
+// consuming our Order api2 to list out order History on our profile page
+var request = require('request');
+
 router.route('/users/profile').get( function (req, res){
-  res.render('users/profile');
+  request.get("http://localhost:3000/api2", function (err, response, body) {
+      var data = JSON.parse(body);
+      console.log(data);
+      res.render('users/profile', {data: data});
+  })
 });
 
 // router.route('/api/user').get(usersController.allAPI);

@@ -1,5 +1,6 @@
 var express = require('express');
 var User = require('../models/user');
+var Order = require('../models/order')
 var userController = require('./usersController')
 module.exports = function (app, passport){
 
@@ -97,11 +98,13 @@ module.exports = function (app, passport){
   app.get('/local/profile', function (req, res){
 
     User.findById({_id: req.session.passport.user}, function (err, data){
-
-    res.render('./users/profile.ejs', {
-      user: data,
-      curr_user: data.local.email,
-      users: null,
+      Order.find({}, function (err, data2) {
+          res.render('./users/profile.ejs', {
+            orderHistory: data2,
+            user: data,
+            curr_user: data.local.email,
+            users: null,
+      })
     })
   })
 

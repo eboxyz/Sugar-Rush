@@ -55,3 +55,30 @@ document.getElementById('submitButton').addEventListener("click", function(){
 })
 
 
+
+
+
+////////////////////////////////////////////////////////////////////
+
+
+// ORDER HISTORY AJAX
+
+$(document).ready(function() {
+  $('#checkout')on('checkout', sendOurDataWithAJAX);
+  getOrders();
+});
+
+function sendOurDataWithAJAX(){
+  // e.preventDefault();
+
+  // create a new AJAX request
+  $.post('http://localhost:3000/api2', doughnut)
+    .done(function(data){
+      addDoughnut(data);
+    });
+
+}
+
+function getOrders () {
+  var orders = $.get
+}
