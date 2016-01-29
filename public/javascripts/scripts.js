@@ -7,26 +7,6 @@ var searchQuery = document.getElementsByClassName('all-restaurants');
 var searchBy = document.getElementById('select-search');
 var showRestButton = document.getElementById('show-rest');
 
-//Cheaters search Bar
-searchButton.addEventListener("click", function() {
-
-  showRestButton.style.display = 'block';
-
-  if (searchBy.value == "restaurant") {
-    for(i=0; i<searchQuery.length; i++) {
-      var lowSearchQuery = searchQuery[i].id.toLowerCase();
-      var lowSearchBar = searchBar.value.toLowerCase();
-
-      if (lowSearchQuery.includes(lowSearchBar)) {
-        searchQuery[i].style.display = 'block';
-      } else {
-        searchQuery[i].style.display = 'none';
-      }
-    }
-  } else if (searchBy.value == "dessert") {
-  //in progress
-  }
-})
 
 //Allows for menu items to be un-checked
 for(i=0; i<addToCartArr.length; i++){
@@ -40,9 +20,31 @@ for(i=0; i<addToCartArr.length; i++){
   })
 }
 
+//Cheaters search Bar
+if (searchButton) {
+  searchButton.addEventListener("click", function() {
+
+    showRestButton.style.display = 'block';
+
+    if (searchBy.value == "restaurant") {
+      for(i=0; i<searchQuery.length; i++) {
+        var lowSearchQuery = searchQuery[i].id.toLowerCase();
+        var lowSearchBar = searchBar.value.toLowerCase();
+
+        if (lowSearchQuery.includes(lowSearchBar)) {
+          searchQuery[i].style.display = 'block';
+        } else {
+          searchQuery[i].style.display = 'none';
+        }
+      }
+    }
+  })
+}
+
 if(addToCartArr.length > 1){ // change if
   checkout.addEventListener("click", function(){
     localStorage.setItem("food", orderArray);
+    console.log(localStorage.getItem('food'));
   });
 };
 
@@ -52,6 +54,7 @@ var context = {
 };
 
 var storageString = localStorage.getItem("food").split(",")
+
 for(i in storageString){
   var bainasArr = storageString[i].split("qxz");
   context.desserts.push({
