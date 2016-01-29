@@ -31,7 +31,6 @@ module.exports = {
     })
     req.session.save();
   },
-
 // Shows a specific restaurant
 
 

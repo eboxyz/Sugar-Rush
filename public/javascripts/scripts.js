@@ -9,12 +9,45 @@
 var checkout = document.getElementById('checkout');
 var addToCartArr = document.getElementsByClassName("add-to-cart");
 var orderArray = [];
+var searchButton = document.getElementById('search-button');
+var searchBar = document.getElementById('search-bar');
+var searchQuery = document.getElementsByClassName('all-restaurants');
+var searchBy = document.getElementById('select-search');
+var showRestButton = document.getElementById('show-rest');
+
 
 // Loop through the add-to-cart buttons and have them listen for clicks
 // When clicked, push the button's id (with the item info) to orderArray
+//Allows for menu items to be un-checked
 for(i=0; i<addToCartArr.length; i++){
-  addToCartArr[i].addEventListener("click", function() {
-    orderArray.push(this.id);
+  addToCartArr[i].addEventListener("change", function() {
+    if (this.checked) {
+      orderArray.push(this.id);
+    } else {
+      var x = orderArray.indexOf(this.id);
+      orderArray.splice(x,1);
+    }
+  })
+}
+
+//Cheaters search Bar
+if (searchButton) {
+  searchButton.addEventListener("click", function() {
+
+    showRestButton.style.display = 'block';
+
+    if (searchBy.value == "restaurant") {
+      for(i=0; i<searchQuery.length; i++) {
+        var lowSearchQuery = searchQuery[i].id.toLowerCase();
+        var lowSearchBar = searchBar.value.toLowerCase();
+
+        if (lowSearchQuery.includes(lowSearchBar)) {
+          searchQuery[i].style.display = 'block';
+        } else {
+          searchQuery[i].style.display = 'none';
+        }
+      }
+    }
   })
 }
 
@@ -23,6 +56,7 @@ for(i=0; i<addToCartArr.length; i++){
 if(addToCartArr.length > 1){
   checkout.addEventListener("click", function(){
     localStorage.setItem("food", orderArray);
+    console.log(localStorage.getItem('food'));
   });
 };
 
@@ -34,6 +68,7 @@ if(addToCartArr.length > 1){
 // Split localstorage at the commas to get the info chunks
 var context = { desserts: [] };
 var storageString = localStorage.getItem("food").split(",")
+
 
 // Loop through the info chunks, split them at "qxz" and save the array
 // Push elements of the bainas array to context.desserts as an object.
