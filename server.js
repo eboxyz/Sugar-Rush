@@ -48,9 +48,9 @@ var credentials = require('./config/credentials.js')
 // mongoose.connect('mongodb://localhost/sugar-rush');
 
 //this connects the app to heroku mongolab
-mongoose.connect('mongodb://heroku_2115hf7x:gl9vaq0avhmbnbr3di4cdu2jtv@ds051645.mongolab.com:51645/heroku_2115hf7x')
+// mongoose.connect('mongodb://heroku_2115hf7x:gl9vaq0avhmbnbr3di4cdu2jtv@ds051645.mongolab.com:51645/heroku_2115hf7x')
 
-// mongoose.connect('mongodb://localhost/sugar-rush');
+mongoose.connect('mongodb://localhost/sugar-rush');
 
 // Allows access to usersController (was originally below request) and
 // the user model
@@ -94,6 +94,7 @@ app.use(expressSession({resave: true, saveUninitialized: true, secret: credentia
 require('./db/seed.js').seedRestaurants();
 //Seeds Users
 require('./db/seed.js').seedAdmins();
+
 
 ////////////////////////////////////////////////////////////////////////
 //                               Routes                               //

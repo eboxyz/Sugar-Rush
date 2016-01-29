@@ -299,7 +299,13 @@
 
 /* User Profile Page Styles */
 #body-prof{
-  background-color: #91EEF4;
+  background-color: #FFFCF8;
+
+}
+#profile-page-up {
+  position: relative;
+  top: -15%;
+
 }
 #prof-img-col{
   padding-top: 150px;
@@ -323,6 +329,9 @@
 }
 #prof-hr{
   border: 3px solid #F39934;
+}
+#prof-button{
+  background-color: #A50D18;
 }
 
 

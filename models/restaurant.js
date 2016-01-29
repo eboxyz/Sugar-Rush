@@ -15,6 +15,7 @@ module.exports = mongoose.model('Restaurant', {
     {
       item: String,
       price: String,
+      img_url: String,
       available: Boolean
     }
   ]

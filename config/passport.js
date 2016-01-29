@@ -41,7 +41,7 @@ module.exports = function(passport){
       phoneNumber: 'phoneNumber',
       passwordField: 'password',
       driver: 'driver',
-      profilePicture: 'profilePicture'
+      profilePicture: 'profilePicture',
       passReqToCallback: true
     },
     // "Email" passed in instead of username (passport standard)
