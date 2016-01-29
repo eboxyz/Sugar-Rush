@@ -26,7 +26,7 @@ module.exports = {
     rp('http://sugar-rush.herokuapp.com/api', function(err, resp, bod){
       if(!err && resp.statusCode === 200){
         var rest_data = JSON.parse(bod);
-        res.render('restaurants/all', {restaurants: rest_data, date: date_i_want});
+        res.render('restaurants/all', {restaurants: rest_data});
       } else console.log(err)
     })
     req.session.save();

@@ -2,6 +2,13 @@
 //                             scripts.js                             //
 ////////////////////////////////////////////////////////////////////////
 
+/////     Step 1 - Store dessert item info into local storage      /////
+
+// Set a variable to the checkout button, to the array of all
+// "add-to-cart" buttons, and to an empty order array
+var checkout = document.getElementById('checkout');
+var addToCartArr = document.getElementsByClassName("add-to-cart");
+var orderArray = [];
 var searchButton = document.getElementById('search-button');
 var searchBar = document.getElementById('search-bar');
 var searchQuery = document.getElementsByClassName('all-restaurants');
@@ -44,13 +51,6 @@ if (searchButton) {
   })
 }
 
-/////     Step 1 - Store dessert item info into local storage      /////
-
-// Set a variable to the checkout button, to the array of all
-// "add-to-cart" buttons, and to an empty order array
-var checkout = document.getElementById('checkout');
-var addToCartArr = document.getElementsByClassName("add-to-cart");
-var orderArray = [];
 
 
 
