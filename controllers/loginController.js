@@ -133,20 +133,14 @@ module.exports = function (app, passport){
 //isLoggedin goes here
   app.get('/local/profile', function (req, res){
     User.findById({_id: req.session.passport.user}, function (err, data){
-      Order.find({}, function (err, data2) {
-            console.log(data2)
           res.render('./users/profile.ejs', {
-            orderHistory: data2,
             user: data,
             curr_user: data.local.email,
             users: null,
       })
     })
-  })
-
   req.session.save();
-  }
-  );
+  });
 
   app.get('/users/profile/edit/', function (req, res, next){
     User.findById({_id: req.session.passport.user}, function (err, data){

@@ -13,7 +13,6 @@ var bcrypt = require('bcrypt-nodejs')
 // UserSchema
 var userSchema = mongoose.Schema({
   local:{
-    order_id: String,
     firstName: String,
     lastName: String,
     address: String,
@@ -32,6 +31,9 @@ var userSchema = mongoose.Schema({
     username: {
         type: String
     },
+    orders:[{
+      order_id: String,
+    }],
     current_order_id: String,
     provider: String,
     salt: String,
