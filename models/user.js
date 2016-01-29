@@ -9,6 +9,7 @@
 // bcrypt-nodejs is a friendlier encryption module
 var mongoose = require('mongoose')
 var bcrypt = require('bcrypt-nodejs')
+
 // var Order = require('../models/order')
 
 // UserSchema
