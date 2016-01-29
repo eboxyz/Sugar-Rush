@@ -40,6 +40,7 @@ module.exports = function(passport){
       usernameField: 'email',
       phoneNumber: 'phoneNumber',
       passwordField: 'password',
+      driver: 'driver',
       passReqToCallback: true
     },
     // "Email" passed in instead of username (passport standard)
@@ -66,6 +67,7 @@ module.exports = function(passport){
             newUser.local.address = req.body.address;
             newUser.local.email = email;
             newUser.local.phoneNumber = req.body.phoneNumber;
+            newUser.local.driver = req.body.driver;
             newUser.local.password = newUser.generateHash(password);
             newUser.save( function (err){
               console.log('new user created')

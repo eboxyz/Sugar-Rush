@@ -20,6 +20,9 @@
           <strong>Name:</strong> <%= user.local.firstName %> <%= user.local.lastName %><br>
           <strong>Address:</strong> <%= user.local.address %><br>
           <strong>Phone Number: </strong><%= user.local.phoneNumber %><br>
+          <strong>Driver: </strong><% if (user.local.driver === true) { %>
+          Yes
+          <% } %>
           </p>
         <% } %>
         <% if (user.venmo.email) { %>
