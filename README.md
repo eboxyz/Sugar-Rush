@@ -11,7 +11,7 @@ Chill dessert delivery app.
 * Thomas
 
 ### Links
-A version of this application can be found on the Heroku website at [this address](#).
+A version of this application can be found on the Heroku website at [this address](http://sugar-rush.herokuapp.com/).
 
 The Trello Board for this site can be found [here](https://trello.com/b/BZfTctKa/sugar-rush).
 
@@ -36,6 +36,8 @@ The Trello Board for this site can be found [here](https://trello.com/b/BZfTctKa
 * Express
 * Mongo
 * Node
-* Probs bootstrap
+* Bootstrap
+* Handlebars
+* jQuery
 
 ### Acknowledgements
