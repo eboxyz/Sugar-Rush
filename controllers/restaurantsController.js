@@ -26,14 +26,11 @@ module.exports = {
     rp('http://sugar-rush.herokuapp.com/api', function(err, resp, bod){
       if(!err && resp.statusCode === 200){
         var rest_data = JSON.parse(bod);
-        res.render('restaurants/all', {restaurants: rest_data});
+        res.render('restaurants/all', {restaurants: rest_data, date: date_i_want});
       } else console.log(err)
     })
     req.session.save();
   },
-
-// Shows a specific restaurant
-
 
 ////////////////////////////////////////////////////////////////////////
 //                         API Functions                           //
@@ -42,11 +39,9 @@ module.exports = {
   // API function to show all restaurants. Restaurant.find({}) grabs
   // them in the database and renders them through JSON.
   allAPI: function (req, res, next){
-
-      Restaurant.find({}, function (err, restaurants){
-        res.json(restaurants);
-      })
-
+    Restaurant.find({}, function (err, restaurants){
+      res.json(restaurants);
+    })
   },
 
   // API function to create a restaurant. A new restaurant is created

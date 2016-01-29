@@ -2,6 +2,48 @@
 //                             scripts.js                             //
 ////////////////////////////////////////////////////////////////////////
 
+var searchButton = document.getElementById('search-button');
+var searchBar = document.getElementById('search-bar');
+var searchQuery = document.getElementsByClassName('all-restaurants');
+var searchBy = document.getElementById('select-search');
+var showRestButton = document.getElementById('show-rest');
+
+// Loop through the add-to-cart buttons and have them listen for clicks
+// When clicked, push the button's id (with the item info) to orderArray
+//Allows for menu items to be un-checked
+
+for(i=0; i<addToCartArr.length; i++){
+  addToCartArr[i].addEventListener("change", function() {
+    if (this.checked) {
+      orderArray.push(this.id);
+    } else {
+      var x = orderArray.indexOf(this.id);
+      orderArray.splice(x,1);
+    }
+  })
+}
+
+//Cheaters search Bar
+if (searchButton) {
+  searchButton.addEventListener("click", function() {
+
+    showRestButton.style.display = 'block';
+
+    if (searchBy.value == "restaurant") {
+      for(i=0; i<searchQuery.length; i++) {
+        var lowSearchQuery = searchQuery[i].id.toLowerCase();
+        var lowSearchBar = searchBar.value.toLowerCase();
+
+        if (lowSearchQuery.includes(lowSearchBar)) {
+          searchQuery[i].style.display = 'block';
+        } else {
+          searchQuery[i].style.display = 'none';
+        }
+      }
+    }
+  })
+}
+
 /////     Step 1 - Store dessert item info into local storage      /////
 
 // Set a variable to the checkout button, to the array of all
@@ -10,19 +52,14 @@ var checkout = document.getElementById('checkout');
 var addToCartArr = document.getElementsByClassName("add-to-cart");
 var orderArray = [];
 
-// Loop through the add-to-cart buttons and have them listen for clicks
-// When clicked, push the button's id (with the item info) to orderArray
-for(i=0; i<addToCartArr.length; i++){
-  addToCartArr[i].addEventListener("click", function() {
-    orderArray.push(this.id);
-  })
-}
+
 
 // When checkout is clicked, set the local storage item, "food", to
 // the orderArray with the dessert item's info
 if(addToCartArr.length > 1){
   checkout.addEventListener("click", function(){
     localStorage.setItem("food", orderArray);
+    console.log(localStorage.getItem('food'));
   });
 };
 
@@ -34,6 +71,7 @@ if(addToCartArr.length > 1){
 // Split localstorage at the commas to get the info chunks
 var context = { desserts: [] };
 var storageString = localStorage.getItem("food").split(",")
+
 
 // Loop through the info chunks, split them at "qxz" and save the array
 // Push elements of the bainas array to context.desserts as an object.
@@ -61,12 +99,18 @@ if(context.desserts[0]["itemName"].length >= 1){
 
 /////  Step 3 - Use the compiled html to send data back to server  /////
 
-// When the update button is clicked, set an array to all the cart-item
-// divs, set a counter to 0 and a str var to "".
-// Loop through the cart-item divs adding the item id from the hidden
-// input field, the quantity from the editable input fieldand, "qxz"s
-// to make the str easy to split, and the counter at the end.
-// Insert the str into the hidden "dessert" field and render the submit
+// When the update button is clicked, two sets of action occur:
+// First, the function sets an array to all the cart-item divs, set a
+// counter to 0 and a str var to "". Loop through the cart-item divs
+// adding the item id from the hidden input field, the quantity from the
+// editable input fieldand, "qxz"s to make the str easy to split, and
+// the counter at the end. Insert the str into the hidden "dessert"
+// field and render the submit
+// Second, vars are set for a total, the html elements that hold the
+// item prices, and the elements that hold the quantity values. A loop
+// grabs the inner html of the price divs, turns them into numbers, and
+// mutiplies them by the values. Each produce is added to the total and
+// the total prints to the screen
 document.getElementById('updateButton').addEventListener("click", function(){
   var cartItems = document.getElementsByClassName('cart-item');
   var toBeStringified = ""
@@ -80,9 +124,27 @@ document.getElementById('updateButton').addEventListener("click", function(){
   }
   toBeStringified += counter;
   document.getElementById('dessert').value = toBeStringified;
-  document.getElementById('butt').style.display = "block";
+  document.getElementById('submit-button').style.display = "block";
+  ///////
+  var total = 0;
+  var prices = document.getElementsByClassName("cart-price");
+  var quants_divs = document.getElementsByClassName("cart-shift-down");
+  for(i=0; i<prices.length; i++){
+    var moneyString = prices[i].innerHTML;
+    total += Number(moneyString.slice(1)) * quants_divs[i].value;
+  }
+  document.getElementById('cart-total-numb').innerHTML = "$" + total;
 })
 
 
 
 // add a gate above
+
+////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
