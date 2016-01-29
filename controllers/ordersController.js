@@ -36,6 +36,7 @@ module.exports = {
     Order.findById({_id: req.params.id}, function (err, order){
       res.render('orders/show', {order: order});
     })
+    req.session.save();
   },
 
   // Grab the dessert_items string from dessert form and split into an
@@ -66,6 +67,7 @@ module.exports = {
       if (err) console.log(err);
       else res.redirect('/orders/show/' + newOrder.id);
     })
+    req.session.save();
   },
 
 ////////////////////////////////////////////////////////////////////////
