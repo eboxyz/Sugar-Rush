@@ -9,6 +9,7 @@
 // bcrypt-nodejs is a friendlier encryption module
 var mongoose = require('mongoose')
 var bcrypt = require('bcrypt-nodejs')
+var Order = require('../models/order')
 
 // UserSchema
 var userSchema = mongoose.Schema({
@@ -32,7 +33,7 @@ var userSchema = mongoose.Schema({
         type: String
     },
     orders:[{
-      order_id: String,
+      type: Schema.Types.ObjectId, ref: 'Order'
     }],
     current_order_id: String,
     provider: String,
