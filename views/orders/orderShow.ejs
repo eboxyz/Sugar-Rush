@@ -8,14 +8,21 @@
         var newDate = oldDateString[1]+"/"+oldDateString[2]+"/"+oldDateString[3]
 
         // code for getting dessert items's item_id
-        var oldDessert = orderHistory[i].dessert_items;
-        console.log(oldDessert)
+
+        var desserts = orderHistory[i].dessert_items
+        var dessertsList = ""
+        for (var j=0; j < desserts.length; j++) {
+            dessertsList += desserts[j]._id + ", "
+
+            // console.log(dessertsList)
+        }
 
       %>
+
     <tr>
       <td>order <%= i + 1 %></td>
       <td>Date: <%= newDate %></td>
-      <td>Items: <%= orderHistory[i].dessert_items %> </td>
+      <td>Items: <%= dessertsList.slice(0, dessertsList.length - 2); %> </td>
     </tr>
     <% } %>
 </table>
