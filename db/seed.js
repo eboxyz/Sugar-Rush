@@ -142,7 +142,7 @@ exports.seedRestaurants = function seedRestaurants(){
             "available": true
           },
           {
-            "item": "Cooks",
+            "item": "Cookies",
             "price": "$0.50",
             "available": true
           }
