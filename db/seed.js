@@ -42,7 +42,7 @@ exports.seedAdmins = function seedAdmins(){
           "password": "ed",
           "admin": true
         }
-      }),
+      })
     }
   })
 }

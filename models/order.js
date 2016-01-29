@@ -25,6 +25,7 @@ var mongoose = require('mongoose');
 // });
 
 var orderSchema = mongoose.Schema({
+  user_id: String,
   user_address: String,
   driver_user_id: String,
   ready_for_delivery: Boolean,

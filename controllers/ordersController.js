@@ -65,7 +65,7 @@ module.exports = {
     });
     newOrder.save(function (err) {
       if (err) console.log(err);
-      else res.redirect('/orders/show/' + newOrder.id);
+      else res.redirect('/local/profile/');
     })
     req.session.save();
   },

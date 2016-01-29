@@ -2,22 +2,17 @@
 
   <% if (curr_user) { %>
     <% for (var i=0; i<orderHistory.length; i++) { %>
-      <% // code for getting exactly orderDate
-        var oldDate = orderHistory[i].created_at;
-        var oldDateString = oldDate.toString().split(' ')
-        var newDate = oldDateString[1]+"/"+oldDateString[2]+"/"+oldDateString[3]
+     <% var oldDate = orderHistory[i].created_at; %>
+        <% var oldDateString = oldDate.toString().split(' '); %>
+        <% var newDate = oldDateString[1]+"/"+oldDateString[2]+"/"+oldDateString[3]; %>
 
-        // code for getting dessert items's item_id
 
-        var desserts = orderHistory[i].dessert_items
-        var dessertsList = ""
-        for (var j=0; j < desserts.length; j++) {
-            dessertsList += desserts[j]._id + ", "
+        <% var desserts = orderHistory[i].dessert_items %>
+        <% var dessertsList = "" %>
+      <%  for (var j=0; j < desserts.length; j++) { %>
+            <% dessertsList += desserts[j]._id + ", " %>
 
-            // console.log(dessertsList)
-        }
-
-      %>
+       <%  } %>
 
     <tr>
       <td>order <%= i + 1 %></td>
