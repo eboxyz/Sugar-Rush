@@ -1,7 +1,7 @@
 <table class="table">
 
   <% if (order_dates.length > 0){ %>
-    <% for(x in order_dates){ %>
+    <% for(x=order_dates.length - 1; x>=0; x--){ %>
       <tr>
         <td>Order <%= Number(x) + 1 %>
         <td>Date: <%= order_dates[x] %></td>

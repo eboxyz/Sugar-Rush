@@ -7,7 +7,10 @@
   <div class="row">
 
     <div class="col-md-3 col-md-offset-1" id="prof-img-col">
-      <div id='prof-img-div'><img id='prof-img' src=<%= user.local.profilePicture %>></div>
+      <!-- Prof pic logic-->
+      <% var pic = "http://www.marthastewart.com/sites/files/marthastewart.com/styles/wmax-520-highdpi/public/d26/mb_1001_strawberry_cupcake/mb_1001_strawberry_cupcake_vert.jpg?itok=NWhXpH67"; %>
+      <% if (user.local.profilePicture.length > 0) pic = user.local.profilePicture %>
+      <div id='prof-img-div'><img id='prof-img' src=<%= pic %>></div>
       <br><br>
        <center><a href='/users/profile/edit/' class="btn btn-danger btn-md" id="prof-button">Edit User</a></center>
     </div>
@@ -20,9 +23,6 @@
           <strong>Email</strong>: <%= user.local.email %><br>
           <strong>Address:</strong> <%= user.local.address %><br>
           <strong>Phone Number: </strong><%= user.local.phoneNumber %><br>
-          <strong>Driver: </strong><% if (user.local.driver === true) { %>
-          Yes
-          <% } %>
           </p>
         <% } %>
         <% if (user.venmo.email) { %>
