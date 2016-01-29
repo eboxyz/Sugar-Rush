@@ -1,7 +1,9 @@
 var express = require('express');
 var User = require('../models/user');
-var Order = require('../models/order')
-var userController = require('./usersController')
+var Order = require('../models/order');
+var Restaurant = require('../models/restaurant');
+var userController = require('./usersController');
+
 module.exports = function (app, passport){
 
 // =============================================================================
@@ -130,35 +132,66 @@ module.exports = function (app, passport){
   }))
 
 
-// Needs a lot of comments
+// Search mongo for a user matching the id of the session user, the
+// orders that were submitted by the session user, and all of the
+// restaurants.
+// Double for-loop through the restaurant data and push all the dessert
+// item objects to an array called all_items
+// For the order data, set up a datesArray and a dessertsArray. Loop
+// through each order. Convert each item's date into an array of strings
+// and build friendlier date strings and push them into datesArray. Name
+// dessertsArray and quantitiesArray, Loop through each of the desserts
+// from the order and through all of the dessert items. If the ids
+// math, push the name of the item to the dessertsArray and the
+// quantities to a quantitiesArray. Push each to the dessertsArrayArray
+// Render the profile with the current user data, the item name, the
+// quantities, and the date, then save the session
   app.get('/local/profile', function (req, res){
     User.findById({_id: req.session.passport.user}, function (err, data){
       Order.find({user_id: req.session.passport.user}, function (err, data2){
-        var orders = data2;
-        var datesArray = [];
-        var dessertsArrayArray = [];
-        for (var i=0; i<orders.length; i++) {
-          var desserts = [];
-          var oldDate = orders[i].created_at.toString().split(' ');
-          var newDate = oldDate[1]+" "+oldDate[2]+", "+oldDate[3];
-          datesArray.push(newDate);
-          /////
-          desserts = orders[i].dessert_items;
-          var dessertsArray = [];
-          var quantitiesArray = [];
-          for (var j=0; j < desserts.length; j++) {
-            dessertsArray.push(desserts[j]._id); // WE NEED NAMES, NOT IDS!!!!!!
-            quantitiesArray.push(desserts[j].quantity);
-          }
-          dessertsArrayArray.push(dessertsArray);
-          dessertsArrayArray.push(quantitiesArray);
-        }
-        res.render('./users/profile.ejs', {
-          user: data,
-          order_dates: datesArray,
-          order_items: dessertsArrayArray,
-          curr_user: data.local.email,
-          users: null
+        Restaurant.find({}, function(err, data3){
+
+          var restaurants = data3;
+          var all_items = [];
+          for(i=0; i<restaurants.length; i++){
+            currMenu = restaurants[i].menu;
+            for(j=0; j<currMenu.length; j++){
+              all_items.push(currMenu[j]);
+            };
+          };
+
+          var orders = data2;
+          var datesArray = [];
+          var dessertsArrayArray = [];
+          for (var i=0; i<orders.length; i++) {
+
+            var oldDate = orders[i].created_at.toString().split(' ');
+            var newDate = oldDate[1]+" "+oldDate[2]+", "+oldDate[3];
+            datesArray.push(newDate);
+
+            var desserts = orders[i].dessert_items;
+            var dessertsArray = [];
+            var quantitiesArray = [];
+            for (j=0; j < desserts.length; j++) {
+              for(k=0; k<all_items.length; k++){
+                if(all_items[k].id == desserts[j].item_id){
+                  dessertsArray.push(all_items[k].item);
+                };
+              };
+              quantitiesArray.push(desserts[j].quantity);
+            };
+            dessertsArrayArray.push(dessertsArray);
+            dessertsArrayArray.push(quantitiesArray);
+          };
+
+          res.render('./users/profile.ejs', {
+            user: data,
+            order_dates: datesArray,
+            order_items: dessertsArrayArray,
+            curr_user: data.local.email,
+            users: null
+          })
+
         })
       })
     })

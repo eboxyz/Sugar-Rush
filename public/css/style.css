@@ -119,8 +119,8 @@
   margin-right: 25px;
 }
 .cart-item-img{
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
 }
 .cart-item-text{
   display: inline-block;

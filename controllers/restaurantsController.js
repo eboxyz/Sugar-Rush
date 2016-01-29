@@ -23,7 +23,8 @@ module.exports = {
 //then find the session through the user and define it
 //then save the session
   all: function(req, res, next){
-    rp('http://sugar-rush.herokuapp.com/api', function(err, resp, bod){
+    // rp('http://sugar-rush.herokuapp.com/api', function(err, resp, bod){
+    rp('http://localhost:3000/api', function(err, resp, bod){
       if(!err && resp.statusCode === 200){
         var rest_data = JSON.parse(bod);
         res.render('restaurants/all', {restaurants: rest_data});

@@ -9,6 +9,7 @@
 var checkout = document.getElementById('checkout');
 var addToCartArr = document.getElementsByClassName("add-to-cart");
 var orderArray = [];
+
 var searchButton = document.getElementById('search-button');
 var searchBar = document.getElementById('search-bar');
 var searchQuery = document.getElementsByClassName('all-restaurants');
@@ -17,12 +18,12 @@ var showRestButton = document.getElementById('show-rest');
 
 // Loop through the add-to-cart buttons and have them listen for clicks
 // When clicked, push the button's id (with the item info) to orderArray
-//Allows for menu items to be un-checked
-
+// Allows for menu items to be un-checked
 for(i=0; i<addToCartArr.length; i++){
   addToCartArr[i].addEventListener("change", function() {
     if (this.checked) {
       orderArray.push(this.id);
+      console.log(this.id)
     } else {
       var x = orderArray.indexOf(this.id);
       orderArray.splice(x,1);
@@ -77,11 +78,13 @@ var storageString = localStorage.getItem("food").split(",")
 // Push elements of the bainas array to context.desserts as an object.
 for(i in storageString){
   var bainasArr = storageString[i].split("qxz");
+  console.log(bainasArr[4]);
   context.desserts.push({
     "itemName": bainasArr[0],
     "restaurant": bainasArr[1],
     "price": bainasArr[2],
-    "itemId": bainasArr[3]
+    "itemId": bainasArr[3],
+    "pic": bainasArr[4]
   });
 }
 

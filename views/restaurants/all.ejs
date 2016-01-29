@@ -124,7 +124,7 @@
 
                 <% if(restaurants[i].menu[j].available) { %>
 
-                  <label><input type="checkbox" class="add-to-cart" id="<%= restaurants[i].menu[j].item %>qxz<%= restaurants[i].name %>qxz<%= restaurants[i].menu[j].price %>qxz<%= restaurants[i].menu[j].id %>">
+                  <label><input type="checkbox" class="add-to-cart" id="<%= restaurants[i].menu[j].item %>qxz<%= restaurants[i].name %>qxz<%= restaurants[i].menu[j].price %>qxz<%= restaurants[i].menu[j]._id %>qxz<%= restaurants[i].menu[j].img_url %>">
 
                   &nbsp;&nbsp;&nbsp;<%= restaurants[i].menu[j].item %> (<%= restaurants[i].menu[j].price %>)
 
