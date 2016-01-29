@@ -1,8 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Arimo:700,700italic);
 @import url(https://fonts.googleapis.com/css?family=Pacifico);
 
-
-
 /* General styles */
   html {
     height: 100%;
@@ -96,13 +94,21 @@
   text-align: center;
   text-decoration: underline;
   font-weight: bolder;
-  font-size: 40px;
+  font-size: 60px;
   margin-bottom: 30px;
+  font-family: "Pacifico", "Arimo", Helvetica;
 }
 #shopping-cart{
   margin: 150px auto;
 }
 #cart-title{
+  text-align: center;
+}
+.cart-item{
+  margin: 0;
+}
+.cart-vert-align{
+  vertical-align: top;
   text-align: center;
 }
 .cart-item-img-div{
@@ -118,24 +124,64 @@
 }
 .cart-item-text{
   display: inline-block;
-  width: 300px;
+  width: 275px;
+  text-align: left;
+}
+.cart-general-label{
+  text-decoration: underline;
+  padding-top: 20px
+}
+.cart-rest-label{
+  color: black;
+  font-style: oblique;
+}
+.cart-text-info{
+  font-size: 20px;
 }
 .cart-item-cost{
   display: inline-block;
-  width: 100px;
+  width: 75px;
 }
 .cart-item-amount{
   display: inline-block;
-  width: 200px;
+  width: 75px;
 }
-.cart-item-id{
-  display: inline-block;
-  width: 200px;
+.cart-quant-label{
+  margin-bottom: 13px;
+}
+.cart-faded-hr{
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+  margin: 10px 0;
+}
+#cart-total{
+  margin: 13px 0 0 420px;
+  font-size: 20px;
+}
+#cart-button-holder{
+  width: 120px;
+  height: 50px;
+  margin: 25px 270px;
 }
 .cart-button-holder{
-  width:
+  width: 100px;
 }
-
+#updateButton{
+  font-size: 18px;
+  text-align: center;
+  text-decoration: underline;
+  color: black;
+}
+#submit-button{
+  font-size: 15px;
+  width: 100%;
+  background-color: #FF9999;
+  border: 2px solid #A50D18;
+  display: none;
+  margin: 10px 0 0 -5px;
+}
 
 
 
