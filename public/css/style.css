@@ -195,7 +195,13 @@
   position: relative;
   top: -12%;
 }
-
+.home-page-text{
+  font-size: 18px;
+  text-align: left;
+}
+.futura{
+  font-family: "Futura"
+}
   /* title & section one */
   #home_title{
     font-family: 'Pacifico', cursive;
