@@ -7,7 +7,45 @@ var Restaurant = require('../models/restaurant.js');
 var User = require('../models/user.js');
 
 ////////////////////////////////////////////////////////////////////////
-
+exports.seedAdmins = function seedAdmins(){
+  User.find({}).exec(function (err, collection){
+    if (collection.length === 0){
+      User.create({
+        local:{
+          "firstName": "edward",
+          "lastName": "yu",
+          "address": "1933 S Broadway, Los Angeles, CA",
+          "email": "ed@ed.com",
+          "phoneNumber": "9097200899",
+          "password": "ed",
+          "admin": true
+        }
+      }),
+      User.create({
+        local:{
+          "firstName": "edward",
+          "lastName": "yu",
+          "address": "1933 S Broadway, Los Angeles, CA",
+          "email": "ed@ed.com",
+          "phoneNumber": "9097200899",
+          "password": "ed",
+          "admin": true
+        }
+      }),
+      User.create({
+        local:{
+          "firstName": "edward",
+          "lastName": "yu",
+          "address": "1933 S Broadway, Los Angeles, CA",
+          "email": "ed@ed.com",
+          "phoneNumber": "9097200899",
+          "password": "ed",
+          "admin": true
+        }
+      }),
+    }
+  })
+}
 // Seed function called in server.js. If the restaurant database is
 // empty, insert these restaurant models into the database.
 exports.seedRestaurants = function seedRestaurants(){
