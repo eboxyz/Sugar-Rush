@@ -146,57 +146,59 @@ module.exports = function (app, passport){
 // quantities to a quantitiesArray. Push each to the dessertsArrayArray
 // Render the profile with the current user data, the item name, the
 // quantities, and the date, then save the session
-  app.get('/local/profile', function (req, res){
-    User.findById({_id: req.session.passport.user}, function (err, data){
-      Order.find({user_id: req.session.passport.user}, function (err, data2){
-        Restaurant.find({}, function(err, data3){
 
-          var restaurants = data3;
-          var all_items = [];
-          for(i=0; i<restaurants.length; i++){
-            currMenu = restaurants[i].menu;
-            for(j=0; j<currMenu.length; j++){
-              all_items.push(currMenu[j]);
-            };
-          };
 
-          var orders = data2;
-          var datesArray = [];
-          var dessertsArrayArray = [];
-          for (var i=0; i<orders.length; i++) {
+app.get('/local/profile', function (req, res){
+   User.findById({_id: req.session.passport.user}, function (err, data){
+     Order.find({user_id: req.session.passport.user}, function (err, data2){
+       Restaurant.find({}, function(err, data3){
 
-            var oldDate = orders[i].created_at.toString().split(' ');
-            var newDate = oldDate[1]+" "+oldDate[2]+", "+oldDate[3];
-            datesArray.push(newDate);
+         var restaurants = data3;
+         var all_items = [];
+         for(i=0; i<restaurants.length; i++){
+           currMenu = restaurants[i].menu;
+           for(j=0; j<currMenu.length; j++){
+             all_items.push(currMenu[j]);
+           };
+         };
 
-            var desserts = orders[i].dessert_items;
-            var dessertsArray = [];
-            var quantitiesArray = [];
-            for (j=0; j < desserts.length; j++) {
-              for(k=0; k<all_items.length; k++){
-                if(all_items[k].id == desserts[j].item_id){
-                  dessertsArray.push(all_items[k].item);
-                };
-              };
-              quantitiesArray.push(desserts[j].quantity);
-            };
-            dessertsArrayArray.push(dessertsArray);
-            dessertsArrayArray.push(quantitiesArray);
-          };
+         var orders = data2;
+         var datesArray = [];
+         var dessertsArrayArray = [];
+         for (var i=0; i<orders.length; i++) {
 
-          res.render('./users/profile.ejs', {
-            user: data,
-            order_dates: datesArray,
-            order_items: dessertsArrayArray,
-            curr_user: data.local.email,
-            users: null
-          })
+           var oldDate = orders[i].created_at.toString().split(' ');
+           var newDate = oldDate[1]+" "+oldDate[2]+", "+oldDate[3];
+           datesArray.push(newDate);
 
-        })
-      })
-    })
-    req.session.save();
-  });
+           var desserts = orders[i].dessert_items;
+           var dessertsArray = [];
+           var quantitiesArray = [];
+           for (j=0; j < desserts.length; j++) {
+             for(k=0; k<all_items.length; k++){
+               if(all_items[k].id == desserts[j].item_id){
+                 dessertsArray.push(all_items[k].item);
+               };
+             };
+             quantitiesArray.push(desserts[j].quantity);
+           };
+           dessertsArrayArray.push(dessertsArray);
+           dessertsArrayArray.push(quantitiesArray);
+         };
+
+         res.render('./users/profile.ejs', {
+           user: data,
+           order_dates: datesArray,
+           order_items: dessertsArrayArray,
+           curr_user: data.local.email,
+           users: null
+         })
+
+       })
+     })
+   })
+   req.session.save();
+ });
 
   app.get('/users/profile/edit/', function (req, res, next){
     User.findById({_id: req.session.passport.user}, function (err, data){
