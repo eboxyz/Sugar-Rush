@@ -17,11 +17,10 @@ module.exports = {
 
 
 // Shows shopping cart
-//use this userlogic for EVERYTHING!!!
 
   // Renders the shopping cart page used to create new orders
   new: function (req, res, next){
-    //add logic to show if no user
+    console.log(req.session)
     User.findById({_id: req.session.passport.user}, function (err, user){
       res.render('orders/shopping_cart',{
         user: user,
@@ -37,6 +36,7 @@ module.exports = {
     Order.findById({_id: req.params.id}, function (err, order){
       res.render('orders/show', {order: order});
     })
+    req.session.save();
   },
 
   // Grab the dessert_items string from dessert form and split into an
@@ -65,8 +65,9 @@ module.exports = {
     });
     newOrder.save(function (err) {
       if (err) console.log(err);
-      else res.redirect('/orders/show/' + newOrder.id);
+      else res.redirect('/local/profile/');
     })
+    req.session.save();
   },
 
 ////////////////////////////////////////////////////////////////////////

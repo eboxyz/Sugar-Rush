@@ -7,6 +7,67 @@ var Restaurant = require('../models/restaurant.js');
 var User = require('../models/user.js');
 
 ////////////////////////////////////////////////////////////////////////
+exports.seedAdmins = function seedAdmins(){
+  User.find({}).exec(function (err, collection){
+    if (collection.length === 0){
+      User.create({
+        local:{
+          "firstName": "Nick",
+          "lastName": "Castañeda",
+          "address": "1933 S Broadway, Los Angeles, CA",
+          "email": "nick@nite.com",
+          "phoneNumber": "999-999-9999",
+          "password": "nick",
+          "admin": true
+        }
+      }),
+      User.create({
+        local:{
+          "firstName": "Edward",
+          "lastName": "Yu",
+          "address": "1933 S Broadway, Los Angeles, CA",
+          "email": "ed@ed.com",
+          "phoneNumber": "999-999-9999",
+          "password": "ed",
+          "admin": true
+        }
+      }),
+      User.create({
+        local:{
+          "firstName": "GaMaur",
+          "lastName": "Landrum",
+          "address": "1933 S Broadway, Los Angeles, CA",
+          "email": "gamaur@gamaur.com",
+          "phoneNumber": "999-999-9999",
+          "password": "gamaur",
+          "admin": true
+        }
+      }),
+      User.create({
+        local:{
+          "firstName": "Fran",
+          "lastName": "Budiman",
+          "address": "1933 S Broadway, Los Angeles, CA",
+          "email": "fran@fran.com",
+          "phoneNumber": "999-999-9999",
+          "password": "fran",
+          "admin": true
+        }
+      }),
+      User.create({
+        local:{
+          "firstName": "Thomas",
+          "lastName": "Choi",
+          "address": "1933 S Broadway, Los Angeles, CA",
+          "email": "thomas@thomas.com",
+          "phoneNumber": "999-999-9999",
+          "password": "thomas",
+          "admin": true
+        }
+      })
+    }
+  })
+},
 
 // Seed function called in server.js. If the restaurant database is
 // empty, insert these restaurant models into the database.

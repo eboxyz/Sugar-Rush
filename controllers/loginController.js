@@ -130,22 +130,40 @@ module.exports = function (app, passport){
   }))
 
 
-//isLoggedin goes here
+// Needs a lot of comments
   app.get('/local/profile', function (req, res){
     User.findById({_id: req.session.passport.user}, function (err, data){
-      Order.find({}, function (err, data2) {
-          res.render('./users/profile.ejs', {
-            orderHistory: data2,
-            user: data,
-            curr_user: data.local.email,
-            users: null,
+      Order.find({user_id: req.session.passport.user}, function (err, data2){
+        var orders = data2;
+        var datesArray = [];
+        var dessertsArrayArray = [];
+        for (var i=0; i<orders.length; i++) {
+          var desserts = [];
+          var oldDate = orders[i].created_at.toString().split(' ');
+          var newDate = oldDate[1]+" "+oldDate[2]+", "+oldDate[3];
+          datesArray.push(newDate);
+          /////
+          desserts = orders[i].dessert_items;
+          var dessertsArray = [];
+          var quantitiesArray = [];
+          for (var j=0; j < desserts.length; j++) {
+            dessertsArray.push(desserts[j]._id); // WE NEED NAMES, NOT IDS!!!!!!
+            quantitiesArray.push(desserts[j].quantity);
+          }
+          dessertsArrayArray.push(dessertsArray);
+          dessertsArrayArray.push(quantitiesArray);
+        }
+        res.render('./users/profile.ejs', {
+          user: data,
+          order_dates: datesArray,
+          order_items: dessertsArrayArray,
+          curr_user: data.local.email,
+          users: null
+        })
       })
     })
-  })
-
-  req.session.save();
-  }
-  );
+    req.session.save();
+  });
 
   app.get('/users/profile/edit/', function (req, res, next){
     User.findById({_id: req.session.passport.user}, function (err, data){
@@ -157,13 +175,17 @@ module.exports = function (app, passport){
     })
     //PUT A RESPONSE HERE SO YOU CAN PING
     req.session.save();
-  })
+  });
 
 
   app.post('/users/profile/edit/:id', function (req, res, next){
     console.log(req.session.passport.user)
     console.log(req.session)
     User.findById({_id: req.session.passport.user}, function (err, user){
+      // console.log()
+      // Order.find({}, function (err, data2){
+      //   orderHistory: data2
+      // })
       curr_user = req.body;
       console.log(curr_user);
     var keys = Object.keys(req.body);
@@ -175,6 +197,7 @@ module.exports = function (app, passport){
     console.log(req.session)
     res.render('./users/profile', {
       user: user,
+      // orderHistory: data2,
       curr_user: user.local,
       users: null,
     })

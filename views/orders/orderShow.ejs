@@ -1,29 +1,17 @@
 <table class="table">
 
-  <% for (var i=0; i<orderHistory.length; i++) { %>
-
-      <% // code for getting exactly orderDate
-        var oldDate = orderHistory[i].created_at;
-        var oldDateString = oldDate.toString().split(' ')
-        var newDate = oldDateString[1]+"/"+oldDateString[2]+"/"+oldDateString[3]
-
-        // code for getting dessert items's item_id
-
-        var desserts = orderHistory[i].dessert_items
-        var dessertsList = ""
-        for (var j=0; j < desserts.length; j++) {
-            dessertsList += desserts[j].quantity + ", "
-
-            // console.log(dessertsList)
-        }
-
-      %>
-
-    <tr>
-      <td>order <%= i + 1 %></td>
-      <td>Date: <%= newDate %></td>
-      <td>Items: <%= dessertsList.slice(0, dessertsList.length - 2); %> </td>
-    </tr>
+  <% if (order_dates.length > 0){ %>
+    <% for(x in order_dates){ %>
+      <tr>
+        <td>Order <%= Number(x) + 1 %>
+        <td>Date: <%= order_dates[x] %></td>
+        <td>
+          <% for(q in order_items[x * 2]){ %>
+            <p><%= order_items[x * 2][q] %> - <%= order_items[(x * 2) + 1][q] %></p>
+          <% } %>
+        </td>
+      </tr>
+    <% } %>
   <% } %>
 
 </table>

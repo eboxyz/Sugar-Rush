@@ -20,6 +20,9 @@
           <strong>Name:</strong> <%= user.local.firstName %> <%= user.local.lastName %><br>
           <strong>Address:</strong> <%= user.local.address %><br>
           <strong>Phone Number: </strong><%= user.local.phoneNumber %><br>
+          <strong>Driver: </strong><% if (user.local.driver === true) { %>
+          Yes
+          <% } %>
           </p>
         <% } %>
         <% if (user.venmo.email) { %>
@@ -31,11 +34,11 @@
         <% } %>
       <br><br><hr id='prof-hr'>
 
-      <div>
+        <div>
           <h3 id='prof-order-hist'>Order History</h3>
           <br>
-          <% include ../orders/orderShow %>
-      </div>
+          <% include ../orders/orderShow.ejs %>
+        </div>
 
     </div>
     <div class="col-md-2"></div>
