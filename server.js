@@ -92,7 +92,8 @@ app.use(expressSession({resave: true, saveUninitialized: true, secret: credentia
 
 // Seeds restaurants
 require('./db/seed.js').seedRestaurants();
-
+//Seeds Users
+require('./db/seed.js').seedAdmins();
 
 ////////////////////////////////////////////////////////////////////////
 //                               Routes                               //
