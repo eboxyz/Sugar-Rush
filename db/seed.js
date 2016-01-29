@@ -98,6 +98,12 @@ exports.seedRestaurants = function seedRestaurants(){
             "price": "$12.00",
             "available": true,
             "img_url": "http://www.portosbakery.com/sites/default/files/styles/product-detail250/public/Parisian%20Chocolate%20Cake%209%20inches%20round.jpg?itok=MK5UUai2"
+          },
+          {
+            "item": "It's your birthday",
+            "price": "$12.00",
+            "available": true,
+            "img_url": "http://www.portosbakery.com/sites/default/files/styles/product-detail250/public/Parisian%20Chocolate%20Cake%209%20inches%20round.jpg?itok=MK5UUai2"
           }
         ]
       }),
