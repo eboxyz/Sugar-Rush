@@ -21,7 +21,8 @@ var userSchema = mongoose.Schema({
     phoneNumber: String,
     password: String,
     driver: Boolean,
-    admin: Boolean
+    admin: Boolean,
+    profilePicture: {type: String, default: "http://www.marthastewart.com/sites/files/marthastewart.com/styles/wmax-520-highdpi/public/d26/mb_1001_strawberry_cupcake/mb_1001_strawberry_cupcake_vert.jpg?itok=NWhXpH67"}
   },
   venmo: {
     name: {
