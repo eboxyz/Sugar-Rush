@@ -130,17 +130,37 @@ module.exports = function (app, passport){
   }))
 
 
-//isLoggedin goes here
+// Needs a lot of comments
   app.get('/local/profile', function (req, res){
     User.findById({_id: req.session.passport.user}, function (err, data){
-        Order.find({user_id: data.local.id}, function (err, data2){
-          res.render('./users/profile.ejs', {
-            user: data,
-            orderHistory: data2,
-            curr_user: data.local.email,
-            users: null
-          })
+      Order.find({user_id: req.session.passport.user}, function (err, data2){
+        var orders = data2;
+        var datesArray = [];
+        var dessertsArrayArray = [];
+        for (var i=0; i<orders.length; i++) {
+          var desserts = [];
+          var oldDate = orders[i].created_at.toString().split(' ');
+          var newDate = oldDate[1]+" "+oldDate[2]+", "+oldDate[3];
+          datesArray.push(newDate);
+          /////
+          desserts = orders[i].dessert_items;
+          var dessertsArray = [];
+          var quantitiesArray = [];
+          for (var j=0; j < desserts.length; j++) {
+            dessertsArray.push(desserts[j]._id); // WE NEED NAMES, NOT IDS!!!!!!
+            quantitiesArray.push(desserts[j].quantity);
+          }
+          dessertsArrayArray.push(dessertsArray);
+          dessertsArrayArray.push(quantitiesArray);
+        }
+        res.render('./users/profile.ejs', {
+          user: data,
+          order_dates: datesArray,
+          order_items: dessertsArrayArray,
+          curr_user: data.local.email,
+          users: null
         })
+      })
     })
     req.session.save();
   });
