@@ -1,10 +1,42 @@
 var addToCartArr = document.getElementsByClassName("add-to-cart");
 var checkout = document.getElementById('checkout');
 var orderArray = [];
+var searchButton = document.getElementById('search-button');
+var searchBar = document.getElementById('search-bar');
+var searchQuery = document.getElementsByClassName('all-restaurants');
+var searchBy = document.getElementById('select-search');
+var showRestButton = document.getElementById('show-rest');
 
+//Cheaters search Bar
+searchButton.addEventListener("click", function() {
+
+  showRestButton.style.display = 'block';
+
+  if (searchBy.value == "restaurant") {
+    for(i=0; i<searchQuery.length; i++) {
+      var lowSearchQuery = searchQuery[i].id.toLowerCase();
+      var lowSearchBar = searchBar.value.toLowerCase();
+
+      if (lowSearchQuery.includes(lowSearchBar)) {
+        searchQuery[i].style.display = 'block';
+      } else {
+        searchQuery[i].style.display = 'none';
+      }
+    }
+  } else if (searchBy.value == "dessert") {
+  //in progress
+  }
+})
+
+//Allows for menu items to be un-checked
 for(i=0; i<addToCartArr.length; i++){
-  addToCartArr[i].addEventListener("click", function() {
-    orderArray.push(this.id);
+  addToCartArr[i].addEventListener("change", function() {
+    if (this.checked) {
+      orderArray.push(this.id);
+    } else {
+      var x = orderArray.indexOf(this.id);
+      orderArray.splice(x,1);
+    }
   })
 }
 

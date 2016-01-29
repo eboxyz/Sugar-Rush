@@ -230,12 +230,13 @@ div.navbar a{
   font-size: 35pt;
 }
 
-#checkout {
+#checkout, #show-rest {
  background-color: #FF9999;
 }
 
 #button-link {
   color: black;
+  text-decoration: none;
 }
 
 #carousel-box {

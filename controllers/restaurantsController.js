@@ -23,7 +23,6 @@ module.exports = {
       } else console.log(err)
     })
   },
-
 // Shows a specific restaurant
 
 
