@@ -7,11 +7,11 @@ In future versions, Sugar-Rush will have driver profiles and will link orders to
 
 
 ### The Team
-* Edward Yu: [github](https://github.com/eboxyz) [website]() [linkedin]()
-* Fran Budiman: [github](https://github.com/fbudiman) [website]() [linkedin]()
-* GaMaur Landrum: [github](https://github.com/Dragyn3652) [website]() [linkedin]()
-* Nick Castañeda: [github](https://github.com/nick-castaneda) [website]() [linkedin]()
-* Thomas Choi: [github](https://github.com/blueeyess) [website]() [linkedin]()
+* Edward Yu: [github](https://github.com/eboxyz) [website](http://www.edwardyu.xyz) [linkedin](www.linkedin.com/in/edward-yu-web-developer-a50250ba)
+* Fran Budiman: [github](https://github.com/fbudiman) [website](www.franbudiman.com) [linkedin](www.linkedin.com/in/franbudiman)
+* GaMaur Landrum: [github](https://github.com/Dragyn3652) [website](http://gamaur.com) [linkedin](https://www.linkedin.com/in/gamaur)
+* Nick Castañeda: [github](https://github.com/nick-castaneda) [website](www.nick-castaneda.com) [linkedin](www.linkedin.com/in/nickpcastaneda)
+* Thomas Choi: [github](https://github.com/blueeyess) [website](www.thomastaechoi.com) [linkedin](www.linkedin.com/in/tchoii)
 
 ### Links
 A version of this application can be found on the Heroku website at [this address](http://sugar-rush.herokuapp.com/).
