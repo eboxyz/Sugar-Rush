@@ -16,6 +16,9 @@ var searchQuery = document.getElementsByClassName('all-restaurants');
 var searchBy = document.getElementById('select-search');
 var showRestButton = document.getElementById('show-rest');
 
+
+
+
 // Loop through the add-to-cart buttons and have them listen for clicks
 // When clicked, push the button's id (with the item info) to orderArray
 // Allows for menu items to be un-checked
